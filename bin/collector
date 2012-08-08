@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'gli'
+require 'bundler/setup'
+Bundler.require
 
 require_relative '../lib/visits_collector'
 require_relative '../lib/visits_collector_config'
@@ -20,9 +20,8 @@ flag [:t,:token]
 desc 'Print out the collected content'
 command :print do |c|
   c.action do |global_options, options, args|
-    visits_collector = Collectors::VisitsCollector.new(VisitsCollectorConfig)
-    visits_collector.run(global_options[:token])
-    visits_collector.print
+    visits_collector = Collectors::VisitsCollector.new(global_options[:token], VisitsCollectorConfig)
+    puts visits_collector.collect_as_response
   end
 end
 
