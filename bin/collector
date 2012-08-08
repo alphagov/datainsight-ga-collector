@@ -1,4 +1,10 @@
 #!/usr/bin/env ruby
+# Collects the weekly visits.
+# Run: './bin/collector -t TOKEN print'
+#
+# To obtain authorization code please visit:
+#
+# https://accounts.google.com/o/oauth2/auth?response_type=code&scope=https://www.googleapis.com/auth/analytics.readonly&redirect_uri=urn:ietf:wg:oauth:2.0:oob&client_id=1054017153726.apps.googleusercontent.com
 
 require 'bundler/setup'
 Bundler.require
@@ -12,7 +18,7 @@ program_desc 'Collect the weekly visits'
 
 version 0.1
 
-desc 'For the first request you need to pass in the authorisation token'
+desc 'Only for the first request you need to pass in the authorisation token'
 default_value nil
 arg_name 'oauth token'
 flag [:t,:token]

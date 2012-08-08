@@ -1,10 +1,3 @@
-# Run:
-# ruby visits_collector.rb <AUTHORIZATION_CODE>
-#
-# To obtain authorization code please visit:
-#
-# https://accounts.google.com/o/oauth2/auth?response_type=code&scope=https://www.googleapis.com/auth/analytics.readonly&redirect_uri=urn:ietf:wg:oauth:2.0:oob&client_id=1054017153726.apps.googleusercontent.com
-
 require 'yaml'
 require 'open-uri'
 require 'json'
