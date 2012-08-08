@@ -8,7 +8,6 @@
 require 'yaml'
 require 'open-uri'
 require 'json'
-require_relative 'ga'
 
 class Date
   def self.next_week
@@ -23,6 +22,10 @@ end
 module Collectors
   class VisitsCollector
     include GoogleAuthenticationBridge
+
+    API_SCOPE = "https://www.googleapis.com/auth/analytics.readonly"
+    GOOGLE_CLIENT_ID = '1054017153726.apps.googleusercontent.com'
+    GOOGLE_CLIENT_SECRET = 'eMFsc8LU3ZGrRFG93WfQCnD3'
 
     def initialize(auth_code, config)
       @auth_code, @config = auth_code, config
@@ -51,8 +54,9 @@ module Collectors
 
     end
 
+
     def authenticate(auth_code)
-      auth = GoogleAuthentication.new("https://www.googleapis.com/auth/analytics.readonly")
+      auth = GoogleAuthentication.new(API_SCOPE, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)
       auth_token = auth.get_tokens(auth_code)
 
       client = Google::APIClient.new
