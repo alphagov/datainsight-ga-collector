@@ -24,7 +24,7 @@ module Collectors
       @auth_code, @config = auth_code, config
     end
 
-    def collect_as_response
+    def collect_as_json
       JSON.pretty_generate(response)
     end
 

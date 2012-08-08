@@ -27,7 +27,7 @@ desc 'Print out the collected content'
 command :print do |c|
   c.action do |global_options, options, args|
     visits_collector = Collectors::VisitsCollector.new(global_options[:token], VisitsCollectorConfig)
-    puts visits_collector.collect_as_response
+    puts visits_collector.collect_as_json
   end
 end
 
