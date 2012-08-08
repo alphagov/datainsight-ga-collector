@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'gli'
+
+require_relative '../lib/visits_collector'
+require_relative '../lib/visits_collector_config'
+
+include GLI
+
+program_desc 'Collect the weekly visits'
+
+version 0.1
+
+desc 'For the first request you need to pass in the authorisation token'
+default_value nil
+arg_name 'oauth token'
+flag [:t,:token]
+
+desc 'Print out the collected content'
+command :print do |c|
+  c.action do |global_options, options, args|
+    visits_collector = Collectors::VisitsCollector.new(VisitsCollectorConfig)
+    visits_collector.run(global_options[:token])
+    visits_collector.print
+  end
+end
+
+exit GLI.run(ARGV)
