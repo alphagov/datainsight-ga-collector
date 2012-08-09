@@ -6,6 +6,7 @@ gem "google-auth-bridge", :git=>"git@github.com:alphagov/google-auth-bridge.git"
 gem "bunny"
 gem "multi_json"
 gem "gli"
+gem "whenever"
 
 group :test do
   gem "rspec"
