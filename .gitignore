@@ -1,3 +1,5 @@
 tokens
 Gemfile.lock
 .idea
+*.zip
+vendor
