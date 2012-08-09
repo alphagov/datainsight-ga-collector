@@ -15,7 +15,14 @@ module Collectors
     end
 
     def collect_as_json
-      response.to_json
+      response.to_pretty_json
+    end
+
+    def broadcast
+      Bunny.run(ENV['AMQP']) do |client|
+        exchange = client.exchange("datainsight", :type => :topic)
+        exchange.publish(response.to_json, :key => 'google_analytics.visits.weekly')
+      end
     end
 
 
@@ -33,7 +40,6 @@ module Collectors
         VisitsResponse.create_from_error_message(e.message)
       end
     end
-
 
 
     def authenticate(auth_code)
@@ -69,11 +75,6 @@ module Collectors
       parameters["filters"] = @config::FILTER unless @config::FILTER.nil? or @config::FILTER.empty?
 
       parameters
-    end
-
-
-    def output_with_exception(message)
-      puts message
     end
 
   end

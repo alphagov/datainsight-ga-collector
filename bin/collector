@@ -34,4 +34,13 @@ command :print do |c|
   end
 end
 
+desc 'Publish the collected content to the queue'
+command :broadcast do |c|
+  c.action do |global_options, options, args|
+    visits_collector = Collectors::VisitsCollector.new(global_options[:token], VisitsCollectorConfig)
+    visits_collector.broadcast
+  end
+end
+
+
 exit GLI.run(ARGV)

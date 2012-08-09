@@ -6,7 +6,7 @@ describe "total visits" do
 
   it "should use visits count if only week is present (middle of the year)" do
     filename = "sample_response_from_ga.json"
-    response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "data", filename)))
+    response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "../data", filename)))
 
     visit_response = VisitsResponse.create_from_success(response_hash)
     message = visit_response.message
@@ -18,7 +18,7 @@ describe "total visits" do
 
   it "should add visits if two weeks are present (year switch)" do
     filename = "sample_response_from_ga_year_switch.json"
-    response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "data", filename)))
+    response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "../data", filename)))
 
     visit_response = VisitsResponse.create_from_success(response_hash)
     message = visit_response.message
