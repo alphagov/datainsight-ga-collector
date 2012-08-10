@@ -11,10 +11,6 @@ class VisitsResponse
     VisitsResponse.new(:error, {:error => error_message})
   end
 
-  def to_pretty_json
-    JSON.pretty_generate(@message)
-  end
-
   def to_json
     @message.to_json
   end

@@ -15,7 +15,7 @@ module Collectors
     end
 
     def collect_as_json
-      response.to_pretty_json
+      response.to_json
     end
 
     def broadcast

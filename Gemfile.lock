@@ -1,0 +1,80 @@
+GIT
+  remote: git@github.com:alphagov/google-auth-bridge.git
+  revision: 61b3d98bb8139c9ece885ae336619b34c46e583d
+  specs:
+    google-auth-bridge (0.0.1)
+      google-api-client
+      oauth2
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.2.8)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    addressable (2.3.2)
+    autoparse (0.3.2)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
+    bunny (0.8.0)
+    chronic (0.6.7)
+    diff-lcs (1.1.3)
+    extlib (0.9.15)
+    faraday (0.8.1)
+      multipart-post (~> 1.1)
+    gli (1.6.0)
+    google-api-client (0.4.5)
+      addressable (>= 2.3.2)
+      autoparse (>= 0.3.2)
+      extlib (>= 0.9.15)
+      faraday (~> 0.8.1)
+      launchy (>= 2.1.1)
+      multi_json (>= 1.0.0)
+      signet (>= 0.4.1)
+      uuidtools (>= 2.1.0)
+    httpauth (0.1)
+    i18n (0.6.0)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
+    multi_json (1.3.6)
+    multipart-post (1.1.5)
+    oauth2 (0.8.0)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    rack (1.4.1)
+    rake (0.9.2.2)
+    rspec (2.11.0)
+      rspec-core (~> 2.11.0)
+      rspec-expectations (~> 2.11.0)
+      rspec-mocks (~> 2.11.0)
+    rspec-core (2.11.1)
+    rspec-expectations (2.11.2)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.11.1)
+    signet (0.4.1)
+      addressable (>= 2.2.3)
+      faraday (~> 0.8.1)
+      jwt (>= 0.1.5)
+      multi_json (>= 1.0.0)
+    uuidtools (2.1.3)
+    whenever (0.7.3)
+      activesupport (>= 2.3.4)
+      chronic (~> 0.6.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bunny
+  gli
+  google-api-client
+  google-auth-bridge!
+  rake
+  rspec
+  whenever

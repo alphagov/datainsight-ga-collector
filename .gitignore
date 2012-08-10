@@ -1,5 +1,5 @@
 tokens
-Gemfile.lock
 .idea
+.bundle
 *.zip
 vendor
