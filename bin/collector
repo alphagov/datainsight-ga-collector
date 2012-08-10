@@ -2,7 +2,7 @@
 # Collects the weekly visits.
 # Run: './bin/collector -t TOKEN print'
 #
-# To obtain authorization code please visit:
+# To obtain authorisation code please visit:
 #
 # https://accounts.google.com/o/oauth2/auth?response_type=code&scope=https://www.googleapis.com/auth/analytics.readonly&redirect_uri=urn:ietf:wg:oauth:2.0:oob&client_id=1054017153726.apps.googleusercontent.com
 
@@ -21,15 +21,15 @@ program_desc 'Collect the weekly visits'
 
 version 0.1
 
-desc 'Only for the first request you need to pass in the authorisation token'
+desc 'Only for the first request you need to pass in the authorisation code'
 default_value nil
-arg_name 'oauth token'
-flag [:t,:token]
+arg_name 'authorisation code'
+flag [:a,:authorisation_code]
 
 desc 'Print out the collected content'
 command :print do |c|
   c.action do |global_options, options, args|
-    visits_collector = Collectors::VisitsCollector.new(global_options[:token], VisitsCollectorConfig)
+    visits_collector = Collectors::VisitsCollector.new(global_options[:authorisation_code], VisitsCollectorConfig)
     puts visits_collector.collect_as_json
   end
 end
@@ -37,7 +37,7 @@ end
 desc 'Publish the collected content to the queue'
 command :broadcast do |c|
   c.action do |global_options, options, args|
-    visits_collector = Collectors::VisitsCollector.new(global_options[:token], VisitsCollectorConfig)
+    visits_collector = Collectors::VisitsCollector.new(global_options[:authorisation_code], VisitsCollectorConfig)
     visits_collector.broadcast
   end
 end
