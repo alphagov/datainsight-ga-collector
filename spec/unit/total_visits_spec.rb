@@ -11,7 +11,8 @@ describe "total visits" do
     visit_response = VisitsResponse.create_from_success(response_hash)
     message = visit_response.message
 
-    message[:payload][:week_starting].should eql("2012-07-29")
+    message[:payload][:start_at].should eql("2012-07-29T00:00:00+00:00")
+    message[:payload][:end_at].should eql("2012-08-05T00:00:00+00:00")
     message[:payload][:value].should eql(32199)
     message[:payload][:site].should eql("govuk")
   end
@@ -23,7 +24,8 @@ describe "total visits" do
     visit_response = VisitsResponse.create_from_success(response_hash)
     message = visit_response.message
 
-    message[:payload][:week_starting].should eql("2010-12-26")
+    message[:payload][:start_at].should eql("2010-12-26T00:00:00+00:00")
+    message[:payload][:end_at].should eql("2011-01-02T00:00:00+00:00")
     message[:payload][:value].should eql(5000)
     message[:payload][:site].should eql("govuk")
   end

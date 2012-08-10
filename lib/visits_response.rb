@@ -31,10 +31,19 @@ class VisitsResponse
 
   def parse_success(response)
     {
-        :week_starting => response["query"]["start-date"],
+        :start_at => extract_start_at(response["query"]["start-date"]),
+        :end_at => extract_end_at(response["query"]["end-date"]),
         :value => get_total_visits(response["rows"]),
         :site => SITE_KEY
     }
+  end
+
+  def extract_start_at(start_date)
+    DateTime.parse(start_date).strftime
+  end
+
+  def extract_end_at(end_date)
+    (DateTime.parse(end_date)+1).strftime
   end
 
 
