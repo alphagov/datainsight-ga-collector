@@ -1,4 +1,5 @@
-module VisitsCollectorConfig
+module CollectorConfig
+  module WeeklyVisits
     GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
     METRIC = "ga:visits"
     METRIC_NAME = "visits"
@@ -6,4 +7,5 @@ module VisitsCollectorConfig
     SOURCE = "Google Analytics Reach"
     FILTER = ""
     UNIT = "visits"
+  end
 end

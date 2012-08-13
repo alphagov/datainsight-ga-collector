@@ -13,7 +13,7 @@ require_relative '../lib/date_range'
 require_relative '../lib/visits_response'
 
 require_relative '../lib/visits_collector'
-require_relative '../lib/visits_collector_config'
+require_relative '../lib/config/weekly_visits'
 
 include GLI
 
@@ -24,23 +24,40 @@ version 0.1
 desc 'Only for the first request you need to pass in the authorisation code'
 default_value nil
 arg_name 'authorisation code'
-flag [:a,:authorisation_code]
+flag [:a, :authorisation_code]
 
-desc 'Print out the collected content'
+desc 'The name of the configuration module to specify the what data to collect from GA and where to put it.'
+arg_name 'configuration module'
+default_value ""
+flag [:c, :config]
+
+pre do |global_options, *ignore|
+  authentication_code = global_options[:authorisation_code]
+  config = global_options[:config].to_sym
+  collector_config = if CollectorConfig.constants.include?(config)
+                       CollectorConfig.const_get(config)
+                     else
+                       raise "Invalid collector configuration or none given. Please choose a configuration from [#{CollectorConfig.constants.join(", ")}]."
+                     end
+
+  @visits_collector = Collectors::VisitsCollector.new(authentication_code, collector_config)
+end
+
+
 command :print do |c|
+  c.desc 'Print out the collected content'
   c.action do |global_options, options, args|
-    visits_collector = Collectors::VisitsCollector.new(global_options[:authorisation_code], VisitsCollectorConfig)
-    puts visits_collector.collect_as_json
+    puts @visits_collector.collect_as_json
   end
 end
 
-desc 'Publish the collected content to the queue'
+
 command :broadcast do |c|
+  c.desc 'Publish the collected content to the queue'
   c.action do |global_options, options, args|
-    visits_collector = Collectors::VisitsCollector.new(global_options[:authorisation_code], VisitsCollectorConfig)
-    visits_collector.broadcast
+    @visits_collector.broadcast
   end
 end
 
 
-exit GLI.run(ARGV)
+exit run(ARGV)
