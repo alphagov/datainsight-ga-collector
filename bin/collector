@@ -32,7 +32,7 @@ arg_name 'configuration module'
 default_value ""
 flag [:c, :config]
 
-pre do |global_options, *ignore|
+def collector(global_options)
   authentication_code = global_options[:authorisation_code]
   config = global_options[:config].to_sym
   collector_config = if CollectorConfig.constants.include?(config)
@@ -41,14 +41,14 @@ pre do |global_options, *ignore|
                        raise "Invalid collector configuration or none given. Please choose a configuration from [#{CollectorConfig.constants.join(", ")}]."
                      end
 
-  @visits_collector = Collectors::VisitsCollector.new(authentication_code, collector_config)
+  Collectors::VisitsCollector.new(authentication_code, collector_config)
 end
 
 
 command :print do |c|
   c.desc 'Print out the collected content'
   c.action do |global_options, options, args|
-    puts @visits_collector.collect_as_json
+    puts collector(global_options).collect_as_json
   end
 end
 
@@ -56,7 +56,7 @@ end
 command :broadcast do |c|
   c.desc 'Publish the collected content to the queue'
   c.action do |global_options, options, args|
-    @visits_collector.broadcast
+    collector(global_options).broadcast
   end
 end
 
