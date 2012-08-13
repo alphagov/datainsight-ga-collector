@@ -10,9 +10,9 @@ require 'bundler/setup'
 Bundler.require
 
 require_relative '../lib/date_range'
-require_relative '../lib/visits_response'
+require_relative '../lib/response'
 
-require_relative '../lib/visits_collector'
+require_relative '../lib/collector'
 require_relative '../lib/config/weekly_visits'
 require_relative '../lib/config/weekly_unique_visitors'
 
@@ -41,7 +41,7 @@ def collector(global_options)
                        raise "Invalid collector configuration or none given. Please choose a configuration from [#{CollectorConfig.constants.join(", ")}]."
                      end
 
-  Collectors::VisitsCollector.new(authentication_code, collector_config)
+  GoogleAnalytics::Collector.new(authentication_code, collector_config)
 end
 
 

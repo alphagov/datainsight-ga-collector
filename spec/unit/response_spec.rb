@@ -3,13 +3,14 @@ require "rspec"
 require_relative "spec_helper"
 
 describe "total visits" do
+  include GoogleAnalytics
 
   it "should use visits count if only week is present (middle of the year)" do
     filename = "sample_response_from_ga.json"
     response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "../data", filename)))
 
-    visit_response = VisitsResponse.create_from_success(response_hash)
-    message = visit_response.message
+    response = Response.create_from_success(response_hash)
+    message = response.message
 
     message[:payload][:start_at].should eql("2012-07-29T00:00:00+00:00")
     message[:payload][:end_at].should eql("2012-08-05T00:00:00+00:00")
@@ -21,8 +22,8 @@ describe "total visits" do
     filename = "sample_response_from_ga_year_switch.json"
     response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "../data", filename)))
 
-    visit_response = VisitsResponse.create_from_success(response_hash)
-    message = visit_response.message
+    response = Response.create_from_success(response_hash)
+    message = response.message
 
     message[:payload][:start_at].should eql("2010-12-26T00:00:00+00:00")
     message[:payload][:end_at].should eql("2011-01-02T00:00:00+00:00")
@@ -31,8 +32,8 @@ describe "total visits" do
   end
 
   it "should have an error messag on error" do
-    visit_response = VisitsResponse.create_from_error_message("Bad Error!")
-    message = visit_response.message
+    response = Response.create_from_error_message("Bad Error!")
+    message = response.message
 
     message[:payload][:error].should eql("Bad Error!")
 

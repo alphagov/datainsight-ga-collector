@@ -2,8 +2,8 @@ require 'yaml'
 require 'open-uri'
 require 'json'
 
-module Collectors
-  class VisitsCollector
+module GoogleAnalytics
+  class Collector
     include GoogleAuthenticationBridge
 
     API_SCOPE = "https://www.googleapis.com/auth/analytics.readonly"
@@ -35,9 +35,9 @@ module Collectors
     def execute(auth_code)
       begin
         client = authenticate(auth_code)
-        VisitsResponse.create_from_success(collect(client))
+        Response.create_from_success(collect(client))
       rescue Exception => e
-        VisitsResponse.create_from_error_message(e.message)
+        Response.create_from_error_message(e.message)
       end
     end
 
