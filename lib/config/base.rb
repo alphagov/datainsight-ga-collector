@@ -11,15 +11,13 @@ module GoogleAnalytics
       end
 
       GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
-      DIMENSION = "ga:week"
 
       def analytics_parameters()
-        last_week = DateRange::get_last_week(@reference_date)
         parameters = {}
 
         parameters["ids"] = self.class::GOOGLE_ANALYTICS_URL_ID
-        parameters["start-date"] = last_week.first.strftime
-        parameters["end-date"] = last_week.last.strftime
+        parameters["start-date"] = start_at.strftime
+        parameters["end-date"] = end_at.strftime
         parameters["metrics"] = self.class::METRIC
         parameters["dimensions"] = self.class::DIMENSION
 
