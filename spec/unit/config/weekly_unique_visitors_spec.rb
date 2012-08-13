@@ -3,16 +3,16 @@ require_relative "../spec_helper"
 describe "Weekly Unique Visitors Config" do
 
   before(:all) do
-    @config = GoogleAnalytics::Config::WeeklyUniqueVisitors.new(Date.new(2012, 8, 13))
+    @configs = GoogleAnalytics::Config::WeeklyUniqueVisitors.last_before(Date.new(2012, 8, 13))
   end
 
   it "should have an amqp_topic of google_analytics.unique_visitors.weekly" do
-    @config.amqp_topic.should == 'google_analytics.unique_visitors.weekly'
+    @configs.amqp_topic.should == 'google_analytics.unique_visitors.weekly'
   end
 
   describe "analytics_parameters" do
     before(:all) do
-      @p = @config.analytics_parameters
+      @p = @configs.analytics_parameters
     end
 
     it "should have ids" do

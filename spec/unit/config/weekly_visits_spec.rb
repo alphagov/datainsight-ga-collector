@@ -2,7 +2,7 @@ require_relative "../spec_helper"
 
 describe "Weekly Visits Config" do
   before(:all) do
-    @weekly_visits_config = GoogleAnalytics::Config::WeeklyVisits.new(Date.new(2012, 8, 13))
+    @weekly_visits_config = GoogleAnalytics::Config::WeeklyVisits.last_before(Date.new(2012, 8, 13))
   end
 
   it "should have an amqp_topic of google_analytics.visits.weekly" do

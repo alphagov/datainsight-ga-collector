@@ -10,32 +10,41 @@ module GoogleAnalytics
     GOOGLE_CLIENT_ID = '1054017153726.apps.googleusercontent.com'
     GOOGLE_CLIENT_SECRET = 'eMFsc8LU3ZGrRFG93WfQCnD3'
 
-    def initialize(auth_code, config)
-      @auth_code, @config = auth_code, config
+    def initialize(auth_code, configs)
+      @auth_code, @configs = auth_code, configs
     end
 
     def collect_as_json
-      response.to_json
+      collect_responses.map(&:to_json)
     end
 
     def broadcast
       Bunny.run(ENV['AMQP']) do |client|
-        exchange = client.exchange("datainsight", :type => :topic)
-        exchange.publish(response.to_json, :key => @config.amqp_topic)
+        collect_responses do |response, config|
+          exchange = client.exchange("datainsight", :type => :topic)
+          exchange.publish(response.to_json, :key => config.amqp_topic)
+        end
       end
     end
 
 
     private
-    def response
-      @response ||= execute(@auth_code)
+    def collect_responses &block
+      begin
+        client = authenticate(@auth_code)
+        @configs.map do |config|
+          response = collect_response(client, config)
+          yield(response, config) if block_given?
+          response
+        end
+      rescue Exception => e
+        [Response.create_from_error_message(e.message)]
+      end
     end
 
-
-    def execute(auth_code)
+    def collect_response(client, config)
       begin
-        client = authenticate(auth_code)
-        Response.create_from_success(collect(client))
+        Response.create_from_success(collect(client, config))
       rescue Exception => e
         Response.create_from_error_message(e.message)
       end
@@ -52,9 +61,9 @@ module GoogleAnalytics
       client
     end
 
-    def collect(client)
+    def collect(client, config)
       analytics_api = client.discovered_api("analytics", "v3")
-      parameters = @config.analytics_parameters()
+      parameters = config.analytics_parameters()
 
       response = client.execute(:api_method => analytics_api.data.ga.get, :parameters => parameters)
 

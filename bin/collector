@@ -32,17 +32,30 @@ arg_name 'configuration module'
 default_value ""
 flag [:c, :config]
 
+desc 'Days ago'
+arg_name 'how many days to go back'
+default_value nil
+flag [:d, :days_ago]
+
+
+def config(global_options)
+  config = global_options[:config]
+  if GoogleAnalytics::Config::Base.descendants.include?(config)
+    config_class = GoogleAnalytics::Config.const_get(config)
+    if global_options[:days_ago].nil?
+      [config_class.last_before(Date.today)]
+    else
+      days_ago = global_options[:days_ago].to_i
+      config_class.all_within(Date.today - days_ago, Date.today)
+    end
+  else
+    raise "Invalid collector configuration or none given. Please choose a configuration from [#{GoogleAnalytics::Config::Base.descendants.join(", ")}]."
+  end
+end
 
 def collector(global_options)
   authentication_code = global_options[:authorisation_code]
-  config = global_options[:config]
-  collector_config = if GoogleAnalytics::Config::Base.descendants.include?(config)
-                       GoogleAnalytics::Config.const_get(config).new(Date.today)
-                     else
-                       raise "Invalid collector configuration or none given. Please choose a configuration from [#{GoogleAnalytics::Config::Base.descendants.join(", ")}]."
-                     end
-
-  GoogleAnalytics::Collector.new(authentication_code, collector_config)
+  GoogleAnalytics::Collector.new(authentication_code, config(global_options))
 end
 
 
