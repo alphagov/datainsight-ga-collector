@@ -21,7 +21,7 @@ module Collectors
     def broadcast
       Bunny.run(ENV['AMQP']) do |client|
         exchange = client.exchange("datainsight", :type => :topic)
-        exchange.publish(response.to_json, :key => 'google_analytics.visits.weekly')
+        exchange.publish(response.to_json, :key => @config.amqp_topic)
       end
     end
 

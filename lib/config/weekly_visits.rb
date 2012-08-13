@@ -3,6 +3,7 @@ module CollectorConfig
     GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
     METRIC = "ga:visits"
     DIMENSION = "ga:week"
+    AMQP_TOPIC = 'google_analytics.visits.weekly'
 
     def initialize reference_date
       @reference_date = reference_date
@@ -19,6 +20,10 @@ module CollectorConfig
       parameters["dimensions"] = DIMENSION
 
       parameters
+    end
+
+    def amqp_topic
+      AMQP_TOPIC
     end
   end
 end
