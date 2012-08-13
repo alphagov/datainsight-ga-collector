@@ -1,8 +1,9 @@
 require_relative "../spec_helper"
 
 describe "Weekly Unique Visitors Config" do
+
   before(:all) do
-    @config = CollectorConfig::WeeklyUniqueVisitors.new(Date.new(2012, 8, 13))
+    @config = GoogleAnalytics::Config::WeeklyUniqueVisitors.new(Date.new(2012, 8, 13))
   end
 
   it "should have an amqp_topic of google_analytics.unique_visitors.weekly" do
