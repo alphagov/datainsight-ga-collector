@@ -3,7 +3,7 @@
 ANSI_RED="\033[31m"
 ANSI_RESET="\033[0m"
 
-PROJECT_NAME=datainsight-visits-collector
+PROJECT_NAME=datainsight-ga-collector
 
 git diff-index --quiet HEAD
 case $? in
