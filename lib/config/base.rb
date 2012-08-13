@@ -1,6 +1,11 @@
 module GoogleAnalytics
   module Config
     class Base
+
+      def self.descendants
+        ObjectSpace.each_object(Class).select{|klass| klass < self }.map{|klass| klass.name.split("::").last}
+      end
+
       def initialize reference_date
         @reference_date = reference_date
       end

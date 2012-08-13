@@ -32,13 +32,14 @@ arg_name 'configuration module'
 default_value ""
 flag [:c, :config]
 
+
 def collector(global_options)
   authentication_code = global_options[:authorisation_code]
-  config = global_options[:config].to_sym
-  collector_config = if CollectorConfig.constants.include?(config)
-                       CollectorConfig.const_get(config).new(Date.today)
+  config = global_options[:config]
+  collector_config = if GoogleAnalytics::Config::Base.descendants.include?(config)
+                       GoogleAnalytics::Config.const_get(config).new(Date.today)
                      else
-                       raise "Invalid collector configuration or none given. Please choose a configuration from [#{CollectorConfig.constants.join(", ")}]."
+                       raise "Invalid collector configuration or none given. Please choose a configuration from [#{GoogleAnalytics::Config::Base.descendants.join(", ")}]."
                      end
 
   GoogleAnalytics::Collector.new(authentication_code, collector_config)

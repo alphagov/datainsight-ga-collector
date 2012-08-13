@@ -1,4 +1,3 @@
-
 module GoogleAnalytics
   class Response
     SITE_KEY = "govuk"
