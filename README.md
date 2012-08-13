@@ -11,18 +11,18 @@ This code then needs to be passed to the `bin/collector` command line script usi
 
 ## Message Format
 
-  {
-    "envelope":{
-      "collected_at":"2012-08-13T18:09:20+01:00",
-      "collector":"Google Analytics"
-    },
-    "payload":{
-      "start_at":"2012-07-29T00:00:00+00:00",
-      "end_at":"2012-08-05T00:00:00+00:00",
-      "value":32199,
-      "site":"govuk"
+    {
+      "envelope":{
+        "collected_at":"2012-08-13T18:09:20+01:00",
+        "collector":"Google Analytics"
+      },
+      "payload":{
+        "start_at":"2012-07-29T00:00:00+00:00",
+        "end_at":"2012-08-05T00:00:00+00:00",
+        "value":32199,
+        "site":"govuk"
+      }
     }
-  }
 
 ## Usage
 
