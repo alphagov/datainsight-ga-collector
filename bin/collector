@@ -35,7 +35,7 @@ pre do |global_options, *ignore|
   authentication_code = global_options[:authorisation_code]
   config = global_options[:config].to_sym
   collector_config = if CollectorConfig.constants.include?(config)
-                       CollectorConfig.const_get(config)
+                       CollectorConfig.const_get(config).new(Date.today)
                      else
                        raise "Invalid collector configuration or none given. Please choose a configuration from [#{CollectorConfig.constants.join(", ")}]."
                      end

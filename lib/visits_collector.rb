@@ -54,27 +54,13 @@ module Collectors
 
     def collect(client)
       analytics_api = client.discovered_api("analytics", "v3")
-      parameters = analytics_parameters
+      parameters = @config.analytics_parameters()
 
       response = client.execute(:api_method => analytics_api.data.ga.get, :parameters => parameters)
 
       raise "Response error [#{response.error_message}]" if response.error?
 
       JSON.parse(response.body)
-    end
-
-    def analytics_parameters
-      last_week = DateRange::get_last_week(Date.today)
-      parameters = {}
-
-      parameters["ids"] = @config::GOOGLE_ANALYTICS_URL_ID
-      parameters["start-date"] = last_week.first.strftime
-      parameters["end-date"] = last_week.last.strftime
-      parameters["metrics"] = @config::METRIC
-      parameters["dimensions"] = @config::DIMENSION
-      parameters["filters"] = @config::FILTER unless @config::FILTER.nil? or @config::FILTER.empty?
-
-      parameters
     end
 
   end
