@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
-# Collects the weekly visits.
-# Run: './bin/collector -t TOKEN print'
+# Collects the statistics from google analytics.
+# Run: './bin/collector -t TOKEN -c ConfigName print' (the first time)
+# Run: './bin/collector -c ConfigName print' (subsequent times)
 #
 # To obtain authorisation code please visit:
 #
@@ -18,7 +19,7 @@ require_relative '../lib/config/weekly_unique_visitors'
 
 include GLI
 
-program_desc 'Collect the weekly visits'
+program_desc 'Collect the statics specified by the configuration from google analytics'
 
 version 0.1
 
@@ -47,7 +48,7 @@ end
 
 
 command :print do |c|
-  c.desc 'Print out the collected content'
+  c.desc 'Print out the collected statistics'
   c.action do |global_options, options, args|
     puts collector(global_options).collect_as_json
   end
@@ -55,7 +56,7 @@ end
 
 
 command :broadcast do |c|
-  c.desc 'Publish the collected content to the queue'
+  c.desc 'Publish the collected statistics to the queue'
   c.action do |global_options, options, args|
     collector(global_options).broadcast
   end

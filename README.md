@@ -1,4 +1,4 @@
 datainsight-visits-collector
 ============================
 
-Collects visits data for different time intervals from google analytics 
+Collect the statics specified by the configuration from google analytics
