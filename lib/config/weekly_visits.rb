@@ -2,10 +2,7 @@ module CollectorConfig
   class WeeklyVisits
     GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
     METRIC = "ga:visits"
-    METRIC_NAME = "visits"
     DIMENSION = "ga:week"
-    SOURCE = "Google Analytics Reach"
-    UNIT = "visits"
 
     def initialize reference_date
       @reference_date = reference_date
