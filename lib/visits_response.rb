@@ -20,7 +20,7 @@ class VisitsResponse
     @message = {}
     @message[:envelope] = {
         :collected_at => DateTime.now,
-        :collector => "visits",
+        :collector => "Google Analytics",
     }
     if status == :success
       @message[:payload] = parse_success(response_hash)

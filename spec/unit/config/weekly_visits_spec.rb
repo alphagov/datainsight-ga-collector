@@ -5,6 +5,10 @@ describe "Weekly Visits Config" do
     @weekly_visits_config = CollectorConfig::WeeklyVisits.new(Date.new(2012, 8, 13))
   end
 
+  it "should have an amqp_topic of google_analytics.visits.weekly" do
+    @weekly_visits_config.amqp_topic.should == 'google_analytics.visits.weekly'
+  end
+
   describe "analytics_parameters" do
     before(:all) do
       @p = @weekly_visits_config.analytics_parameters
@@ -35,9 +39,4 @@ describe "Weekly Visits Config" do
     end
   end
 
-  describe "topic" do
-    it "should return google_analytics.visits.weekly" do
-      @weekly_visits_config.amqp_topic.should == 'google_analytics.visits.weekly'
-    end
-  end
 end

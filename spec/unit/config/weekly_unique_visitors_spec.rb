@@ -5,6 +5,10 @@ describe "Weekly Unique Visitors Config" do
     @config = CollectorConfig::WeeklyUniqueVisitors.new(Date.new(2012, 8, 13))
   end
 
+  it "should have an amqp_topic of google_analytics.unique_visitors.weekly" do
+    @config.amqp_topic.should == 'google_analytics.unique_visitors.weekly'
+  end
+
   describe "analytics_parameters" do
     before(:all) do
       @p = @config.analytics_parameters
@@ -34,11 +38,5 @@ describe "Weekly Unique Visitors Config" do
       @p['filters'].should be_nil
     end
 
-  end
-
-  describe "topic" do
-    it "should return google_analytics.unique_visitors.weekly" do
-      @config.amqp_topic.should == 'google_analytics.unique_visitors.weekly'
-    end
   end
 end
