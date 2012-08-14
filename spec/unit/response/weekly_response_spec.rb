@@ -4,8 +4,7 @@ include GoogleAnalytics
 describe "Weekly Response" do
 
   it "should use visits count if only week is present (middle of the year)" do
-    filename = "sample_response_from_ga.json"
-    response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "../../data", filename)))
+    response_hash = load_json("weekly_visits_response.json")
 
     response = WeeklyResponse.new(response_hash)
 
@@ -20,8 +19,7 @@ describe "Weekly Response" do
   end
 
   it "should add visits if two weeks are present (year switch)" do
-    filename = "sample_response_from_ga_year_switch.json"
-    response_hash = JSON.parse(File.read(File.join(File.dirname(__FILE__), "../../data", filename)))
+    response_hash = load_json("weekly_visits_response_year_switch.json")
 
     response = WeeklyResponse.new(response_hash)
 
