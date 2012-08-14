@@ -1,7 +1,7 @@
 require_relative "spec_helper"
 
 include GoogleAnalytics
-describe "total visits" do
+describe "Response" do
 
   it "should use visits count if only week is present (middle of the year)" do
     filename = "sample_response_from_ga.json"
