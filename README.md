@@ -1,4 +1,4 @@
-# datainsight-qa-collector
+# datainsight-ga-collector
 
 
 Collect the statics specified by the configuration from google analytics

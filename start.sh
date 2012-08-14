@@ -4,7 +4,7 @@ set -e
 
 ANSI_YELLOW="\033[33m"
 ANSI_RESET="\033[0m"
-PROJECT_NAME="datainsight-qa-collector"
+PROJECT_NAME="datainsight-ga-collector"
 
 echo -e "${ANSI_YELLOW}Installing dependencies${ANSI_RESET}"
 bundle install --path vendor --local

@@ -5,7 +5,7 @@ set -e
 ANSI_YELLOW="\033[33m"
 ANSI_RED="\033[31m"
 ANSI_RESET="\033[0m"
-PROJECT_NAME=datainsight-qa-collector
+PROJECT_NAME=datainsight-ga-collector
 
 export VERSION="$1"
 if [ -z "$VERSION" ]; then
