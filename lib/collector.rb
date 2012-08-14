@@ -33,20 +33,22 @@ module GoogleAnalytics
       begin
         client = authenticate(@auth_code)
         @configs.map do |config|
-          response = collect_response(client, config)
-          yield(response, config) if block_given?
-          response
-        end
+          responses = collect_response_set(client, config)
+          responses.each do |response|
+            yield(response, config) if block_given?
+          end
+          responses
+        end.flatten
       rescue Exception => e
-        [Response.create_from_error_message(e.message)]
+        [WeeklyResponse.create_from_error_message(e.message)]
       end
     end
 
-    def collect_response(client, config)
+    def collect_response_set(client, config)
       begin
-        Response.create_from_success(collect(client, config))
+        WeeklyResponse.create_from_success(collect(client, config))
       rescue Exception => e
-        Response.create_from_error_message(e.message)
+        WeeklyResponse.create_from_error_message(e.message)
       end
     end
 

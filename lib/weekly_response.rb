@@ -1,15 +1,15 @@
 module GoogleAnalytics
-  class Response
+  class WeeklyResponse
     SITE_KEY = "govuk"
 
     attr_reader :message
 
     def self.create_from_success(response_hash)
-      Response.new(:success, response_hash)
+      [WeeklyResponse.new(:success, response_hash)]
     end
 
     def self.create_from_error_message(error_message)
-      Response.new(:error, {:error => error_message})
+      [WeeklyResponse.new(:error, {:error => error_message})]
     end
 
     def to_json

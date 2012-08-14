@@ -1,7 +1,7 @@
 require 'bundler/setup'
 Bundler.require
 
-require_relative '../../lib/response'
+require_relative '../../lib/weekly_response'
 require_relative '../../lib/collector'
 
 require_relative '../../lib/config/weekly_visits'
