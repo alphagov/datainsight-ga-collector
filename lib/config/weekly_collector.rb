@@ -1,3 +1,5 @@
+require_relative "../response/weekly_response"
+
 module GoogleAnalytics
   module Config
     module WeeklyCollector
@@ -7,6 +9,7 @@ module GoogleAnalytics
       end
 
       DIMENSION = "ga:week"
+      RESPONSE_TYPE = GoogleAnalytics::WeeklyResponse
 
       module ClassMethods
         def last_before(reference_date)

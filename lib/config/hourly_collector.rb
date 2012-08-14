@@ -1,3 +1,5 @@
+require_relative "../response/hourly_response"
+
 module GoogleAnalytics
   module Config
     module HourlyCollector
@@ -6,6 +8,7 @@ module GoogleAnalytics
       end
 
       DIMENSION = "ga:hour"
+      RESPONSE_TYPE = GoogleAnalytics::HourlyResponse
 
       module ClassMethods
         def last_before(reference_date)

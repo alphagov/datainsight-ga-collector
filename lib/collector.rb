@@ -15,40 +15,50 @@ module GoogleAnalytics
     end
 
     def collect_as_json
-      collect_responses.map(&:to_json)
+      collect_messages.map(&:to_json)
     end
 
     def broadcast
       Bunny.run(ENV['AMQP']) do |client|
-        collect_responses do |response, config|
+        collect_messages do |message, config|
           exchange = client.exchange("datainsight", :type => :topic)
-          exchange.publish(response.to_json, :key => config.amqp_topic)
+          exchange.publish(message.to_json, :key => config.amqp_topic)
         end
       end
     end
 
 
     private
-    def collect_responses &block
+    def collect_messages
+      messages = []
+      collect_responses do |response, config|
+        messages += response.messages.map do |message|
+          yield(message, config) if block_given?
+          message
+        end
+      end
+      messages
+    end
+
+
+    def collect_responses
       begin
         client = authenticate(@auth_code)
         @configs.map do |config|
-          responses = collect_response_set(client, config)
-          responses.each do |response|
-            yield(response, config) if block_given?
-          end
-          responses
-        end.flatten
+          response = collect_response(client, config)
+          yield(response, config) if block_given?
+          response
+        end
       rescue Exception => e
-        [WeeklyResponse.create_from_error_message(e.message)]
+        ErrorResponse.new(e)
       end
     end
 
-    def collect_response_set(client, config)
+    def collect_response(client, config)
       begin
-        WeeklyResponse.create_from_success(collect(client, config))
+        config.response_type.new(collect(client, config))
       rescue Exception => e
-        WeeklyResponse.create_from_error_message(e.message)
+        ErrorResponse.new(e)
       end
     end
 

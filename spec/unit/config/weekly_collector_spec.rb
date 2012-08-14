@@ -2,14 +2,16 @@ require_relative "../spec_helper"
 
 describe "Weekly Collector Module" do
 
-  class WeeklyDummy
+  class WeeklyDummy < GoogleAnalytics::Config::Base
     include GoogleAnalytics::Config::WeeklyCollector
 
-    def initialize start_at, end_at
-      @start_at, @end_at = start_at, end_at
-    end
-
     attr_reader :start_at, :end_at
+  end
+
+  it "should have a response type of WeeklyResponse" do
+    weekly_config = WeeklyDummy.last_before(Date.new(2012, 8, 9))
+
+    weekly_config.response_type.should be(GoogleAnalytics::WeeklyResponse)
   end
 
   it "should create a range for the last week" do

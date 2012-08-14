@@ -27,6 +27,10 @@ module GoogleAnalytics
       def amqp_topic
         self.class::AMQP_TOPIC
       end
+
+      def response_type
+        self.class::RESPONSE_TYPE
+      end
     end
   end
 end
