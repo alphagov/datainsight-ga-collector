@@ -1,8 +1,8 @@
 require_relative "../spec_helper"
 
-describe "Date Range" do
+describe "Weekly Collector Module" do
 
-  class Dummy
+  class WeeklyDummy
     include GoogleAnalytics::Config::WeeklyCollector
 
     def initialize start_at, end_at
@@ -13,21 +13,21 @@ describe "Date Range" do
   end
 
   it "should create a range for the last week" do
-    on_tuesday = Dummy.last_before(Date.new(2012, 8, 9))
+    on_tuesday = WeeklyDummy.last_before(Date.new(2012, 8, 9))
 
     on_tuesday.start_at.should eql(Date.new(2012, 7, 29))
     on_tuesday.end_at.should eql(Date.new(2012, 8, 4))
   end
 
   it "should go back to last saturday, if passed date is a saturday" do
-    on_saturday = Dummy.last_before(Date.new(2012, 3, 17))
+    on_saturday = WeeklyDummy.last_before(Date.new(2012, 3, 17))
 
     on_saturday.start_at.should eql(Date.new(2012, 3, 4))
     on_saturday.end_at.should eql(Date.new(2012, 3, 10))
   end
 
   it "should use exact week when given" do
-    one_week = Dummy.all_within(Date.new(2012, 8, 5), Date.new(2012, 8, 12))
+    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 5), Date.new(2012, 8, 12))
 
     one_week.should be_an(Array)
     one_week = one_week.first
@@ -37,21 +37,21 @@ describe "Date Range" do
   end
 
   it "should not include the week were the end date is in" do
-    one_week = Dummy.all_within(Date.new(2012, 8, 5), Date.new(2012, 8, 18)).first
+    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 5), Date.new(2012, 8, 18)).first
 
     one_week.start_at.should == Date.new(2012, 8, 5)
     one_week.end_at.should == Date.new(2012, 8, 11)
   end
 
   it "should include the whole week if the start date is a saturday" do
-    one_week = Dummy.all_within(Date.new(2012, 8, 4), Date.new(2012, 8, 12)).first
+    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 4), Date.new(2012, 8, 12)).first
 
     one_week.start_at.should == Date.new(2012, 7, 29)
     one_week.end_at.should == Date.new(2012, 8, 4)
   end
 
   it "should include the whole week if the start date is a wednesday" do
-    one_week = Dummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12)).first
+    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12)).first
 
     one_week.start_at.should == Date.new(2012, 7, 29)
     one_week.end_at.should == Date.new(2012, 8, 4)
@@ -59,7 +59,7 @@ describe "Date Range" do
 
 
   it "should have multiple weeks for longer periods" do
-    week_one, week_two = *Dummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12))
+    week_one, week_two = *WeeklyDummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12))
 
     week_one.start_at.should == Date.new(2012, 7, 29)
     week_one.end_at.should == Date.new(2012, 8, 4)
@@ -69,7 +69,7 @@ describe "Date Range" do
   end
 
   it "should have a 6 week period on 2012-01-25 to 2012-03-04" do
-    weeks = Dummy.all_within(Date.new(2012, 1, 25), Date.new(2012, 3, 4))
+    weeks = WeeklyDummy.all_within(Date.new(2012, 1, 25), Date.new(2012, 3, 4))
 
     weeks.should have(6).items
 

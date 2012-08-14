@@ -7,38 +7,37 @@ module GoogleAnalytics
       end
 
       DIMENSION = "ga:week"
-    end
 
-    module ClassMethods
-      def last_before(reference_date)
-         last_saturday = saturday_before(reference_date)
-         sunday_before_saturday = last_saturday - 6
-         self.new(sunday_before_saturday, last_saturday)
-      end
-
+      module ClassMethods
+        def last_before(reference_date)
+          last_saturday = saturday_before(reference_date)
+          sunday_before_saturday = last_saturday - 6
+          self.new(sunday_before_saturday, last_saturday)
+        end
 
 
-      def all_within(start_date, end_date)
-        week_configs = []
-        start_at = sunday_before(start_date)
-        stop_at = saturday_before(end_date)
+        def all_within(start_date, end_date)
+          week_configs = []
+          start_at = sunday_before(start_date)
+          stop_at = saturday_before(end_date)
 
-        begin
-          week_configs << self.new(start_at, start_at + 6)
-          start_at += 7
-        end until(start_at > stop_at)
+          begin
+            week_configs << self.new(start_at, start_at + 6)
+            start_at += 7
+          end until (start_at > stop_at)
 
-        week_configs
-      end
+          week_configs
+        end
 
 
-      private
-      def sunday_before(reference_date)
-        reference_date - reference_date.wday
-      end
+        private
+        def sunday_before(reference_date)
+          reference_date - reference_date.wday
+        end
 
-      def saturday_before(reference_date)
-        reference_date - (reference_date.wday + 1)
+        def saturday_before(reference_date)
+          reference_date - (reference_date.wday + 1)
+        end
       end
     end
   end
