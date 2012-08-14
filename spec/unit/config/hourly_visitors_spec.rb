@@ -1,13 +1,13 @@
 require_relative "../spec_helper"
 
-describe "Hourly Unique Visitors Config" do
+describe "Hourly Visitors Config" do
 
   before(:all) do
-    @configs = GoogleAnalytics::Config::HourlyUniqueVisitors.last_before(Date.new(2012, 8, 13))
+    @configs = GoogleAnalytics::Config::HourlyVisitors.last_before(Date.new(2012, 8, 13))
   end
 
-  it "should have an amqp_topic of google_analytics.unique_visitors.hourly" do
-    @configs.amqp_topic.should == 'google_analytics.unique_visitors.hourly'
+  it "should have an amqp_topic of google_analytics.visitors.hourly" do
+    @configs.amqp_topic.should == 'google_analytics.visitors.hourly'
   end
 
   describe "analytics_parameters" do

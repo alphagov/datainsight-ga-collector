@@ -7,7 +7,7 @@ describe GoogleAnalytics::Config::Base do
   end
 
   it "should have WeeklyUniqueVistors in its descendants" do
-    GoogleAnalytics::Config::Base.descendants.should include("WeeklyUniqueVisitors")
+    GoogleAnalytics::Config::Base.descendants.should include("WeeklyVisitors")
   end
 
   it "should not have itself in its descendants" do
