@@ -6,9 +6,9 @@ module GoogleAnalytics
   class Collector
     include GoogleAuthenticationBridge
 
-    API_SCOPE = "https://www.googleapis.com/auth/analytics.readonly"
-    GOOGLE_CLIENT_ID = '1054017153726.apps.googleusercontent.com'
-    GOOGLE_CLIENT_SECRET = 'eMFsc8LU3ZGrRFG93WfQCnD3'
+    GOOGLE_API_SCOPE = "https://www.googleapis.com/auth/analytics.readonly"
+    GOOGLE_CREDENTIALS = '/etc/gds/google_credentials.yml'
+    GOOGLE_TOKEN = "/var/lib/gds/google-analytics-token.yml"
 
     def initialize(auth_code, configs)
       @auth_code, @configs = auth_code, configs
@@ -62,9 +62,8 @@ module GoogleAnalytics
       end
     end
 
-
     def authenticate(auth_code)
-      auth = GoogleAuthentication.new(API_SCOPE, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)
+      auth = GoogleAuthentication.create_from_config_file(GOOGLE_API_SCOPE, GOOGLE_CREDENTIALS, GOOGLE_TOKEN)
       auth_token = auth.get_tokens(auth_code)
 
       client = Google::APIClient.new
