@@ -5,7 +5,7 @@
 #
 # To obtain authorisation code please visit:
 #
-# https://accounts.google.com/o/oauth2/auth?response_type=code&scope=https://www.googleapis.com/auth/analytics.readonly&redirect_uri=urn:ietf:wg:oauth:2.0:oob&client_id=1054017153726.apps.googleusercontent.com
+# https://accounts.google.com/o/oauth2/auth?response_type=code&scope=https://www.googleapis.com/auth/analytics.readonly&redirect_uri=urn:ietf:wg:oauth:2.0:oob&client_id=70519367703-3j2pb73bd9kjr800coecnt5jv4ntfeso.apps.googleusercontent.com
 
 require 'bundler/setup'
 Bundler.require

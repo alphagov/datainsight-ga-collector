@@ -42,15 +42,11 @@ module GoogleAnalytics
 
 
     def collect_responses
-      begin
-        client = authenticate(@auth_code)
-        @configs.map do |config|
-          response = collect_response(client, config)
-          yield(response, config) if block_given?
-          response
-        end
-      rescue Exception => e
-        ErrorResponse.new(e)
+      client = authenticate(@auth_code)
+      @configs.map do |config|
+        response = collect_response(client, config)
+        yield(response, config) if block_given?
+        response
       end
     end
 
