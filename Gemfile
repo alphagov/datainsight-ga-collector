@@ -2,8 +2,7 @@ source :rubygems
 
 gem "rake"
 gem "google-api-client", :require => 'google/api_client'
-gem "google-auth-bridge", :git=>"git@github.com:alphagov/google-auth-bridge.git"
-#gem "google-auth-bridge", :path => "../google-auth-bridge"
+gem "google_auth_bridge", "0.1.0"
 gem "bunny"
 gem "gli", "1.6.0"
 gem "whenever"
