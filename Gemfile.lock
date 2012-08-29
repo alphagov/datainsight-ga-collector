@@ -28,7 +28,7 @@ GEM
       multi_json (>= 1.0.0)
       signet (>= 0.4.1)
       uuidtools (>= 2.1.0)
-    google_auth_bridge (0.1.0)
+    google_auth_bridge (0.1.1)
       google-api-client
       oauth2
     httpauth (0.1)
@@ -73,7 +73,7 @@ DEPENDENCIES
   ci_reporter
   gli (= 1.6.0)
   google-api-client
-  google_auth_bridge (= 0.1.0)
+  google_auth_bridge
   rake
   rspec
   whenever
