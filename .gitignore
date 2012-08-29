@@ -4,3 +4,4 @@ tokens
 *.zip
 vendor
 spec/reports
+log

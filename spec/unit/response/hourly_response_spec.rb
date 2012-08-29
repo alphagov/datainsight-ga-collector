@@ -34,7 +34,6 @@ describe "Hourly Response" do
     message[:payload][:site].should eql("govuk")
   end
 
-
   it "should check the last hour" do
     message = @response.messages[23]
 

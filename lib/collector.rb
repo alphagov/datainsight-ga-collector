@@ -2,6 +2,8 @@ require 'yaml'
 require 'open-uri'
 require 'json'
 
+Datainsight::Logging.configure()
+
 module GoogleAnalytics
   class Collector
     include GoogleAuthenticationBridge
@@ -15,46 +17,57 @@ module GoogleAnalytics
     end
 
     def collect_as_json
-      collect_messages.map(&:to_json)
-    end
-
-    def broadcast
-      Bunny.run(ENV['AMQP']) do |client|
-        collect_messages do |message, config|
-          exchange = client.exchange("datainsight", :type => :topic)
-          exchange.publish(message.to_json, :key => config.amqp_topic)
-        end
+      begin
+        collect_messages.map(&:to_json)
+      rescue => e
+        logger.error { e }
       end
     end
 
+    def broadcast
+      begin
+        Bunny.run(ENV['AMQP']) do |client|
+          collect_messages do |message, config|
+            exchange = client.exchange("datainsight", :type => :topic)
+            exchange.publish(message.to_json, :key => config.amqp_topic)
+          end
+        end
+      rescue => e
+        logger.error { e }
+      end
+    end
 
     private
     def collect_messages
       messages = []
       collect_responses do |response, config|
-        messages += response.messages.map do |message|
+        response.messages.each do |message|
           yield(message, config) if block_given?
-          message
+          messages << message
         end
       end
       messages
     end
 
-
     def collect_responses
       client = authenticate(@auth_code)
-      @configs.map do |config|
+      responses = []
+      @configs.each do |config|
         response = collect_response(client, config)
-        yield(response, config) if block_given?
-        response
+        if response
+          yield(response, config) if block_given?
+          responses << response
+        end
       end
+      responses
     end
 
     def collect_response(client, config)
       begin
         config.response_type.new(collect(client, config))
       rescue Exception => e
-        ErrorResponse.new(e)
+        logger.error { e }
+        nil
       end
     end
 

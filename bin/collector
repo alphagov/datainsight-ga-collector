@@ -10,7 +10,6 @@
 require 'bundler/setup'
 Bundler.require
 
-require_relative '../lib/response/error_response'
 require_relative '../lib/collector'
 
 require_relative '../lib/config/weekly_visits'
@@ -50,7 +49,7 @@ def config(global_options)
       config_class.all_within(Date.today - days_ago, Date.today)
     end
   else
-    raise "Invalid collector configuration or none given. Please choose a configuration from [#{GoogleAnalytics::Config::Base.descendants.join(", ")}]."
+    logger.error { "Invalid collector configuration or none given. Please choose a configuration from [#{GoogleAnalytics::Config::Base.descendants.join(", ")}]." }
   end
 end
 
