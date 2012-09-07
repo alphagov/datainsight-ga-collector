@@ -1,17 +1,17 @@
-def cron_command(config, days_ago = 0)
-  root_path = File.expand_path(File.dirname(__FILE__) + "/../")
-
-  "cd #{root_path} && RACK_ENV=production bundle exec bin/collector --config=#{config} --days_ago=#{days_ago} broadcast" +
-      " >> #{root_path}/log/cron.out.log 2>> #{root_path}/log/cron.err.log"
-end
+root_path = File.expand_path(File.dirname(__FILE__) + "/../")
+set :output, {
+    :standard => "#{root_path}/log/cron.out.log",
+    :error => "#{root_path}/log/cron.err.log"
+}
+job_type :collector, "cd :path && RACK_ENV=:environment bundle exec bin/collector --config=:config --days_ago=:days_ago :task :output"
 
 
 every :sunday, :at => '5am' do
-  command cron_command("WeeklyVisits")
-  command cron_command("WeeklyVisitors")
+  collector "broadcast", :config => "WeeklyVisits", :days_ago => 0
+  collector "broadcast", :config => "WeeklyVisitors", :days_ago => 0
 end
 
 # Ten minutes after every full hour
 every :hour, :at => '00:10' do
-  command cron_command("HourlyVisitors", 1)
+  collector "broadcast", :config => "HourlyVisitors", :days_ago => 1
 end
