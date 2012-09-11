@@ -31,6 +31,11 @@ module GoogleAnalytics
       def response_type
         self.class::RESPONSE_TYPE
       end
+
+      def to_s
+         parameters = analytics_parameters
+        "#{parameters["metrics"]}, #{parameters["dimensions"]} starting at: #{parameters["start-date"]}"
+      end
     end
   end
 end

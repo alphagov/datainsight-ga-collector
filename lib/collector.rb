@@ -26,12 +26,14 @@ module GoogleAnalytics
 
     def broadcast
       begin
+        logger.info { "Starting to collect google analytics data ..." }
         Bunny.run(ENV['AMQP']) do |client|
           collect_messages do |message, config|
             exchange = client.exchange("datainsight", :type => :topic)
             exchange.publish(message.to_json, :key => config.amqp_topic)
           end
         end
+        logger.info { "Collected the google analytics data." }
       rescue => e
         logger.error { e }
       end
@@ -53,6 +55,7 @@ module GoogleAnalytics
       client = authenticate(@auth_code)
       responses = []
       @configs.each do |config|
+        logger.info { "Collection #{config}" }
         response = collect_response(client, config)
         if response
           yield(response, config) if block_given?
