@@ -6,6 +6,7 @@ require_relative '../../lib/collector'
 require_relative '../../lib/config/weekly_visits'
 require_relative '../../lib/config/weekly_visitors'
 require_relative '../../lib/config/hourly_visitors'
+require_relative '../../lib/config/weekly_entry_success'
 
 require "json"
 

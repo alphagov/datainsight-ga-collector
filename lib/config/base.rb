@@ -20,6 +20,7 @@ module GoogleAnalytics
         parameters["end-date"] = @end_at.strftime
         parameters["metrics"] = self.class::METRIC
         parameters["dimensions"] = self.class::DIMENSION
+        parameters["filters"] = self.class::FILTERS if defined?(self.class::FILTERS)
 
         parameters
       end
