@@ -3,7 +3,7 @@ require_relative "../spec_helper"
 include GoogleAnalytics
 describe "Weekly Response" do
 
-  it "should use visits count if only week is present (middle of the year)" do
+  it "should use visits count if only one week is present (middle of the year)" do
     response_hash = load_json("weekly_visits_response.json")
 
     response = WeeklyResponse.new(response_hash)

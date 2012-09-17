@@ -14,6 +14,10 @@ describe "Weekly Entry and Success Event Collection" do
     @configs.amqp_topic.should == "google_analytics.entry_and_success.weekly"
   end
 
+  it "should have a response type of weekly event" do
+    @configs.response_type.should eql(GoogleAnalytics::WeeklyEventResponse)
+  end
+
   describe "analytics_parameters" do
     before(:all) do
       @p = @configs.analytics_parameters

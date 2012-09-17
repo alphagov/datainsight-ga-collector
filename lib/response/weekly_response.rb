@@ -5,11 +5,14 @@ module GoogleAnalytics
 
 
     def initialize(response_hash)
-      @messages = []
-      @messages << create_message(parse_success(response_hash))
+      @messages = create_messages(response_hash)
     end
 
-    private
+    protected
+    def create_messages(response_hash)
+      [create_message(parse_success(response_hash))]
+    end
+
     def parse_success(response)
       {
           :start_at => extract_start_at(response["query"]["start-date"]),
