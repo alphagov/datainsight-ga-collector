@@ -15,7 +15,7 @@ describe "Weekly Entry and Success Event Collection" do
   end
 
   it "should have a response type of weekly event" do
-    @configs.response_type.should eql(GoogleAnalytics::WeeklyEventResponse)
+    @configs.response_type.should eql(GoogleAnalytics::WeeklyEntrySuccessResponse)
   end
 
   describe "analytics_parameters" do

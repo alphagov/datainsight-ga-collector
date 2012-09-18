@@ -1,6 +1,6 @@
 require_relative "base"
 require_relative "weekly_collector"
-require_relative "../../lib/response/weekly_event_response"
+require_relative "../../lib/response/weekly_entry_success_response"
 
 module GoogleAnalytics
   module Config
@@ -12,7 +12,7 @@ module GoogleAnalytics
       DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"
       FILTERS= "ga:eventCategory=~^MS_.*"
-      RESPONSE_TYPE = GoogleAnalytics::WeeklyEventResponse
+      RESPONSE_TYPE = GoogleAnalytics::WeeklyEntrySuccessResponse
     end
   end
 end
