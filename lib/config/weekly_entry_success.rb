@@ -11,7 +11,8 @@ module GoogleAnalytics
 
       DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"
-      FILTERS= "ga:eventCategory=~^MS_.*"
+      CATEGORY_PREFIX = 'MS_'
+      FILTERS= "ga:eventCategory=~^#{CATEGORY_PREFIX}.*"
       RESPONSE_TYPE = GoogleAnalytics::WeeklyEntrySuccessResponse
     end
   end

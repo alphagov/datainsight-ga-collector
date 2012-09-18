@@ -67,7 +67,7 @@ module GoogleAnalytics
 
     def collect_response(client, config)
       begin
-        config.response_type.new(collect(client, config))
+        config.response_type.new(collect(client, config), config.class)
       rescue Exception => e
         logger.error { e }
         nil

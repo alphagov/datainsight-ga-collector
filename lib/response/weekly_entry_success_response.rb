@@ -1,8 +1,16 @@
 require_relative "weekly_response"
+require_relative "extract_weekly_dates"
 
 module GoogleAnalytics
-  class WeeklyEntrySuccessResponse < WeeklyResponse
+  class WeeklyEntrySuccessResponse < BaseResponse
+    include ExtractWeeklyDates
 
+    def initialize(response_hash, config)
+      @config = config
+      @messages = create_messages(response_hash)
+    end
+
+    private
     ENTRY_LABEL = "Entry"
     SUCCESS_LABEL = "Success"
 
@@ -12,7 +20,7 @@ module GoogleAnalytics
             :start_at => extract_start_at(response_as_hash["query"]["start-date"]),
             :end_at => extract_end_at(response_as_hash["query"]["end-date"]),
             :site => SITE_KEY,
-            :format => format,
+            :format => normalize_format(format),
             :entries => entries,
             :successes => successes
         })
@@ -32,6 +40,10 @@ module GoogleAnalytics
         end
       end
       weeks.map(&:flatten)
+    end
+
+    def normalize_format format
+      format.gsub(/^#{@config::CATEGORY_PREFIX}/, '')
     end
   end
 end

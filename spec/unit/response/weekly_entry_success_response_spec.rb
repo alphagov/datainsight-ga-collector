@@ -13,7 +13,7 @@ describe "weekly entry/success response" do
 
     before(:each) do
       response_as_hash = load_json("weekly_entry_success_response.json")
-      @response = WeeklyEntrySuccessResponse.new(response_as_hash)
+      @response = WeeklyEntrySuccessResponse.new(response_as_hash, GoogleAnalytics::Config::WeeklyEntrySuccess)
     end
 
     it "should have an array of messages" do
@@ -35,15 +35,15 @@ describe "weekly entry/success response" do
       message_payload[:site].should eql("govuk")
     end
 
-    it "should have entries and successes for MS_guide" do
-      # There are no success events on MS_answer
-      message_payload = message_for_format("MS_guide")[:payload]
+    it "should have entries and successes for guide" do
+      # There are no success events on answer
+      message_payload = message_for_format("guide")[:payload]
       message_payload[:entries].should eql(11882)
       message_payload[:successes].should eql(10148)
     end
 
-    it "should have entries and 0 successes for MS_answer" do
-      message_payload = message_for_format("MS_answer")[:payload]
+    it "should have entries and 0 successes for answer" do
+      message_payload = message_for_format("answer")[:payload]
       message_payload[:entries].should eql(8939)
       message_payload[:successes].should eql(0)
     end
@@ -53,7 +53,7 @@ describe "weekly entry/success response" do
   describe "with year switch" do
     before(:each) do
       response_as_hash = load_json("weekly_entry_success_response_year_switch.json")
-      @response = WeeklyEntrySuccessResponse.new(response_as_hash)
+      @response = WeeklyEntrySuccessResponse.new(response_as_hash, GoogleAnalytics::Config::WeeklyEntrySuccess)
     end
 
     it "should have an array of messages" do
@@ -75,15 +75,15 @@ describe "weekly entry/success response" do
       message_payload[:site].should eql("govuk")
     end
 
-    it "should have entries and successes for MS_guide" do
-      # There are no success events on MS_answer
-      message_payload = message_for_format("MS_guide")[:payload]
+    it "should have entries and successes for guide" do
+      # There are no success events on answer
+      message_payload = message_for_format("guide")[:payload]
       message_payload[:entries].should eql(2*11882)
       message_payload[:successes].should eql(2*10148)
     end
 
-    it "should have entries and 0 successes for MS_answer" do
-      message_payload = message_for_format("MS_answer")[:payload]
+    it "should have entries and 0 successes for answer" do
+      message_payload = message_for_format("answer")[:payload]
       message_payload[:entries].should eql(2*8939)
       message_payload[:successes].should eql(0)
     end

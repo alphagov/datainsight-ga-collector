@@ -2,7 +2,7 @@ require_relative 'base_response'
 module GoogleAnalytics
   class HourlyResponse < BaseResponse
 
-    def initialize(response)
+    def initialize(response, *ignore)
       @messages = create_messages(response)
     end
 

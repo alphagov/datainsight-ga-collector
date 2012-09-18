@@ -1,18 +1,16 @@
 require_relative "base_response"
+require_relative "extract_weekly_dates"
 
 module GoogleAnalytics
   class WeeklyResponse < BaseResponse
+    include ExtractWeeklyDates
 
 
-    def initialize(response_hash)
-      @messages = create_messages(response_hash)
+    def initialize(response_hash, *ignore)
+      @messages = [create_message(parse_success(response_hash))]
     end
 
-    protected
-    def create_messages(response_hash)
-      [create_message(parse_success(response_hash))]
-    end
-
+    private
     def parse_success(response)
       {
           :start_at => extract_start_at(response["query"]["start-date"]),
@@ -20,14 +18,6 @@ module GoogleAnalytics
           :value => get_total_metric(response["rows"]),
           :site => SITE_KEY
       }
-    end
-
-    def extract_start_at(start_date)
-      DateTime.parse(start_date).strftime
-    end
-
-    def extract_end_at(end_date)
-      (DateTime.parse(end_date)+1).strftime
     end
 
 
