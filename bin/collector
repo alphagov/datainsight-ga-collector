@@ -43,10 +43,10 @@ def config(global_options)
   config = global_options[:config]
   if GoogleAnalytics::Config::Base.descendants.include?(config)
     config_class = GoogleAnalytics::Config.const_get(config)
-    if global_options[:days_ago].nil?
+    days_ago = global_options[:days_ago].to_i
+    if days_ago.zero?
       [config_class.last_before(Date.today)]
     else
-      days_ago = global_options[:days_ago].to_i
       config_class.all_within(Date.today - days_ago, Date.today)
     end
   else
