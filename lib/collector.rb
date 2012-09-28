@@ -18,7 +18,11 @@ module GoogleAnalytics
 
     def collect_as_json
       begin
-        collect_messages.map(&:to_json)
+        messages= []
+        @configs.each do |config|
+          messages += collect_messages(config)
+        end
+        messages.map(&:to_json)
       rescue => e
         logger.error { e }
       end
@@ -28,9 +32,12 @@ module GoogleAnalytics
       begin
         logger.info { "Starting to collect google analytics data ..." }
         Bunny.run(ENV['AMQP']) do |client|
-          collect_messages do |message, config|
-            exchange = client.exchange("datainsight", :type => :topic)
-            exchange.publish(message.to_json, :key => config.amqp_topic)
+          exchange = client.exchange("datainsight", :type => :topic)
+          @configs.each do |config|
+            messages = collect_messages(config)
+            messages.each do |message|
+              exchange.publish(message.to_json, :key => config.amqp_topic)
+            end
           end
         end
         logger.info { "Collected the google analytics data." }
@@ -40,39 +47,20 @@ module GoogleAnalytics
     end
 
     private
-    def collect_messages
-      messages = []
-      collect_responses do |response, config|
-        response.messages.each do |message|
-          yield(message, config) if block_given?
-          messages << message
-        end
-      end
-      messages
+    def collect_messages(config)
+      collect_response(config).messages
     end
 
-    def collect_responses
-      client = authenticate(@auth_code)
-      responses = []
-      @configs.each do |config|
-        logger.info { "Collection #{config}" }
-        response = collect_response(client, config)
-        if response
-          yield(response, config) if block_given?
-          responses << response
-        end
-      end
-      responses
-    end
-
-    def collect_response(client, config)
+    def collect_response(config)
       begin
-        config.response_type.new(collect(client, config), config.class)
+        data = collect(config)
+        config.response_type.new(data, config.class)
       rescue Exception => e
         logger.error { e }
         nil
       end
     end
+
 
     def authenticate(auth_code)
       auth = GoogleAuthentication.create_from_config_file(GOOGLE_API_SCOPE, GOOGLE_CREDENTIALS, GOOGLE_TOKEN)
@@ -84,7 +72,7 @@ module GoogleAnalytics
       client
     end
 
-    def collect(client, config)
+    def collect(config)
       analytics_api = client.discovered_api("analytics", "v3")
       parameters = config.analytics_parameters()
 
@@ -95,6 +83,9 @@ module GoogleAnalytics
       JSON.parse(response.body)
     end
 
+    def client
+      @client ||= authenticate(@auth_code)
+    end
   end
 end
 
