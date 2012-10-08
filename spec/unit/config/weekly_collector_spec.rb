@@ -82,4 +82,36 @@ describe "Weekly Collector Module" do
     weeks[4].start_at.should == Date.new(2012, 2, 19)
     weeks[5].start_at.should == Date.new(2012, 2, 26)
   end
+
+  [7, 8, 13].each { |day_of_month|
+    single_day = Date.new(2012, 10, day_of_month)
+    weekday_name = single_day.strftime("%A")
+    it "should always look up data for 1 previous full week period, when given single day: #{weekday_name} #{single_day} as an argument" do
+      weeks = WeeklyDummy.all_within(single_day, single_day)
+
+      weeks.should have(1).items
+
+      weeks[0].start_at.should == Date.new(2012, 9, 30)
+      weeks[0].end_at.should == Date.new(2012, 10, 6)
+    end
+  }
+
+  it "should include week previous to the one contained by a provided range if this range is less than 7 days and ends with Saturday" do
+    weeks = WeeklyDummy.all_within(Date.new(2012, 10, 7), Date.new(2012, 10, 13))
+
+    weeks.should have(1).items
+
+    weeks[0].start_at.should == Date.new(2012, 9, 30)
+    weeks[0].end_at.should == Date.new(2012, 10, 6)
+  end
+
+
+  it "should include week defined by a provided range if it's exactly 7 days and ends with Sunday" do
+    weeks = WeeklyDummy.all_within(Date.new(2012, 10, 7), Date.new(2012, 10, 14))
+
+    weeks.should have(1).items
+
+    weeks[0].start_at.should == Date.new(2012, 10, 7)
+    weeks[0].end_at.should == Date.new(2012, 10, 13)
+  end
 end

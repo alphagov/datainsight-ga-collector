@@ -23,6 +23,9 @@ module GoogleAnalytics
           week_configs = []
           start_at = sunday_before(start_date)
           stop_at = saturday_before(end_date)
+          if stop_at < start_at
+            start_at -= 7
+          end
 
           begin
             week_configs << self.new(start_at, start_at + 6)
