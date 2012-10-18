@@ -19,10 +19,12 @@ module GoogleAnalytics
         create_message ({
             :start_at => extract_start_at(response_as_hash["query"]["start-date"]),
             :end_at => extract_end_at(response_as_hash["query"]["end-date"]),
-            :site => SITE_KEY,
-            :format => normalize_format(format),
-            :entries => entries,
-            :successes => successes
+            :value => {
+              :site => SITE_KEY,
+              :format => normalize_format(format),
+              :entries => entries,
+              :successes => successes
+            }
         })
       end
     end

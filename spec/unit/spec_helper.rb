@@ -13,3 +13,7 @@ require "json"
 def load_json(filename)
   JSON.parse(File.read(File.join(File.dirname(__FILE__), "../data", filename)))
 end
+
+class DummyConfig
+  METRIC = "ga:dummy"
+end

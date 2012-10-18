@@ -5,7 +5,7 @@ describe "weekly entry/success response" do
 
   def message_for_format format
     @response.messages.find do |msg|
-      msg[:payload][:format] == format
+      msg[:payload][:value][:format] == format
     end
   end
 
@@ -32,20 +32,20 @@ describe "weekly entry/success response" do
       message_payload = @response.messages.first[:payload]
       message_payload[:start_at].should eql("2012-09-09T00:00:00+00:00")
       message_payload[:end_at].should eql("2012-09-16T00:00:00+00:00")
-      message_payload[:site].should eql("govuk")
+      message_payload[:value][:site].should eql("govuk")
     end
 
     it "should have entries and successes for guide" do
       # There are no success events on answer
       message_payload = message_for_format("guide")[:payload]
-      message_payload[:entries].should eql(11882)
-      message_payload[:successes].should eql(10148)
+      message_payload[:value][:entries].should eql(11882)
+      message_payload[:value][:successes].should eql(10148)
     end
 
     it "should have entries and 0 successes for answer" do
       message_payload = message_for_format("answer")[:payload]
-      message_payload[:entries].should eql(8939)
-      message_payload[:successes].should eql(0)
+      message_payload[:value][:entries].should eql(8939)
+      message_payload[:value][:successes].should eql(0)
     end
 
   end
@@ -72,20 +72,20 @@ describe "weekly entry/success response" do
       message_payload = @response.messages.first[:payload]
       message_payload[:start_at].should eql("2012-09-09T00:00:00+00:00")
       message_payload[:end_at].should eql("2012-09-16T00:00:00+00:00")
-      message_payload[:site].should eql("govuk")
+      message_payload[:value][:site].should eql("govuk")
     end
 
     it "should have entries and successes for guide" do
       # There are no success events on answer
       message_payload = message_for_format("guide")[:payload]
-      message_payload[:entries].should eql(2*11882)
-      message_payload[:successes].should eql(2*10148)
+      message_payload[:value][:entries].should eql(2*11882)
+      message_payload[:value][:successes].should eql(2*10148)
     end
 
     it "should have entries and 0 successes for answer" do
       message_payload = message_for_format("answer")[:payload]
-      message_payload[:entries].should eql(2*8939)
-      message_payload[:successes].should eql(0)
+      message_payload[:value][:entries].should eql(2*8939)
+      message_payload[:value][:successes].should eql(0)
     end
   end
 

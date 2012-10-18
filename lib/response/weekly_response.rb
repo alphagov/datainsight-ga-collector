@@ -6,7 +6,8 @@ module GoogleAnalytics
     include ExtractWeeklyDates
 
 
-    def initialize(response_hash, *ignore)
+    def initialize(response_hash, config)
+      @metric = config::METRIC.split(":")[1].to_sym
       @messages = [create_message(parse_success(response_hash))]
     end
 
@@ -15,8 +16,10 @@ module GoogleAnalytics
       {
           :start_at => extract_start_at(response["query"]["start-date"]),
           :end_at => extract_end_at(response["query"]["end-date"]),
-          :value => get_total_metric(response["rows"]),
-          :site => SITE_KEY
+          :value => {
+            @metric => get_total_metric(response["rows"]),
+            :site => SITE_KEY
+          }
       }
     end
 
