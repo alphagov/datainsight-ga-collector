@@ -4,7 +4,7 @@ namespace :collect do
 
   {
       :init_hourly_visitors => {:config => 'HourlyVisitors', :days_ago => 30},
-      :init_daily_visitors => {:config => 'DailyVisitors', :days_ago => 1},
+      :init_daily_visitors => {:config => 'DailyVisitors', :days_ago => 2},
       :init_weekly_visits => {:config => 'WeeklyVisits', :days_ago => 200},
       :init_weekly_visitors => {:config => 'WeeklyVisitors', :days_ago => 200},
       :init_weekly_entry_success => {:config => 'WeeklyEntrySuccess', :days_ago => 0}
