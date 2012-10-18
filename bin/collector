@@ -16,6 +16,7 @@ require_relative '../lib/config/weekly_visits'
 require_relative '../lib/config/weekly_visitors'
 require_relative '../lib/config/hourly_visitors'
 require_relative '../lib/config/weekly_entry_success'
+require_relative "../lib/config/daily_visitors"
 
 include GLI
 
@@ -45,7 +46,11 @@ def config(global_options)
     config_class = GoogleAnalytics::Config.const_get(config)
     days_ago = global_options[:days_ago].to_i
     if days_ago.zero?
-      [config_class.last_before(Date.today)]
+      if config_class.respond_to?(:for)
+        [config_class.for(Date.today - 1)]
+      else
+        [config_class.last_before(Date.today)]
+      end
     else
       config_class.all_within(Date.today - days_ago, Date.today)
     end

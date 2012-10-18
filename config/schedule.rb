@@ -14,5 +14,6 @@ end
 
 # Ten minutes after every full hour
 every :hour, :at => '00:10' do
+  collector "broadcast", :config => "DailyVisitors", :days_ago => 1
   collector "broadcast", :config => "HourlyVisitors", :days_ago => 1
 end
