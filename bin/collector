@@ -17,6 +17,7 @@ require_relative '../lib/config/weekly_visitors'
 require_relative '../lib/config/hourly_visitors'
 require_relative '../lib/config/weekly_entry_success'
 require_relative "../lib/config/daily_visitors"
+require_relative "../lib/initializers"
 
 include GLI
 
@@ -76,7 +77,12 @@ end
 command :broadcast do |c|
   c.desc 'Publish the collected statistics to the queue'
   c.action do |global_options, options, args|
-    collector(global_options).broadcast
+    begin
+      collector(global_options).broadcast
+    rescue Exception => e
+      Airbrake.notify(e)
+      raise e
+    end
   end
 end
 
