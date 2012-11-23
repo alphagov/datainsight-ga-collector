@@ -10,33 +10,33 @@
 require 'bundler/setup'
 Bundler.require
 
-require_relative '../lib/collector'
+require_relative "../lib/collector"
 
-require_relative '../lib/config/weekly_visits'
-require_relative '../lib/config/weekly_visitors'
-require_relative '../lib/config/hourly_visitors'
-require_relative '../lib/config/weekly_entry_success'
+require_relative "../lib/config/weekly_visits"
+require_relative "../lib/config/weekly_visitors"
+require_relative "../lib/config/hourly_visitors"
+require_relative "../lib/config/weekly_entry_success"
 require_relative "../lib/config/daily_visitors"
 require_relative "../lib/initializers"
 
 include GLI
 
-program_desc 'Collect the statics specified by the configuration from google analytics'
+program_desc "Collect the statics specified by the configuration from google analytics"
 
 version 0.1
 
-desc 'Only for the first request you need to pass in the authorisation code'
+desc "Only for the first request you need to pass in the authorisation code"
 default_value nil
-arg_name 'authorisation code'
+arg_name "authorisation code"
 flag [:a, :authorisation_code]
 
-desc 'The name of the configuration module to specify the what data to collect from GA and where to put it.'
-arg_name 'configuration module'
+desc "The name of the configuration module to specify the what data to collect from GA and where to put it."
+arg_name "configuration module"
 default_value ""
 flag [:c, :config]
 
-desc 'Days ago'
-arg_name 'how many days to go back'
+desc "Days ago"
+arg_name "how many days to go back"
 default_value nil
 flag [:d, :days_ago]
 
@@ -67,7 +67,7 @@ end
 
 
 command :print do |c|
-  c.desc 'Print out the collected statistics'
+  c.desc "Print out the collected statistics"
   c.action do |global_options, options, args|
     puts collector(global_options).collect_as_json
   end
@@ -75,7 +75,7 @@ end
 
 
 command :broadcast do |c|
-  c.desc 'Publish the collected statistics to the queue'
+  c.desc "Publish the collected statistics to the queue"
   c.action do |global_options, options, args|
     begin
       collector(global_options).broadcast
