@@ -69,7 +69,12 @@ end
 command :print do |c|
   c.desc "Print out the collected statistics"
   c.action do |global_options, options, args|
-    puts collector(global_options).collect_as_json
+    begin
+      puts collector(global_options).collect_as_json
+    rescue Exception => e
+      Airbrake.notify(e)
+      raise e
+    end
   end
 end
 
