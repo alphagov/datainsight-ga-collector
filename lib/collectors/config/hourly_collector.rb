@@ -1,4 +1,4 @@
-require_relative "../response/hourly_response"
+require_relative "../../response/hourly_response"
 
 module GoogleAnalytics
   module Config

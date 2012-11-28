@@ -1,5 +1,5 @@
-require_relative "base"
-require_relative "hourly_collector"
+require_relative "config/base"
+require_relative "config/hourly_collector"
 
 module GoogleAnalytics
   module Config

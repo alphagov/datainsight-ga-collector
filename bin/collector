@@ -12,11 +12,11 @@ Bundler.require
 
 require_relative "../lib/collector"
 
-require_relative "../lib/config/weekly_visits"
-require_relative "../lib/config/weekly_visitors"
-require_relative "../lib/config/hourly_visitors"
-require_relative "../lib/config/weekly_entry_success"
-require_relative "../lib/config/daily_visitors"
+require_relative "../lib/collectors/weekly_visits"
+require_relative "../lib/collectors/weekly_visitors"
+require_relative "../lib/collectors/hourly_visitors"
+require_relative "../lib/collectors/weekly_entry_success"
+require_relative "../lib/collectors/daily_visitors"
 require_relative "../lib/initializers"
 
 include GLI

@@ -1,5 +1,5 @@
-require_relative "base"
-require_relative "weekly_collector"
+require_relative "config/base"
+require_relative "config/weekly_collector"
 require_relative "../../lib/response/weekly_entry_success_response"
 
 module GoogleAnalytics

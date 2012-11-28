@@ -1,4 +1,4 @@
-require_relative "daily_collector"
+require_relative "config/daily_collector"
 
 module GoogleAnalytics
   module Config

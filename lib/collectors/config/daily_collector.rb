@@ -1,4 +1,4 @@
-require_relative "../response/daily_response"
+require_relative "../../response/daily_response"
 
 module GoogleAnalytics
   module Config
