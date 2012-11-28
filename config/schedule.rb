@@ -10,6 +10,8 @@ every :sunday, :at => '5am' do
   collector "broadcast", :config => "WeeklyVisits", :days_ago => 0
   collector "broadcast", :config => "WeeklyVisitors", :days_ago => 0
   collector "broadcast", :config => "WeeklyEntrySuccess", :days_ago => 0
+
+  collector "broadcast", :config => "InsideGovWeeklyVisitors", :days_ago => 0
 end
 
 # Ten minutes after every full hour

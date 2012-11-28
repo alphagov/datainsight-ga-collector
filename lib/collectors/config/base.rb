@@ -10,8 +10,6 @@ module GoogleAnalytics
         @start_at, @end_at = start_at, end_at
       end
 
-      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
-
       def analytics_parameters()
         parameters = {}
 

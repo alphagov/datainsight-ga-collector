@@ -6,6 +6,7 @@ describe "Daily Response" do
 
   class StubConfig
     METRIC='ga:dummy'
+    SITE_KEY="govuk"
   end
 
   describe "example from 2012-10-17 13:48:00+01:00"

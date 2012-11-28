@@ -5,8 +5,10 @@ module GoogleAnalytics
     class DailyVisitors < Base
       include DailyCollector
 
-      AMQP_TOPIC='google_analytics.visitors.daily'
+      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
       METRIC='ga:visitors'
+      AMQP_TOPIC='google_analytics.visitors.daily'
+      SITE_KEY = "govuk"
     end
   end
 end

@@ -2,8 +2,9 @@ require_relative 'base_response'
 module GoogleAnalytics
   class HourlyResponse < BaseResponse
 
-    def initialize(response, config)
-      @metric = config::METRIC.split(":")[1].to_sym
+    def initialize(response, config_class)
+      @site = config_class::SITE_KEY
+      @metric = config_class::METRIC.split(":")[1].to_sym
       @messages = create_messages(response)
     end
 
@@ -25,7 +26,7 @@ module GoogleAnalytics
           :end_at => format_datetime(start_date, hour+1),
           :value => {
             @metric => value,
-            :site => SITE_KEY
+            :site => @site
           }
       }
     end

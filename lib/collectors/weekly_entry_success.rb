@@ -7,7 +7,9 @@ module GoogleAnalytics
     class WeeklyEntrySuccess < Base
       include WeeklyCollector
 
+      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
       AMQP_TOPIC = "google_analytics.entry_and_success.weekly"
+      SITE_KEY = "govuk"
 
       DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"

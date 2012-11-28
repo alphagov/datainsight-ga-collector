@@ -1,7 +1,5 @@
 module GoogleAnalytics
   class BaseResponse
-    SITE_KEY = "govuk"
-
     attr_reader :messages
 
     private

@@ -5,8 +5,9 @@ module GoogleAnalytics
   class WeeklyEntrySuccessResponse < BaseResponse
     include ExtractWeeklyDates
 
-    def initialize(response_hash, config)
-      @config = config
+    def initialize(response_hash, config_class)
+      @site = config_class::SITE_KEY
+      @config = config_class
       @messages = create_messages(response_hash)
     end
 
@@ -20,7 +21,7 @@ module GoogleAnalytics
             :start_at => extract_start_at(response_as_hash["query"]["start-date"]),
             :end_at => extract_end_at(response_as_hash["query"]["end-date"]),
             :value => {
-              :site => SITE_KEY,
+              :site => @site,
               :format => normalize_format(format),
               :entries => entries,
               :successes => successes
