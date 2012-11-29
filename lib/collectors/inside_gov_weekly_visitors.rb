@@ -5,7 +5,7 @@ module GoogleAnalytics
 
       GOOGLE_ANALYTICS_URL_ID = "ga:53699180"
       METRIC = "ga:visitors"
-      AMQP_TOPIC = "inside_gov.google_analytics.visitors.weekly"
+      AMQP_TOPIC = "google_analytics.inside_gov.visitors.weekly"
       SITE_KEY = "insidegov"
     end
   end
