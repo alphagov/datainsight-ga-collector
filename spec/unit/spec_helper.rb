@@ -8,7 +8,8 @@ require_relative '../../lib/collectors/weekly_visitors'
 require_relative '../../lib/collectors/hourly_visitors'
 require_relative '../../lib/collectors/weekly_entry_success'
 require_relative '../../lib/collectors/daily_visitors'
-require_relative '../../lib/collectors/inside_gov_weekly_visitors'
+require_relative '../../lib/collectors/insidegov_weekly_visitors'
+require_relative '../../lib/collectors/insidegov_weekly_policy_visits'
 
 require "json"
 
