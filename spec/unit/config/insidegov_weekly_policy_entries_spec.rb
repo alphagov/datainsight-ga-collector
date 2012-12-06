@@ -31,7 +31,7 @@ describe "Weekly Policy Entries Config" do
     end
 
     it "should have a week and eventAction dimension" do
-      @p["dimensions"].should == "ga:eventAction,ga:week"
+      @p["dimensions"].should == "ga:week,ga:eventAction"
     end
 
     it "should have filters for entries to policy formats" do
