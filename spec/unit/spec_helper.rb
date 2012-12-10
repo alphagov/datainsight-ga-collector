@@ -1,15 +1,7 @@
 require 'bundler/setup'
 Bundler.require
 
-require_relative '../../lib/collector'
-
-require_relative '../../lib/collectors/weekly_visits'
-require_relative '../../lib/collectors/weekly_visitors'
-require_relative '../../lib/collectors/hourly_visitors'
-require_relative '../../lib/collectors/weekly_entry_success'
-require_relative '../../lib/collectors/daily_visitors'
-require_relative '../../lib/collectors/insidegov_weekly_visitors'
-require_relative '../../lib/collectors/insidegov_weekly_policy_entries'
+Dir[File.expand_path(File.join(File.dirname(__FILE__), "../../lib/**/*.rb"))].each {|f| require f}
 
 require "json"
 
