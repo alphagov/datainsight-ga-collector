@@ -7,7 +7,7 @@ module GoogleAnalytics
     class InsideGovWeeklyEntrySuccess < Base
       include WeeklyCollector
 
-      GOOGLE_ANALYTICS_URL_ID = "ga:53699180"
+      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
       AMQP_TOPIC = "google_analytics.insidegov.entry_and_success.weekly"
       SITE_KEY = "insidegov"
 

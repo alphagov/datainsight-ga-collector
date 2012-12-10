@@ -13,7 +13,7 @@ describe "Inside Gov Weekly Entry and Success Config" do
       @p = @configs.analytics_parameters
     end
 
-    specify { @p["ids"].should == "ga:53699180" }
+    specify { @p["ids"].should == "ga:53872948" }
     specify { @p["metrics"].should == "ga:totalEvents" }
     specify { @p["dimensions"].should == "ga:week,ga:eventCategory,ga:eventLabel" }
     specify { @p["start-date"].should == "2012-08-05" }
