@@ -76,6 +76,8 @@ module GoogleAnalytics
       analytics_api = client.discovered_api("analytics", "v3")
       parameters = config.analytics_parameters()
 
+      logger.debug { "Query GA with params: #{parameters}" }
+
       response = client.execute(:api_method => analytics_api.data.ga.get, :parameters => parameters)
 
       raise "Response error [#{response.error_message}]" if response.error?
