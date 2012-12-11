@@ -67,4 +67,15 @@ describe "insidegov weekly policy entries response" do
     it "should have slugs for policies"
   end
 
+  describe "response with no results" do
+    before(:each) do
+      response_as_hash = load_json("insidegov_weekly_policy_entries_response_no_results.json")
+      @response = InsideGovWeeklyPolicyEntriesResponse.new(response_as_hash, GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
+    end
+
+    it "should send no messages" do
+      @response.messages.should be_an(Array)
+      @response.messages.should be_empty
+    end
+  end
 end

@@ -14,11 +14,12 @@ module GoogleAnalytics
 
     private
     def parse_success(response)
+      rows = (response["rows"] or [])
       {
           :start_at => extract_start_at(response["query"]["start-date"]),
           :end_at => extract_end_at(response["query"]["end-date"]),
           :value => {
-            @metric => get_total_metric(response["rows"]),
+            @metric => get_total_metric(rows),
             :site => @site
           }
       }

@@ -89,4 +89,15 @@ describe "weekly entry/success response" do
     end
   end
 
+  describe "response with no results" do
+    before(:each) do
+      response_as_hash = load_json("weekly_entry_success_response_no_results.json")
+      @response = WeeklyEntrySuccessResponse.new(response_as_hash, GoogleAnalytics::Config::WeeklyEntrySuccess)
+    end
+
+    it "should create no messages" do
+      @response.messages.should be_an(Array)
+      @response.messages.should be_empty
+    end
+  end
 end

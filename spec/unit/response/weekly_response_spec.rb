@@ -33,4 +33,16 @@ describe "Weekly Response" do
     message[:payload][:value][:site].should eql("govuk")
   end
 
+  it "should report 0 when no results have been provided" do
+    response_hash = load_json("weekly_dummy_response_no_results.json")
+
+    response = WeeklyResponse.new(response_hash, DummyConfig)
+    response.messages.should have(1).item
+    message = response.messages.first
+
+    message[:payload][:start_at].should eql("2012-07-29T00:00:00+00:00")
+    message[:payload][:end_at].should eql("2012-08-05T00:00:00+00:00")
+    message[:payload][:value][:dummy].should eql(0)
+    message[:payload][:value][:site].should eql("govuk")
+  end
 end

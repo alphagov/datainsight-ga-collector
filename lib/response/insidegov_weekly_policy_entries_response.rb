@@ -14,7 +14,8 @@ module GoogleAnalytics
     private
 
     def create_messages response_as_hash
-      condense_to_one_week(response_as_hash["rows"]).map { |slug, entries|
+      rows = (response_as_hash["rows"] or [])
+      condense_to_one_week(rows).map { |slug, entries|
         create_message({
                          start_at: extract_start_at(response_as_hash["query"]["start-date"]),
                          end_at: extract_end_at(response_as_hash["query"]["end-date"]),

@@ -12,7 +12,8 @@ module GoogleAnalytics
     def create_messages(response)
       start_date = Date.parse(response["query"]["start-date"])
       end_date = Date.parse(response["query"]["end-date"])
-      response["rows"].map do |row|
+      rows = (response["rows"] or [])
+      rows.map do |row|
         create_message(create_payload(start_date, end_date, row))
       end
     end
