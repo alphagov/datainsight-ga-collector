@@ -9,6 +9,8 @@ collector_spec = [
     {:config => 'WeeklyVisitors', :days_ago => 200},
     {:config => 'WeeklyEntrySuccess', :days_ago => 0},
     {:config => 'InsideGovWeeklyVisitors', :days_ago => 200},
+    {:config => 'InsideGovWeeklyPolicyEntries', :days_ago => 200},
+    {:config => 'InsideGovWeeklyEntrySuccess', :days_ago => 200}
 ]
 
 namespace :collect do
