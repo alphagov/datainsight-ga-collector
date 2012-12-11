@@ -13,6 +13,7 @@ module GoogleAnalytics
       METRIC = "ga:totalEvents"
       DIMENSION = "ga:week,ga:eventAction"
       FILTERS = "ga:customVarValue2==policy;ga:eventLabel==Entry"
+      RESPONSE_TYPE = GoogleAnalytics::InsideGovWeeklyPolicyEntriesResponse
     end
   end
 end
