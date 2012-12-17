@@ -72,7 +72,7 @@ command :print do |c|
 end
 
 command :search do |c|
-  c.desc "Search the collected messages for a given string"
+  c.desc "Search the collected messages for a given string or strings"
   c.action do |global_options, options, args|
     collector(global_options).collect_as_json.each { |m|
       if args.any? { |arg| m.include?(arg) }

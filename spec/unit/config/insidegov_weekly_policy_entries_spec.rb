@@ -15,7 +15,7 @@ describe "Weekly Policy Entries Config" do
     end
 
     it "should have ids" do
-      @p["ids"].should == "ga:53699180"
+      @p["ids"].should == "ga:53872948"
     end
 
     it "should have a start date of 2012-08-05" do

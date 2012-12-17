@@ -1,6 +1,13 @@
 require 'yaml'
 require 'open-uri'
 require 'json'
+require 'faraday'
+
+module Faraday
+  module Utils
+    DEFAULT_SEP = /[&] */n
+  end
+end
 
 Datainsight::Logging.configure()
 
