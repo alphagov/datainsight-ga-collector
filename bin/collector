@@ -10,7 +10,7 @@
 require 'bundler/setup'
 Bundler.require
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__), "../lib/**/*.rb"))].each {|f| require f}
+Dir[File.expand_path(File.join(File.dirname(__FILE__), "../lib/**/*.rb"))].each { |f| require f }
 
 include GLI
 
@@ -68,6 +68,17 @@ command :print do |c|
       Airbrake.notify(e)
       raise e
     end
+  end
+end
+
+command :search do |c|
+  c.desc "Search the collected messages for a given string"
+  c.action do |global_options, options, args|
+    collector(global_options).collect_as_json.each { |m|
+      if args.any? { |arg| m.include?(arg) }
+        puts m
+      end
+    }
   end
 end
 
