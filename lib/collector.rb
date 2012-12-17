@@ -9,8 +9,8 @@ module GoogleAnalytics
     include GoogleAuthenticationBridge
 
     GOOGLE_API_SCOPE = "https://www.googleapis.com/auth/analytics.readonly"
-    GOOGLE_CREDENTIALS = '/etc/gds/google_credentials.yml'
-    GOOGLE_TOKEN = "/var/lib/gds/google-analytics-token.yml"
+    GOOGLE_CREDENTIALS = '/etc/govuk/datainsight/google_credentials.yml'
+    GOOGLE_TOKEN = "/var/lib/govuk/datainsight/google-analytics-token.yml"
 
     def initialize(auth_code, configs)
       @auth_code, @configs = auth_code, configs
