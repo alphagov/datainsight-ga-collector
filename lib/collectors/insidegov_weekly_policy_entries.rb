@@ -12,7 +12,7 @@ module GoogleAnalytics
       SITE_KEY = "insidegov"
       METRIC = "ga:totalEvents"
       DIMENSION = "ga:week,ga:eventAction"
-      FILTERS = "ga:customVarValue2==policy;ga:eventLabel==Entry"
+      FILTERS = "ga:eventCategory==IG_policy;ga:eventLabel==Entry"
       RESPONSE_TYPE = GoogleAnalytics::InsideGovWeeklyPolicyEntriesResponse
     end
   end

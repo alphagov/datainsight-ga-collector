@@ -35,7 +35,7 @@ describe "Weekly Policy Entries Config" do
     end
 
     it "should have filters for entries to policy formats" do
-      @p["filters"].should == "ga:customVarValue2==policy;ga:eventLabel==Entry"
+      @p["filters"].should == "ga:eventCategory==IG_policy;ga:eventLabel==Entry"
     end
   end
 
