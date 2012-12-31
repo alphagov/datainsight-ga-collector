@@ -2,6 +2,7 @@ require_relative "spec_helper"
 
 describe "Weekly visits collector" do
   before(:each) do
+    stub_credentials
     register_oauth_refresh
     register_api_discovery
   end

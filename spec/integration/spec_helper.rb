@@ -4,6 +4,15 @@ require "timecop"
 
 FakeWeb.allow_net_connect = false
 
+def stub_credentials
+  YAML.stub!(:load_file)
+      .with("/etc/govuk/datainsight/google_credentials.yml")
+      .and_return({:google_client_id => "", :google_client_secret => ""})
+  YAML.stub!(:load_file)
+      .with("/var/lib/govuk/datainsight/google-analytics-token.yml")
+      .and_return({:refresh_token => ""})
+end
+
 def register_oauth_refresh
   FakeWeb.register_uri(
     :post,
