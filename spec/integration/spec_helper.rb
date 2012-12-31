@@ -7,10 +7,18 @@ FakeWeb.allow_net_connect = false
 def stub_credentials
   YAML.stub!(:load_file)
       .with("/etc/govuk/datainsight/google_credentials.yml")
-      .and_return({:google_client_id => "", :google_client_secret => ""})
+      .and_return({:google_client_id => "blahblah", :google_client_secret => "blahblah"})
   YAML.stub!(:load_file)
       .with("/var/lib/govuk/datainsight/google-analytics-token.yml")
-      .and_return({:refresh_token => ""})
+      .and_return({:refresh_token => "blahblah"})
+  ## you can't only stub requests with certain arguments so
+  ## this proxies other exists? calls to exist?
+  File.stub!(:exists?) do |path|
+    File.exist?(path)
+  end
+  File.stub!(:exists?)
+      .with("/var/lib/govuk/datainsight/google-analytics-token.yml")
+      .and_return(true)
 end
 
 def register_oauth_refresh
