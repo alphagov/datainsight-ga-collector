@@ -10,7 +10,7 @@ def load_json(filename)
 end
 
 def load_data(filename)
-  File.read(File.join(File.dirname(__FILE__), "data", filename))
+  File.read(File.join(File.dirname(__FILE__), "fixtures", filename))
 end
 
 class DummyConfig
