@@ -1,4 +1,4 @@
-require_relative "../spec_helper"
+require_relative "../../spec_helper"
 
 describe "Weekly Policy Entries Config" do
   before(:all) do

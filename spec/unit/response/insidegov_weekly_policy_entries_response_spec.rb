@@ -1,4 +1,4 @@
-require_relative "../../unit/spec_helper"
+require_relative "../../spec_helper"
 
 include GoogleAnalytics
 describe "insidegov weekly policy entries response" do

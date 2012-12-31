@@ -1,4 +1,4 @@
-require_relative "../spec_helper"
+require_relative "../../spec_helper"
 
 describe "Inside Gov Weekly Entry and Success Config" do
 

@@ -1,4 +1,4 @@
-require_relative '../../spec/unit/spec_helper'
+require_relative '../spec_helper'
 
 describe "Google Analytics Collector" do
 

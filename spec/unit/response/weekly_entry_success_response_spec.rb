@@ -1,4 +1,4 @@
-require_relative "../../unit/spec_helper"
+require_relative "../../spec_helper"
 
 include GoogleAnalytics
 describe "weekly entry/success response" do

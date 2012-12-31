@@ -1,4 +1,4 @@
-require_relative "../spec_helper"
+require_relative "../../spec_helper"
 
 describe "Weekly Entry and Success Event Collection" do
 
