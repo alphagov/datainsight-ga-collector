@@ -6,7 +6,11 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__), "../lib/**/*.rb"))].each 
 require "json"
 
 def load_json(filename)
-  JSON.parse(File.read(File.join(File.dirname(__FILE__), "data", filename)))
+  JSON.parse(load_data(filename))
+end
+
+def load_data(filename)
+  File.read(File.join(File.dirname(__FILE__), "data", filename))
 end
 
 class DummyConfig

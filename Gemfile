@@ -11,6 +11,8 @@ gem "whenever"
 gem "datainsight_logging"
 
 group :test do
-  gem "rspec"
-  gem "ci_reporter"
+  gem "rspec", "2.11.0"
+  gem "fakeweb"
+  gem "ci_reporter", "1.7.1"
+  gem "timecop", "0.5.2"
 end
