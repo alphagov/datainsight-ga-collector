@@ -39,10 +39,10 @@ GEM
       multi_json (>= 1.0.0)
       signet (>= 0.4.1)
       uuidtools (>= 2.1.0)
-    google_auth_bridge (0.1.1)
+    google_auth_bridge (0.1.2)
       google-api-client
       oauth2
-    httpauth (0.1)
+    httpauth (0.2.0)
     i18n (0.6.0)
     jwt (0.1.5)
       multi_json (>= 1.0)
@@ -94,7 +94,7 @@ DEPENDENCIES
   fakeweb
   gli (= 1.6.0)
   google-api-client
-  google_auth_bridge
+  google_auth_bridge (= 0.1.2)
   rake
   rspec (= 2.11.0)
   timecop (= 0.5.2)
