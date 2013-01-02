@@ -42,3 +42,32 @@ def register_ga_request(options, response)
     :body => response
   )
 end
+
+RSpec::Matchers.define :have_payload_value do |expected|
+  match do |actual|
+    actual = JSON.parse(actual)
+    result = true
+    expected.each_pair do |key, value|
+      result &&= actual["payload"]["value"][key] == value
+    end
+    result
+  end
+end
+
+RSpec::Matchers.define :be_for_time_period do |start_at, end_at|
+  match do |actual|
+    payload = JSON.parse(actual)["payload"]
+
+    result = true
+    result &&= payload["start_at"] == start_at.to_datetime.strftime
+    result &&= payload["end_at"] == end_at.to_datetime.strftime
+
+    result
+  end
+end
+
+RSpec::Matchers.define :be_for_collector do |expected|
+  match do |actual|
+    JSON.parse(actual)["envelope"]["collector"] == expected
+  end
+end

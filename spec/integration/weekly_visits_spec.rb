@@ -23,13 +23,13 @@ describe "Weekly visits collector" do
 
     response = collector.collect_as_json
     response.should have(1).item
-    message = JSON.parse(response.first)
-    message["envelope"]["collector"].should == "Google Analytics"
-    message["payload"].should == {
-      "start_at" => "2012-12-23T00:00:00+00:00",
-      "end_at" => "2012-12-30T00:00:00+00:00",
-      "value" => {"visits" => 3291103, "site" => "govuk"}
-    }
+
+    response[0].should be_for_collector("Google Analytics")
+    response[0].should be_for_time_period(
+                         Date.new(2012, 12, 23), Date.new(2012, 12, 30))
+    response[0].should have_payload_value(
+                         "visits" => 3291103, "site" => "govuk")
+
   end
 
   it "should query google analytics for last week today" do
@@ -49,13 +49,11 @@ describe "Weekly visits collector" do
 
       response = collector.collect_as_json
       response.should have(1).item
-      message = JSON.parse(response.first)
-      message["envelope"]["collector"].should == "Google Analytics"
-      message["payload"].should == {
-        "start_at" => "2012-12-23T00:00:00+00:00",
-        "end_at" => "2012-12-30T00:00:00+00:00",
-        "value" => {"visits" => 3291103, "site" => "govuk"}
-      }
+
+      response[0].should be_for_time_period(
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30))
+      response[0].should have_payload_value(
+                           "visits" => 3291103, "site" => "govuk")
     end
   end
 
@@ -98,26 +96,20 @@ describe "Weekly visits collector" do
       response = collector.collect_as_json
       response.should have(3).items
 
-      message = JSON.parse(response[0])
-      message["payload"].should == {
-        "start_at" => "2012-12-09T00:00:00+00:00",
-        "end_at" => "2012-12-16T00:00:00+00:00",
-        "value" => {"visits" => 5760192, "site" => "govuk"}
-      }
+      response[0].should be_for_time_period(
+                           Date.new(2012, 12, 9), Date.new(2012, 12, 16))
+      response[0].should have_payload_value(
+                           "visits" => 5760192, "site" => "govuk")
 
-      message = JSON.parse(response[1])
-      message["payload"].should == {
-        "start_at" => "2012-12-16T00:00:00+00:00",
-        "end_at" => "2012-12-23T00:00:00+00:00",
-        "value" => {"visits" => 5341780, "site" => "govuk"}
-      }
+      response[1].should be_for_time_period(
+                           Date.new(2012, 12, 16), Date.new(2012, 12, 23))
+      response[1].should have_payload_value(
+                           "visits" => 5341780, "site" => "govuk")
 
-      message = JSON.parse(response[2])
-      message["payload"].should == {
-        "start_at" => "2012-12-23T00:00:00+00:00",
-        "end_at" => "2012-12-30T00:00:00+00:00",
-        "value" => {"visits" => 3291103, "site" => "govuk"}
-      }
+      response[2].should be_for_time_period(
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30))
+      response[2].should have_payload_value(
+                           "visits" => 3291103, "site" => "govuk")
     end
   end
 end
