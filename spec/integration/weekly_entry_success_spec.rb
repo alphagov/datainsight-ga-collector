@@ -5,19 +5,19 @@ describe "Weekly entry success collector" do
     stub_credentials
     register_oauth_refresh
     register_api_discovery
+
+    @ga_request = setup_ga_request(
+      :ids => "ga:53872948",
+      :metrics => "ga:totalEvents",
+      :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
+      :filters => "ga:eventCategory=~^MS_.*"
+    )
   end
 
   it "should query google analytics for specific dates" do
-    register_ga_request(
-      {
-        :ids => "ga:53872948",
-        :"start-date" => "2012-12-23",
-        :"end-date" => "2012-12-29",
-        :metrics => "ga:totalEvents",
-        :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
-        :filters => "ga:eventCategory=~^MS_.*"
-      },
-      load_data("weekly-entry-success-from-2012-12-23.json")
+    @ga_request.register(
+      "2012-12-23", "2012-12-29",
+      "weekly-entry-success-from-2012-12-23.json"
     )
 
     collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyEntrySuccess.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))])
@@ -50,16 +50,9 @@ describe "Weekly entry success collector" do
   end
 
   it "should query google analytics for last week today" do
-    register_ga_request(
-      {
-        :ids => "ga:53872948",
-        :"start-date" => "2012-12-23",
-        :"end-date" => "2012-12-29",
-        :metrics => "ga:totalEvents",
-        :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
-        :filters => "ga:eventCategory=~^MS_.*"
-      },
-      load_data("weekly-entry-success-from-2012-12-23.json")
+    @ga_request.register(
+      "2012-12-23", "2012-12-29",
+      "weekly-entry-success-from-2012-12-23.json"
     )
 
     Timecop.travel(DateTime.parse("2012-12-31")) do
@@ -81,38 +74,17 @@ describe "Weekly entry success collector" do
   end
 
   it "should query google analytics for the previous three weeks" do
-    register_ga_request(
-      {
-        :ids => "ga:53872948",
-        :"start-date" => "2012-12-09",
-        :"end-date" => "2012-12-15",
-        :metrics => "ga:totalEvents",
-        :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
-        :filters => "ga:eventCategory=~^MS_.*"
-      },
-      load_data("weekly-entry-success-from-2012-12-09.json")
+    @ga_request.register(
+      "2012-12-09", "2012-12-15",
+      "weekly-entry-success-from-2012-12-09.json"
     )
-    register_ga_request(
-      {
-        :ids => "ga:53872948",
-        :"start-date" => "2012-12-16",
-        :"end-date" => "2012-12-22",
-        :metrics => "ga:totalEvents",
-        :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
-        :filters => "ga:eventCategory=~^MS_.*"
-      },
-      load_data("weekly-entry-success-from-2012-12-16.json")
+    @ga_request.register(
+      "2012-12-16", "2012-12-22",
+      "weekly-entry-success-from-2012-12-16.json"
     )
-    register_ga_request(
-      {
-        :ids => "ga:53872948",
-        :"start-date" => "2012-12-23",
-        :"end-date" => "2012-12-29",
-        :metrics => "ga:totalEvents",
-        :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
-        :filters => "ga:eventCategory=~^MS_.*"
-      },
-      load_data("weekly-entry-success-from-2012-12-23.json")
+    @ga_request.register(
+      "2012-12-23", "2012-12-29",
+      "weekly-entry-success-from-2012-12-23.json"
     )
     Timecop.travel(DateTime.parse("2012-12-31")) do
       configs = GoogleAnalytics::Config::WeeklyEntrySuccess.all_within(

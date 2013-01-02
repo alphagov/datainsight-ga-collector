@@ -34,6 +34,29 @@ def register_api_discovery
   )
 end
 
+class GARequest
+  def initialize(options)
+    @options = options
+  end
+  def register(start_date, end_date, response_path)
+    query = @options
+              .merge(
+                :"start-date" => start_date,
+                :"end-date" => end_date
+              )
+              .map {|k, v| "#{k}=#{CGI::escape(v)}" }
+              .join("&")
+    FakeWeb.register_uri(
+      :get,
+      "https://www.googleapis.com/analytics/v3/data/ga?#{query}",
+      :body => load_data(response_path)
+    )
+  end
+end
+
+def setup_ga_request(options)
+  GARequest.new(options)
+end
 def register_ga_request(options, response)
   query = options.map {|k,v| "#{k}=#{CGI::escape(v)}" }.join("&")
   FakeWeb.register_uri(
