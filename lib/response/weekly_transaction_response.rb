@@ -18,7 +18,8 @@ module GoogleAnalytics
                         end_at: extract_end_at(response_as_hash["query"]["end-date"]),
                         value: {
                           site: @site,
-                          successes: extract_successes(response_as_hash["rows"])
+                          successes: extract_successes(response_as_hash["rows"]),
+                          format: "transaction"
                         }
                       })]
     end

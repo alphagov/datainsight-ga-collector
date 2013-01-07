@@ -31,6 +31,10 @@ describe "weekly entry/success response" do
       payload = @response.messages.first[:payload]
       payload[:value][:successes].should == 1431421
     end
+
+    it "should have format set to transaction in payload" do
+      @response.messages.first[:payload][:value][:format].should == "transaction"
+    end
   end
 
 end
