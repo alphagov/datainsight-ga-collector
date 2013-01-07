@@ -33,4 +33,25 @@ describe "Weekly transaction success collector" do
       "format" => "transaction"
     )
   end
+
+  it "should query google analytics for historical queries" do
+    @ga_request.register("2012-12-23", "2012-12-29",
+                         "weekly_transaction_response__2012-12-23.json")
+    @ga_request.register("2012-12-16", "2012-12-22",
+                         "weekly_transaction_response__2012-12-16.json")
+    @ga_request.register("2012-12-09", "2012-12-15",
+                         "weekly_transaction_response__2012-12-09.json")
+
+    Timecop.travel(DateTime.parse("2012-12-31")) do
+      configs = GoogleAnalytics::Config::WeeklyTransaction.all_within(Date.new(2012,12,9),Date.today)
+      collector = GoogleAnalytics::Collector.new(nil, configs)
+
+      response = collector.collect_as_json
+      response.should have(3).items
+
+      response.first.should be_for_time_period(Date.new(2012,12,9), Date.new(2012,12,16))
+      response[1].should be_for_time_period(Date.new(2012,12,16), Date.new(2012,12,23))
+      response[2].should be_for_time_period(Date.new(2012,12,23), Date.new(2012,12,30))
+    end
+  end
 end
