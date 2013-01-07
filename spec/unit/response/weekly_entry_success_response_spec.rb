@@ -21,7 +21,7 @@ describe "weekly entry/success response" do
       @response.messages.should have(13).items
     end
 
-    it "should be have an envelope and a payload" do
+    it "should have an envelope and a payload" do
       @response.messages.first[:envelope].should be_a(Hash)
       @response.messages.first[:envelope][:collected_at].should be_a(DateTime)
       @response.messages.first[:envelope][:collector].should eql("Google Analytics")

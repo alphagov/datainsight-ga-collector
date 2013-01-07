@@ -14,7 +14,9 @@ describe "Weekly transaction event collection" do
     @configs.amqp_topic.should == "google_analytics.entry_and_success.weekly"
   end
 
-  it "should have a response type of weekly transaction"
+  it "should have a response type of weekly transaction" do
+    @configs.response_type.should eql(GoogleAnalytics::WeeklyTransactionResponse)
+  end
 
   describe "analytics_parameters" do
     before(:all) do

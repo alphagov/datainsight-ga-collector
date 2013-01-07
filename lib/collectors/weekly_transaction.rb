@@ -1,5 +1,6 @@
 require_relative "config/base"
 require_relative "config/weekly_collector"
+require_relative "../../lib/response/weekly_transaction_response"
 
 module GoogleAnalytics
   module Config
@@ -13,7 +14,7 @@ module GoogleAnalytics
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = 'MS_'
       FILTERS = "ga:eventCategory==MS_transaction"
-      RESPONSE_TYPE = nil
+      RESPONSE_TYPE = GoogleAnalytics::WeeklyTransactionResponse
 
     end
   end
