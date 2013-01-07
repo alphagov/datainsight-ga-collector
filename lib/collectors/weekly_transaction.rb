@@ -9,6 +9,7 @@ module GoogleAnalytics
 
       GOOGLE_ANALYTICS_URL_ID = "ga:61976178"
       AMQP_TOPIC = "google_analytics.entry_and_success.weekly"
+      SITE_KEY = "govuk"
 
       DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"
