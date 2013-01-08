@@ -5,22 +5,22 @@ module GoogleAnalytics
   class WeeklyEntrySuccessResponse < BaseResponse
     include ExtractWeeklyDates
 
-    def initialize(response_hash, config_class)
+    def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @config = config_class
-      @messages = create_messages(response_hash)
+      @messages = create_messages(response.first)
     end
 
     private
     ENTRY_LABEL = "Entry"
     SUCCESS_LABEL = "Success"
 
-    def create_messages response_as_hash
-      rows = (response_as_hash["rows"] or [])
-      condense_to_one_week(rows).map do |(format, entries, successes)|
+    def create_messages(response)
+      rows = (response["rows"] or [])
+      messages = condense_to_one_week(rows).map do |(format, entries, successes)|
         create_message ({
-            :start_at => extract_start_at(response_as_hash["query"]["start-date"]),
-            :end_at => extract_end_at(response_as_hash["query"]["end-date"]),
+            :start_at => extract_start_at(response["query"]["start-date"]),
+            :end_at => extract_end_at(response["query"]["end-date"]),
             :value => {
               :site => @site,
               :format => normalize_format(format),
@@ -29,9 +29,11 @@ module GoogleAnalytics
             }
         })
       end
+
+      messages
     end
 
-    def condense_to_one_week rows
+    def condense_to_one_week(rows)
       weeks = {}
       rows.each do |(_, format, action, value)|
         weeks[format] ||= [0, 0]
@@ -46,7 +48,7 @@ module GoogleAnalytics
       weeks.map(&:flatten)
     end
 
-    def normalize_format format
+    def normalize_format(format)
       format.gsub(/^#{@config::CATEGORY_PREFIX}/, '')
     end
   end

@@ -20,7 +20,7 @@ module GoogleAnalytics
         parameters["dimensions"] = self.class::DIMENSION
         parameters["filters"] = self.class::FILTERS if defined?(self.class::FILTERS)
 
-        parameters
+        [parameters]
       end
 
       def amqp_topic

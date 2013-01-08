@@ -7,7 +7,7 @@ module GoogleAnalytics
     class WeeklyTransaction < Base
       include WeeklyCollector
 
-      GOOGLE_ANALYTICS_URL_ID = "ga:61976178"
+      GOOGLE_ANALYTICS_URL_ID = %w(ga:53872948 ga:61976178)
       AMQP_TOPIC = "google_analytics.entry_and_success.weekly"
       SITE_KEY = "govuk"
 
@@ -17,6 +17,24 @@ module GoogleAnalytics
       FILTERS = "ga:eventCategory==MS_transaction"
       RESPONSE_TYPE = GoogleAnalytics::WeeklyTransactionResponse
 
+      def analytics_parameters()
+        self.class::GOOGLE_ANALYTICS_URL_ID.map do |id|
+          build_parameters_for(id)
+        end
+      end
+
+      def build_parameters_for(id)
+        parameters = {}
+
+        parameters["ids"] = id
+        parameters["start-date"] = @start_at.strftime
+        parameters["end-date"] = @end_at.strftime
+        parameters["metrics"] = self.class::METRIC
+        parameters["dimensions"] = self.class::DIMENSION
+        parameters["filters"] = self.class::FILTERS if defined?(self.class::FILTERS)
+        
+        parameters
+      end
     end
   end
 end
