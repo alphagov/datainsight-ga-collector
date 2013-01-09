@@ -7,7 +7,7 @@ describe "Hourly Response" do
   describe "example from 2012-08-14 12:07:00+01:00" do
     before(:each) do
       response_hash = load_json("hourly_unique_visitors_response.json")
-      @response = HourlyResponse.new(response_hash, DummyConfig)
+      @response = HourlyResponse.new([response_hash], DummyConfig)
     end
 
     it "should use dummy count if only week is present (middle of the year)" do
@@ -47,7 +47,7 @@ describe "Hourly Response" do
   describe "response with no results" do
     before(:all) do
       response_hash = load_json("hourly_unique_visitors_response_no_results.json")
-      @response = HourlyResponse.new(response_hash, DummyConfig)
+      @response = HourlyResponse.new([response_hash], DummyConfig)
     end
 
     it "should create no messages" do

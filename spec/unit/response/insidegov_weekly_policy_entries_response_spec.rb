@@ -12,7 +12,7 @@ describe "insidegov weekly policy entries response" do
   describe "result within the same year" do
     before(:each) do
       response_as_hash = load_json("insidegov_weekly_policy_entries_response.json")
-      @response = InsideGovWeeklyPolicyEntriesResponse.new(response_as_hash, GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
+      @response = InsideGovWeeklyPolicyEntriesResponse.new([response_as_hash], GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
     end
 
     it "should have an array of messages" do
@@ -50,27 +50,19 @@ describe "insidegov weekly policy entries response" do
   describe "when crossing year boundary" do
     before(:each) do
       response_as_hash = load_json("insidegov_weekly_policy_entries_response_year_boundary.json")
-      @response = InsideGovWeeklyPolicyEntriesResponse.new(response_as_hash, GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
+      @response = InsideGovWeeklyPolicyEntriesResponse.new([response_as_hash], GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
     end
 
     it "should have an array of messages" do
       @response.messages.should be_an(Array)
       @response.messages.should have(5).items
     end
-
-    it "should have an envelope and a payload"
-
-    it "should have start_at, end_at and site data"
-
-    it "should have entries for policies"
-
-    it "should have slugs for policies"
   end
 
   describe "response with no results" do
     before(:each) do
       response_as_hash = load_json("insidegov_weekly_policy_entries_response_no_results.json")
-      @response = InsideGovWeeklyPolicyEntriesResponse.new(response_as_hash, GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
+      @response = InsideGovWeeklyPolicyEntriesResponse.new([response_as_hash], GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
     end
 
     it "should send no messages" do

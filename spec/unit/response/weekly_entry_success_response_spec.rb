@@ -13,7 +13,7 @@ describe "weekly entry/success response" do
 
     before(:each) do
       response_as_hash = load_json("weekly_entry_success_response.json")
-      @response = WeeklyEntrySuccessResponse.new(response_as_hash, GoogleAnalytics::Config::WeeklyEntrySuccess)
+      @response = WeeklyEntrySuccessResponse.new([response_as_hash], GoogleAnalytics::Config::WeeklyEntrySuccess)
     end
 
     it "should have an array of messages" do
@@ -53,7 +53,7 @@ describe "weekly entry/success response" do
   describe "with year switch" do
     before(:each) do
       response_as_hash = load_json("weekly_entry_success_response_year_switch.json")
-      @response = WeeklyEntrySuccessResponse.new(response_as_hash, GoogleAnalytics::Config::WeeklyEntrySuccess)
+      @response = WeeklyEntrySuccessResponse.new([response_as_hash], GoogleAnalytics::Config::WeeklyEntrySuccess)
     end
 
     it "should have an array of messages" do
@@ -92,7 +92,7 @@ describe "weekly entry/success response" do
   describe "response with no results" do
     before(:each) do
       response_as_hash = load_json("weekly_entry_success_response_no_results.json")
-      @response = WeeklyEntrySuccessResponse.new(response_as_hash, GoogleAnalytics::Config::WeeklyEntrySuccess)
+      @response = WeeklyEntrySuccessResponse.new([response_as_hash], GoogleAnalytics::Config::WeeklyEntrySuccess)
     end
 
     it "should create no messages" do

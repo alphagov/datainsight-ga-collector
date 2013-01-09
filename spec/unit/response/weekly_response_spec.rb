@@ -6,7 +6,7 @@ describe "Weekly Response" do
   it "should use dummy count if only one week is present (middle of the year)" do
     response_hash = load_json("weekly_dummy_response.json")
 
-    response = WeeklyResponse.new(response_hash, DummyConfig)
+    response = WeeklyResponse.new([response_hash], DummyConfig)
 
     response.messages.should be_an(Array)
     response.messages.should have(1).item
@@ -21,7 +21,7 @@ describe "Weekly Response" do
   it "should add dummy if two weeks are present (year switch)" do
     response_hash = load_json("weekly_dummy_response_year_switch.json")
 
-    response = WeeklyResponse.new(response_hash, DummyConfig)
+    response = WeeklyResponse.new([response_hash], DummyConfig)
 
     response.messages.should be_an(Array)
     response.messages.should have(1).item
@@ -36,7 +36,7 @@ describe "Weekly Response" do
   it "should report 0 when no results have been provided" do
     response_hash = load_json("weekly_dummy_response_no_results.json")
 
-    response = WeeklyResponse.new(response_hash, DummyConfig)
+    response = WeeklyResponse.new([response_hash], DummyConfig)
     response.messages.should have(1).item
     message = response.messages.first
 

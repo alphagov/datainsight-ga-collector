@@ -9,29 +9,29 @@ describe "Daily Response" do
     SITE_KEY="govuk"
   end
 
-  describe "example from 2012-10-17 13:48:00+01:00"
+  describe "example from 2012-10-17 13:48:00+01:00" do
 
-  before(:all) do
-    response_hash = load_json("daily_unique_visitors_response.json")
-    @response = DailyResponse.new(response_hash, StubConfig)
-  end
+    before(:all) do
+      response_hash = load_json("daily_unique_visitors_response.json")
+      @response = DailyResponse.new([response_hash], StubConfig)
+    end
 
-  it "should use visitors count" do
-    @response.messages.should be_an(Array)
-    @response.messages.should have(1).item
-  end
+    it "should use visitors count" do
+      @response.messages.should be_an(Array)
+      @response.messages.should have(1).item
+    end
 
-  it "should have the daily visitors" do
-    message = @response.messages[0]
+    it "should have the daily visitors" do
+      message = @response.messages[0]
 
-    message[:payload].should == {
+      message[:payload].should == {
         start_at: "2012-10-17T00:00:00+00:00",
         end_at: "2012-10-18T00:00:00+00:00",
         value: {
-            dummy: 909706,
-            site: 'govuk'
+          dummy: 909706,
+          site: 'govuk'
         }
-    }
+      }
+    end
   end
-
 end

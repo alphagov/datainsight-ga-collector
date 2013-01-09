@@ -16,7 +16,7 @@ module GoogleAnalytics
     SUCCESS_LABEL = "Success"
 
     def create_messages(response)
-      rows = response.reduce([]) { |accumulator, item| accumulator + item["rows"] }
+      rows = response.reduce([]) { |accumulator, item| accumulator + (item["rows"] || []) }
 
       condense_to_one_week(rows).map do |(format, entries, successes)|
         create_message ({
