@@ -5,10 +5,10 @@ module GoogleAnalytics
   class InsideGovWeeklyPolicyEntriesResponse < BaseResponse
     include ExtractWeeklyDates
 
-    def initialize(response_hash, config_class)
+    def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @config = config_class
-      @messages = create_messages(response_hash)
+      @messages = create_messages(response.first)
     end
 
     private

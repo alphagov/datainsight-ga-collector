@@ -6,10 +6,10 @@ module GoogleAnalytics
     include ExtractWeeklyDates
 
 
-    def initialize(response_hash, config_class)
+    def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @metric = config_class::METRIC.split(":")[1].to_sym
-      @messages = [create_message(parse_success(response_hash))]
+      @messages = [create_message(parse_success(response.first))]
     end
 
     private

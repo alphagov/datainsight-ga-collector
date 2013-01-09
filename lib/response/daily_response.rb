@@ -5,7 +5,7 @@ module GoogleAnalytics
     def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @metric = config_class::METRIC.split(":")[1].to_sym
-      @messages = [create_message(create_payload(response))]
+      @messages = [create_message(create_payload(response.first))]
     end
 
     private
