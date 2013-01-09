@@ -10,6 +10,7 @@ every :sunday, :at => '5am' do
   collector "broadcast", :config => "WeeklyVisits", :days_ago => 0
   collector "broadcast", :config => "WeeklyVisitors", :days_ago => 0
   collector "broadcast", :config => "WeeklyEntrySuccess", :days_ago => 0
+  collector "broadcast", :config => "WeeklyEntrySuccessTransaction", :days_ago => 0
 
   collector "broadcast", :config => "InsideGovWeeklyVisitors", :days_ago => 0
   collector "broadcast", :config => "InsideGovWeeklyPolicyEntries", :days_ago => 0

@@ -7,7 +7,8 @@ collector_spec = [
     {:config => 'DailyVisitors', :days_ago => 2},
     {:config => 'WeeklyVisits', :days_ago => 200},
     {:config => 'WeeklyVisitors', :days_ago => 200},
-    {:config => 'WeeklyEntrySuccess', :days_ago => 0},
+    {:config => 'WeeklyEntrySuccess', :days_ago => 100},
+    {:config => 'WeeklyEntrySuccessTransaction', :days_ago => 100},
     {:config => 'InsideGovWeeklyVisitors', :days_ago => 200},
     {:config => 'InsideGovWeeklyPolicyEntries', :days_ago => 200},
     {:config => 'InsideGovWeeklyEntrySuccess', :days_ago => 200}

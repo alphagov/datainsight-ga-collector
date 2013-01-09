@@ -4,7 +4,7 @@ require_relative "../../lib/response/weekly_entry_success_response"
 
 module GoogleAnalytics
   module Config
-    class WeeklyTransaction < Base
+    class WeeklyEntrySuccessTransaction < Base
       include WeeklyCollector
 
       GOOGLE_ANALYTICS_URL_ID = %w(ga:53872948 ga:61976178)
