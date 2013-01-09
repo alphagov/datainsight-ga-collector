@@ -1,6 +1,6 @@
 require_relative "config/base"
 require_relative "config/weekly_collector"
-require_relative "../../lib/response/weekly_transaction_response"
+require_relative "../../lib/response/weekly_entry_success_response"
 
 module GoogleAnalytics
   module Config
@@ -15,25 +15,12 @@ module GoogleAnalytics
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = 'MS_'
       FILTERS = "ga:eventCategory==MS_transaction"
-      RESPONSE_TYPE = GoogleAnalytics::WeeklyTransactionResponse
+      RESPONSE_TYPE = GoogleAnalytics::WeeklyEntrySuccessResponse
 
       def analytics_parameters()
         self.class::GOOGLE_ANALYTICS_URL_ID.map do |id|
-          build_parameters_for(id)
+          build_parameters_for(id: id)
         end
-      end
-
-      def build_parameters_for(id)
-        parameters = {}
-
-        parameters["ids"] = id
-        parameters["start-date"] = @start_at.strftime
-        parameters["end-date"] = @end_at.strftime
-        parameters["metrics"] = self.class::METRIC
-        parameters["dimensions"] = self.class::DIMENSION
-        parameters["filters"] = self.class::FILTERS if defined?(self.class::FILTERS)
-        
-        parameters
       end
     end
   end

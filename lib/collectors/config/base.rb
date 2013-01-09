@@ -11,16 +11,25 @@ module GoogleAnalytics
       end
 
       def analytics_parameters()
+        [build_parameters_for]
+      end
+
+      def build_parameters_for(config = {})
         parameters = {}
 
-        parameters["ids"] = self.class::GOOGLE_ANALYTICS_URL_ID
-        parameters["start-date"] = @start_at.strftime
-        parameters["end-date"] = @end_at.strftime
-        parameters["metrics"] = self.class::METRIC
-        parameters["dimensions"] = self.class::DIMENSION
-        parameters["filters"] = self.class::FILTERS if defined?(self.class::FILTERS)
+        parameters["ids"] = config[:id] || self.class::GOOGLE_ANALYTICS_URL_ID
+        parameters["start-date"] = config[:start_at] || @start_at.strftime
+        parameters["end-date"] = config[:end_at] || @end_at.strftime
+        parameters["metrics"] = config[:metrics] || self.class::METRIC
+        parameters["dimensions"] = config[:dimensions] || self.class::DIMENSION
 
-        [parameters]
+        if config[:filters]
+          parameters["filters"] = config[:filters]
+        elsif defined?(self.class::FILTERS)
+          parameters["filters"] = self.class::FILTERS
+        end
+
+        parameters
       end
 
       def amqp_topic

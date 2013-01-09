@@ -8,7 +8,7 @@ module GoogleAnalytics
     def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @config = config_class
-      @messages = create_messages(response.first)
+      @messages = create_messages(response)
     end
 
     private
@@ -16,21 +16,20 @@ module GoogleAnalytics
     SUCCESS_LABEL = "Success"
 
     def create_messages(response)
-      rows = (response["rows"] or [])
-      messages = condense_to_one_week(rows).map do |(format, entries, successes)|
+      rows = response.reduce([]) { |accumulator, item| accumulator + item["rows"] }
+
+      condense_to_one_week(rows).map do |(format, entries, successes)|
         create_message ({
-            :start_at => extract_start_at(response["query"]["start-date"]),
-            :end_at => extract_end_at(response["query"]["end-date"]),
-            :value => {
-              :site => @site,
-              :format => normalize_format(format),
-              :entries => entries,
-              :successes => successes
-            }
+          :start_at => extract_start_at(response.first["query"]["start-date"]),
+          :end_at => extract_end_at(response.first["query"]["end-date"]),
+          :value => {
+            :site => @site,
+            :format => normalize_format(format),
+            :entries => entries,
+            :successes => successes
+          }
         })
       end
-
-      messages
     end
 
     def condense_to_one_week(rows)
