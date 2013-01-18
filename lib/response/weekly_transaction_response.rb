@@ -17,7 +17,7 @@ module GoogleAnalytics
 
     def create_messages(response)
       rows = response.reduce([]) {|accumulator, item| accumulator + item["rows"] }
-      messages = condense_to_one_week(rows).map do |(format, entries, successes)|
+      messages = collect_by_format(rows).map do |(format, entries, successes)|
         create_message ({
           :start_at => extract_start_at(response.first["query"]["start-date"]),
           :end_at => extract_end_at(response.first["query"]["end-date"]),
@@ -33,7 +33,7 @@ module GoogleAnalytics
       messages
     end
 
-    def condense_to_one_week rows
+    def collect_by_format rows
       weeks = {}
       rows.each do |(_, format, action, value)|
         weeks[format] ||= [0, 0]

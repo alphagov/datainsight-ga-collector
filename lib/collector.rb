@@ -32,6 +32,7 @@ module GoogleAnalytics
         messages.map(&:to_json)
       rescue => e
         logger.error { e }
+        nil
       end
     end
 
@@ -83,7 +84,6 @@ module GoogleAnalytics
       results = config.analytics_parameters.map do |parameters|
         query(parameters)
       end
-      p results.length
 
       results
     end
