@@ -25,11 +25,21 @@ module GoogleAnalytics
 
       api = client.discovered_api("analytics", "v3")
 
-      response = client.execute(api_method: api.data.ga.get, parameters: parameters)
+      responses = []
 
-      raise "Response error [#{response.error_message}]" if response.error?
+      begin
+        response = client.execute(api_method: api.data.ga.get, parameters: parameters)
 
-      [JSON.parse(response.body)]
+        raise "Response error [#{response.error_message}]" if response.error?
+
+        current_response = JSON.parse(response.body)
+        next_start_index = current_response["query"]["start-index"] + current_response["itemsPerPage"]
+        parameters = parameters.merge("start-index" => next_start_index)
+
+        responses << current_response
+      end while current_response["totalResults"] > next_start_index
+
+      responses
     end
 
     def client

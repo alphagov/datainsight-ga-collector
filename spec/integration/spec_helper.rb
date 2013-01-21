@@ -38,13 +38,13 @@ class GARequest
   def initialize(options)
     @options = options
   end
-  def register(start_date, end_date, response_path)
-    query = @options
+  def register(start_date, end_date, response_path, extra_params={})
+    query = @options.merge(extra_params)
               .merge(
                 :"start-date" => start_date,
                 :"end-date" => end_date
               )
-              .map {|k, v| "#{k}=#{CGI::escape(v)}" }
+              .map {|k, v| "#{k}=#{CGI::escape(v.to_s)}" }
               .join("&")
     FakeWeb.register_uri(
       :get,
