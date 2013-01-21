@@ -13,11 +13,12 @@ describe GoogleAnalytics::Client do
 
     client = GoogleAnalytics::Client.new("some-auth-code")
 
-    data = client.query({ "ids" => "ga:0",
+    responses = client.query({ "ids" => "ga:0",
                           "metrics" => "ga:stub-metric",
                           "start-date" => "2012-01-01",
                           "end-date" => "2012-01-31" })
 
-    data["rows"].should_not be_empty
+    responses.should have(1).response
+    responses.first["rows"].should have(2).rows
   end
 end

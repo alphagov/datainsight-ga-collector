@@ -29,7 +29,7 @@ module GoogleAnalytics
 
       raise "Response error [#{response.error_message}]" if response.error?
 
-      JSON.parse(response.body)
+      [JSON.parse(response.body)]
     end
 
     def client
