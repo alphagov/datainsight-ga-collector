@@ -20,14 +20,6 @@ module GoogleAnalytics
       client
     end
 
-    def collect(config)
-      results = config.analytics_parameters.map do |parameters|
-        query(parameters)
-      end
-
-      results
-    end
-
     def query(parameters)
       logger.debug { "Query GA with params: #{parameters}" }
 

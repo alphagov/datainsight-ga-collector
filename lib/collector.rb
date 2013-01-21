@@ -65,7 +65,10 @@ module GoogleAnalytics
     end
 
     def collect(config)
-      GoogleAnalytics::Client.new(@auth_code).collect(config)
+      google_analytics_client = GoogleAnalytics::Client.new(@auth_code)
+      config.analytics_parameters.map do |parameters|
+        google_analytics_client.query(parameters)
+      end
     end
 
   end
