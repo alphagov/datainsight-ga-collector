@@ -1,10 +1,10 @@
 require_relative "config/base"
 require_relative "config/weekly_collector"
-require_relative "../../lib/response/weekly_entry_success_response"
+require_relative "../../lib/response/weekly_content_engagement_response"
 
 module GoogleAnalytics
   module Config
-    class WeeklyEntrySuccessTransaction < Base
+    class WeeklyContentEngagementTransaction < Base
       include WeeklyCollector
 
       GOOGLE_ANALYTICS_URL_ID = %w(ga:53872948 ga:61976178)
@@ -15,7 +15,7 @@ module GoogleAnalytics
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = 'MS_'
       FILTERS = "ga:eventCategory==MS_transaction"
-      RESPONSE_TYPE = GoogleAnalytics::WeeklyEntrySuccessResponse
+      RESPONSE_TYPE = GoogleAnalytics::WeeklyContentEngagementResponse
 
       def analytics_parameters()
         self.class::GOOGLE_ANALYTICS_URL_ID.map do |id|

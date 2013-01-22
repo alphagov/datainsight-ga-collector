@@ -1,6 +1,6 @@
 require_relative "spec_helper"
 
-describe "Weekly entry success collector" do
+describe "Weekly content engagement collector" do
   before(:each) do
     stub_credentials
     register_oauth_refresh
@@ -17,10 +17,10 @@ describe "Weekly entry success collector" do
   it "should query google analytics for specific dates" do
     @ga_request.register(
       "2012-12-23", "2012-12-29",
-      "weekly-entry-success-from-2012-12-23.json"
+      "weekly-content-engagement-from-2012-12-23.json"
     )
 
-    collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyEntrySuccess.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))])
+    collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyContentEngagement.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))])
 
     response = collector.collect_as_json
     response.should have(5).item
@@ -52,11 +52,11 @@ describe "Weekly entry success collector" do
   it "should query google analytics for last week today" do
     @ga_request.register(
       "2012-12-23", "2012-12-29",
-      "weekly-entry-success-from-2012-12-23.json"
+      "weekly-content-engagement-from-2012-12-23.json"
     )
 
     Timecop.travel(DateTime.parse("2012-12-31")) do
-      collector = GoogleAnalytics::Collector.new(nil, GoogleAnalytics::Config::WeeklyEntrySuccess.all_within(Date.today - 1, Date.today))
+      collector = GoogleAnalytics::Collector.new(nil, GoogleAnalytics::Config::WeeklyContentEngagement.all_within(Date.today - 1, Date.today))
 
       response = collector.collect_as_json
       response.should have(5).item
@@ -76,18 +76,18 @@ describe "Weekly entry success collector" do
   it "should query google analytics for the previous three weeks" do
     @ga_request.register(
       "2012-12-09", "2012-12-15",
-      "weekly-entry-success-from-2012-12-09.json"
+      "weekly-content-engagement-from-2012-12-09.json"
     )
     @ga_request.register(
       "2012-12-16", "2012-12-22",
-      "weekly-entry-success-from-2012-12-16.json"
+      "weekly-content-engagement-from-2012-12-16.json"
     )
     @ga_request.register(
       "2012-12-23", "2012-12-29",
-      "weekly-entry-success-from-2012-12-23.json"
+      "weekly-content-engagement-from-2012-12-23.json"
     )
     Timecop.travel(DateTime.parse("2012-12-31")) do
-      configs = GoogleAnalytics::Config::WeeklyEntrySuccess.all_within(
+      configs = GoogleAnalytics::Config::WeeklyContentEngagement.all_within(
         Date.new(2012, 12, 10),
         Date.today
       )

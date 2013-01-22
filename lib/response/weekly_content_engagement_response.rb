@@ -2,7 +2,7 @@ require_relative "weekly_response"
 require_relative "extract_weekly_dates"
 
 module GoogleAnalytics
-  class WeeklyEntrySuccessResponse < BaseResponse
+  class WeeklyContentEngagementResponse < BaseResponse
     include ExtractWeeklyDates
 
     def initialize(response, config_class)

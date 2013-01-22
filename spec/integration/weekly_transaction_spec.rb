@@ -28,7 +28,7 @@ describe "Weekly transaction success collector" do
     @ga_request_2.register("2012-12-30", "2013-01-05",
                             "weekly_transaction_response.json")
 
-    collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyEntrySuccessTransaction.new(Date.new(2012, 12, 30), Date.new(2013, 01, 5))])
+    collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyContentEngagementTransaction.new(Date.new(2012, 12, 30), Date.new(2013, 01, 5))])
 
     response = collector.collect_as_json
     response.should have(1).item
@@ -60,7 +60,7 @@ describe "Weekly transaction success collector" do
                            "weekly_transaction_response__2012-12-09.json")
 
     Timecop.travel(DateTime.parse("2012-12-31")) do
-      configs = GoogleAnalytics::Config::WeeklyEntrySuccessTransaction.all_within(Date.new(2012,12,9),Date.today)
+      configs = GoogleAnalytics::Config::WeeklyContentEngagementTransaction.all_within(Date.new(2012,12,9),Date.today)
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
       response = collector.collect_as_json
