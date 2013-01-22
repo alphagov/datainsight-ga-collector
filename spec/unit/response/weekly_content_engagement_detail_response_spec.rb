@@ -34,6 +34,25 @@ describe "Weekly Content Engagement Response" do
     response.messages.should have(5).items
   end
 
+  it "should collect multiple events for a slug in a single message" do
+    ga_responses = [
+        build_raw_ga_engagement_response(
+            {slug: "slug_01", event: "entry"},
+            {slug: "slug_01", event: "success"},
+            {slug: "slug_02", event: "entry"},
+        ),
+        build_raw_ga_engagement_response(
+            {slug: "slug_02", event: "success"},
+            {slug: "slug_03", event: "entry"},
+            {slug: "slug_03", event: "success"},
+        )
+    ]
+
+    response = WeeklyContentEngagementDetailResponse.new(ga_responses, DummyConfig)
+
+    response.messages.should have(3).items
+  end
+
 
 
   def build_raw_ga_response(*rows)

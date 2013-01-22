@@ -8,25 +8,32 @@ module GoogleAnalytics
     def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @config = config_class
-      @messages = response.map {|r| create_messages(r)}.flatten
+      @messages = create_all_messages(response)
     end
 
     private
     ENTRY_LABEL = "Entry"
     SUCCESS_LABEL = "Success"
 
-    def create_messages(response)
-      collect_by_slug_and_format(response["rows"]).map do |(slug, format, entries, successes)|
+    def create_all_messages(response)
+      start_date = response.first["query"]["start-date"]
+      end_date = response.first["query"]["end-date"]
+      rows = response.flat_map { |r| r["rows"] }
+      create_messages(rows, start_date, end_date)
+    end
+
+    def create_messages(rows, start_date, end_date)
+      collect_by_slug_and_format(rows).map do |(slug, format, entries, successes)|
         create_message({
-                         start_at: extract_start_at(response["query"]["start-date"]),
-                         end_at: extract_end_at(response["query"]["end-date"]),
-                         value: {
-                           site: @site,
-                           format: format,
-                           entries: entries.to_i,
-                           successes: successes.to_i,
-                           slug: slug
-                         }
+                           start_at: extract_start_at(start_date),
+                           end_at: extract_end_at(end_date),
+                           value: {
+                               site: @site,
+                               format: format,
+                               entries: entries.to_i,
+                               successes: successes.to_i,
+                               slug: slug
+                           }
                        })
       end
     end
