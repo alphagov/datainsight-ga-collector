@@ -2,6 +2,7 @@ require 'yaml'
 require 'open-uri'
 require 'json'
 require 'faraday'
+require 'csv'
 
 module Faraday
   module Utils
@@ -44,6 +45,24 @@ module GoogleAnalytics
           end
         end
         logger.info { "Collected the google analytics data." }
+      rescue => e
+        logger.error { e }
+      end
+    end
+
+    def csv
+      begin
+        messages = @configs.map { |config| collect_messages(config) }.flatten
+
+        headers = [:start_at, :end_at] + messages.first[:payload][:value].keys
+        out_file = File.expand_path("../../insidegov.csv", __FILE__)
+
+        CSV.open(out_file, "wb", write_headers: true, headers: headers) do |out|
+          messages.each do |m|
+            out << [m[:payload][:start_at], m[:payload][:end_at]] + m[:payload][:value].values
+          end
+        end
+
       rescue => e
         logger.error { e }
       end

@@ -95,5 +95,17 @@ command :broadcast do |c|
   end
 end
 
+command :csv do |c|
+  c.desc "Publish the collected statistics to the queue"
+  c.action do |global_options, options, args|
+    begin
+      collector(global_options).csv
+    rescue Exception => e
+      Airbrake.notify(e)
+      raise e
+    end
+  end
+end
+
 
 exit run(ARGV)
