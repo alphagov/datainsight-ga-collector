@@ -21,13 +21,13 @@ module GoogleAnalytics
     end
 
     def query(parameters)
-      logger.debug { "Query GA with params: #{parameters}" }
-
       api = client.discovered_api("analytics", "v3")
 
       responses = []
 
       begin
+        logger.debug { "Query GA with params: #{parameters}" }
+
         response = client.execute(api_method: api.data.ga.get, parameters: parameters)
 
         raise "Response error [#{response.error_message}]" if response.error?

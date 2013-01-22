@@ -8,7 +8,7 @@ module GoogleAnalytics
     def initialize(response, config_class)
       @site = config_class::SITE_KEY
       @config = config_class
-      @messages = create_messages(response.first)
+      @messages = response.map {|r| create_messages(r)}.flatten
     end
 
     private
