@@ -3,7 +3,7 @@ set :output, {
     :standard => "#{root_path}/log/cron.out.log",
     :error => "#{root_path}/log/cron.err.log"
 }
-job_type :collector, "cd :path && RACK_ENV=:environment bundle exec bin/collector --config=:config --days_ago=:days_ago :task :output"
+job_type :collector, "cd :path && RACK_ENV=:environment bundle exec collector --config=:config --days_ago=:days_ago :task :output"
 
 
 every :sunday, :at => '5am' do

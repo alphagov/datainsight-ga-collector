@@ -22,7 +22,7 @@ namespace :collect do
     task key do
       rack_env = ENV.fetch('RACK_ENV', 'development')
       root_path = File.expand_path(File.dirname(__FILE__) + "/../../")
-      sh %{cd #{root_path} && RACK_ENV=#{rack_env} bundle exec bin/collector --config=#{params[:config]} --days_ago=#{params[:days_ago]} broadcast}
+      sh %{cd #{root_path} && RACK_ENV=#{rack_env} bundle exec collector --config=#{params[:config]} --days_ago=#{params[:days_ago]} broadcast}
     end
   end
 end
