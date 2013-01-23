@@ -16,4 +16,5 @@ end
 class DummyConfig
   METRIC = "ga:dummy"
   SITE_KEY = "govuk"
+  CATEGORY_PREFIX = ""
 end

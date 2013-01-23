@@ -30,7 +30,7 @@ describe "Weekly content engagement collector" do
                        )
     response[0].should have_payload_value(
                          "site" => "govuk",
-                         "format" => "MS_answer",
+                         "format" => "answer",
                          "entries" => 193,
                          "successes" => 179,
                          "slug" => "accepting-returns-and-giving-refunds"
@@ -38,7 +38,7 @@ describe "Weekly content engagement collector" do
 
     response[1].should have_payload_value(
                          "site" => "govuk",
-                         "format" => "MS_answer",
+                         "format" => "answer",
                          "entries" => 101,
                          "successes" => 71,
                          "slug" => "acoustic-neuroma-and-driving"
@@ -47,7 +47,7 @@ describe "Weekly content engagement collector" do
       .map { |each| JSON.parse(each) }
       .group_by { |each| each["payload"]["value"]["format"] }
 
-    grouped_by_format.should have_key("MS_answer")
-    grouped_by_format.should have_key("MS_guide")
+    grouped_by_format.should have_key("answer")
+    grouped_by_format.should have_key("guide")
   end
 end
