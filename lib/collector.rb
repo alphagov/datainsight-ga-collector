@@ -22,11 +22,7 @@ module GoogleAnalytics
     end
 
     def messages
-      messages= []
-      @configs.each do |config|
-        messages += collect_messages(config)
-      end
-      messages
+      @configs.flat_map { |config| collect_messages(config) }
     end
 
     private
