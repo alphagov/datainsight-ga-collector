@@ -9,6 +9,8 @@ gem "bunny"
 gem "gli", "1.6.0"
 gem "whenever"
 gem "datainsight_logging"
+gem "datainsight_collector", "0.0.6"
+
 
 group :test do
   gem "rspec", "2.11.0"

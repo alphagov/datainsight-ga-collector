@@ -15,20 +15,27 @@ module GoogleAnalytics
   class Collector
 
     def initialize(auth_code, configs)
+      if configs.group_by { |config| config.class }.keys.count != 1
+        raise "All configs should be of the same class"
+      end
       @auth_code, @configs = auth_code, configs
     end
 
     def collect_as_json
       begin
-        messages= []
-        @configs.each do |config|
-          messages += collect_messages(config)
-        end
         messages.map(&:to_json)
       rescue => e
         logger.error { e }
         nil
       end
+    end
+
+    def messages
+      messages= []
+      @configs.each do |config|
+        messages += collect_messages(config)
+      end
+      messages
     end
 
     def broadcast

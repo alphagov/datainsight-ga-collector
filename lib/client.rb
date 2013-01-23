@@ -1,3 +1,6 @@
+require 'bundler/setup'
+Bundler.require
+
 module GoogleAnalytics
   class Client
     include GoogleAuthenticationBridge
