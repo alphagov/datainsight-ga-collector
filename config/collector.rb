@@ -1,3 +1,4 @@
+require "airbrake"
 require_relative "../lib/collector"
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__), "../lib/**/*.rb"))].each { |f| require f }
@@ -26,6 +27,7 @@ module DataInsight
     end
 
     def self.handle_error(error)
+      Airbrake.notify(error)
       true
     end
 
