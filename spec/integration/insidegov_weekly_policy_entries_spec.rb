@@ -23,7 +23,7 @@ describe "Inside gov weekly policy entries collector" do
     configs = [GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))]
     collector = GoogleAnalytics::Collector.new(nil, configs)
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(72).item
 
     response.each do |message|
@@ -32,9 +32,9 @@ describe "Inside gov weekly policy entries collector" do
                        DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30))
     end
     response[0].should have_payload_value(
-       "site" => "insidegov",
-       "entries" => 194,
-       "slug" => "boosting-private-sector-employment-in-england"
+       :site => "insidegov",
+       :entries => 194,
+       :slug => "boosting-private-sector-employment-in-england"
      )
   end
 
@@ -48,7 +48,7 @@ describe "Inside gov weekly policy entries collector" do
       configs = GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries.all_within(Date.today - 1, Date.today)
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(72).item
 
       response.each do |message|
@@ -57,9 +57,9 @@ describe "Inside gov weekly policy entries collector" do
                          DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30))
       end
       response[0].should have_payload_value(
-                           "site" => "insidegov",
-                           "entries" => 194,
-                           "slug" => "boosting-private-sector-employment-in-england"
+                           :site => "insidegov",
+                           :entries => 194,
+                           :slug => "boosting-private-sector-employment-in-england"
                          )
     end
   end
@@ -84,7 +84,7 @@ describe "Inside gov weekly policy entries collector" do
       )
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(218).items
 
       (0...72).each do |i|
@@ -101,9 +101,9 @@ describe "Inside gov weekly policy entries collector" do
       end
 
       response[0].should have_payload_value(
-                           "site" => "insidegov",
-                           "entries" => 206,
-                           "slug" => "boosting-private-sector-employment-in-england"
+                           :site => "insidegov",
+                           :entries => 206,
+                           :slug => "boosting-private-sector-employment-in-england"
                          )
     end
   end

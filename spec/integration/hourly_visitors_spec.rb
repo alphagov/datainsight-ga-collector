@@ -21,19 +21,19 @@ describe "Hourly visitors spec" do
     configs = [GoogleAnalytics::Config::HourlyVisitors.last_before(Date.new(2012, 12, 29))]
     collector = GoogleAnalytics::Collector.new(nil, configs)
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(24).item
 
     response[0].should be_for_collector("Google Analytics")
     response[0].should be_for_time_period(
       DateTime.new(2012, 12, 29), DateTime.new(2012, 12, 29, 1))
     response[0].should have_payload_value(
-      "visitors" => 14874, "site" => "govuk")
+      :visitors => 14874, :site => "govuk")
 
     response[23].should be_for_time_period(
       DateTime.new(2012, 12, 29, 23), DateTime.new(2012, 12, 30))
     response[23].should have_payload_value(
-      "visitors" => 19272, "site" => "govuk")
+      :visitors => 19272, :site => "govuk")
   end
 
   it "should query google analytics for the previous three days" do
@@ -55,22 +55,22 @@ describe "Hourly visitors spec" do
       Date.today - 2, Date.today)
     collector = GoogleAnalytics::Collector.new(nil, configs)
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(72).items
 
     response[0].should be_for_time_period(
       DateTime.new(2012, 12, 27), DateTime.new(2012, 12, 27, 1))
     response[0].should have_payload_value(
-      "visitors" => 11419, "site" => "govuk")
+      :visitors => 11419, :site => "govuk")
 
     response[24].should be_for_time_period(
       DateTime.new(2012, 12, 28), DateTime.new(2012, 12, 28, 1))
     response[24].should have_payload_value(
-      "visitors" => 14577, "site" => "govuk")
+      :visitors => 14577, :site => "govuk")
 
     response[48].should be_for_time_period(
       DateTime.new(2012, 12, 29), DateTime.new(2012, 12, 29, 1))
     response[48].should have_payload_value(
-       "visitors" => 14874, "site" => "govuk")
+       :visitors => 14874, :site => "govuk")
   end
 end

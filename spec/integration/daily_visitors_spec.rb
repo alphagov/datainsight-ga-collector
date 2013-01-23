@@ -21,14 +21,14 @@ describe "Daily visitors spec" do
     configs = [GoogleAnalytics::Config::DailyVisitors.for(Date.new(2012, 12, 29))]
     collector = GoogleAnalytics::Collector.new(nil, configs)
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(1).item
 
     response[0].should be_for_collector("Google Analytics")
     response[0].should be_for_time_period(
                          Date.new(2012, 12, 29), Date.new(2012, 12, 30))
     response[0].should have_payload_value(
-                         "visitors" => 491836, "site" => "govuk")
+                         :visitors => 491836, :site => "govuk")
 
   end
 
@@ -51,22 +51,22 @@ describe "Daily visitors spec" do
       Date.today - 2, Date.today)
     collector = GoogleAnalytics::Collector.new(nil, configs)
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(3).items
 
     response[0].should be_for_time_period(
       Date.new(2012, 12, 27), Date.new(2012, 12, 28))
     response[0].should have_payload_value(
-      "visitors" => 595545, "site" => "govuk")
+      :visitors => 595545, :site => "govuk")
 
     response[1].should be_for_time_period(
       Date.new(2012, 12, 28), Date.new(2012, 12, 29))
     response[1].should have_payload_value(
-      "visitors" => 649363, "site" => "govuk")
+      :visitors => 649363, :site => "govuk")
 
     response[2].should be_for_time_period(
       Date.new(2012, 12, 29), Date.new(2012, 12, 30))
     response[2].should have_payload_value(
-      "visitors" => 491836, "site" => "govuk")
+      :visitors => 491836, :site => "govuk")
   end
 end

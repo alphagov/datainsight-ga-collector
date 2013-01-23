@@ -21,14 +21,14 @@ describe "Weekly visitors collector" do
 
     collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyVisitors.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))])
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(1).item
 
     response[0].should be_for_collector("Google Analytics")
     response[0].should be_for_time_period(
          Date.new(2012, 12, 23), Date.new(2012, 12, 30))
     response[0].should have_payload_value(
-         "visitors" => 2474699, "site" => "govuk")
+         :visitors => 2474699, :site => "govuk")
   end
 
   it "should query google analytics for last week today" do
@@ -40,13 +40,13 @@ describe "Weekly visitors collector" do
     Timecop.travel(DateTime.parse("2012-12-31")) do
       collector = GoogleAnalytics::Collector.new(nil, GoogleAnalytics::Config::WeeklyVisitors.all_within(Date.today - 1, Date.today))
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(1).item
 
       response[0].should be_for_time_period(
          Date.new(2012, 12, 23), Date.new(2012, 12, 30))
       response[0].should have_payload_value(
-         "visitors" => 2474699, "site" => "govuk")
+         :visitors => 2474699, :site => "govuk")
     end
   end
 
@@ -68,23 +68,23 @@ describe "Weekly visitors collector" do
         GoogleAnalytics::Config::WeeklyVisitors.all_within(Date.new(2012, 12, 10), Date.today)
       )
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(3).items
 
       response[0].should be_for_time_period(
         Date.new(2012, 12, 9), Date.new(2012, 12, 16))
       response[0].should have_payload_value(
-        "visitors" => 3903764, "site" => "govuk")
+        :visitors => 3903764, :site => "govuk")
 
       response[1].should be_for_time_period(
         Date.new(2012, 12, 16), Date.new(2012, 12, 23))
       response[1].should have_payload_value(
-        "visitors" => 3715016, "site" => "govuk")
+        :visitors => 3715016, :site => "govuk")
 
       response[2].should be_for_time_period(
         Date.new(2012, 12, 23), Date.new(2012, 12, 30))
       response[2].should have_payload_value(
-        "visitors" => 2474699, "site" => "govuk")
+        :visitors => 2474699, :site => "govuk")
     end
   end
 end

@@ -22,7 +22,7 @@ describe "Weekly content engagement collector" do
 
     collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyContentEngagement.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))])
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(5).item
 
     response[0].should be_for_collector("Google Analytics")
@@ -30,22 +30,22 @@ describe "Weekly content engagement collector" do
                          DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30)
                        )
     response[0].should have_payload_value(
-                         "site" => "govuk",
-                         "format" => "answer",
-                         "entries" => 956935,
-                         "successes" => 749668
+                         :site => "govuk",
+                         :format => "answer",
+                         :entries => 956935,
+                         :successes => 749668
                        )
 
     response[1].should have_payload_value(
-                         "format" => "guide",
-                         "entries" => 744263,
-                         "successes" => 604024
+                         :format => "guide",
+                         :entries => 744263,
+                         :successes => 604024
                        )
 
     response[2].should have_payload_value(
-                         "format" => "programme",
-                         "entries" => 530724,
-                         "successes" => 422019
+                         :format => "programme",
+                         :entries => 530724,
+                         :successes => 422019
                        )
   end
 
@@ -58,17 +58,17 @@ describe "Weekly content engagement collector" do
     Timecop.travel(DateTime.parse("2012-12-31")) do
       collector = GoogleAnalytics::Collector.new(nil, GoogleAnalytics::Config::WeeklyContentEngagement.all_within(Date.today - 1, Date.today))
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(5).item
 
       response[0].should be_for_time_period(
                            DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30)
                          )
       response[0].should have_payload_value(
-                           "site" => "govuk",
-                           "format" => "answer",
-                           "entries" => 956935,
-                           "successes" => 749668
+                           :site => "govuk",
+                           :format => "answer",
+                           :entries => 956935,
+                           :successes => 749668
                          )
     end
   end
@@ -93,23 +93,23 @@ describe "Weekly content engagement collector" do
       )
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(15).items
 
       response[0].should be_for_time_period(
                            Date.new(2012, 12, 9), Date.new(2012, 12, 16)
                          )
       response[0].should have_payload_value(
-                           "site" => "govuk",
-                           "format" => "answer",
-                           "entries" => 1458580,
-                           "successes" => 1115508
+                           :site => "govuk",
+                           :format => "answer",
+                           :entries => 1458580,
+                           :successes => 1115508
                          )
 
       response[1].should have_payload_value(
-                           "format" => "guide",
-                           "entries" => 1253538,
-                           "successes" => 1018108
+                           :format => "guide",
+                           :entries => 1253538,
+                           :successes => 1018108
                          )
 
       response[4].should be_for_time_period(

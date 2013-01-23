@@ -30,7 +30,7 @@ describe "Weekly transaction success collector" do
 
     collector = GoogleAnalytics::Collector.new(nil, [GoogleAnalytics::Config::WeeklyContentEngagementTransaction.new(Date.new(2012, 12, 30), Date.new(2013, 01, 5))])
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(1).item
 
     r = response.first
@@ -38,9 +38,9 @@ describe "Weekly transaction success collector" do
     r.should be_for_collector("Google Analytics")
     r.should be_for_time_period(DateTime.new(2012,12,30), DateTime.new(2013,01,06))
     r.should have_payload_value(
-      "site" => "govuk",
-      "successes" => (1431421*2),
-      "format" => "transaction"
+      :site => "govuk",
+      :successes => (1431421*2),
+      :format => "transaction"
     )
   end
 
@@ -63,7 +63,7 @@ describe "Weekly transaction success collector" do
       configs = GoogleAnalytics::Config::WeeklyContentEngagementTransaction.all_within(Date.new(2012,12,9),Date.today)
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(3).items
 
       response.first.should be_for_time_period(Date.new(2012,12,9), Date.new(2012,12,16))

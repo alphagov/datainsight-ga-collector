@@ -21,15 +21,6 @@ module GoogleAnalytics
       @auth_code, @configs = auth_code, configs
     end
 
-    def collect_as_json
-      begin
-        messages.map(&:to_json)
-      rescue => e
-        logger.error { e }
-        nil
-      end
-    end
-
     def messages
       messages= []
       @configs.each do |config|

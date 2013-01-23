@@ -23,7 +23,7 @@ describe "Inside gov weekly content engagement collector" do
     configs = [GoogleAnalytics::Config::InsideGovWeeklyContentEngagement.new(Date.new(2012, 12, 23), Date.new(2012, 12, 29))]
     collector = GoogleAnalytics::Collector.new(nil, configs)
 
-    response = collector.collect_as_json
+    response = collector.messages
     response.should have(3).item
 
     response[0].should be_for_collector("Google Analytics")
@@ -31,22 +31,22 @@ describe "Inside gov weekly content engagement collector" do
                          DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30)
                        )
     response[0].should have_payload_value(
-                         "site" => "insidegov",
-                         "format" => "detailed_guidance",
-                         "entries" => 45302,
-                         "successes" => 30605
+                         :site => "insidegov",
+                         :format => "detailed_guidance",
+                         :entries => 45302,
+                         :successes => 30605
                        )
 
     response[1].should have_payload_value(
-                         "format" => "news",
-                         "entries" => 44323,
-                         "successes" => 27929
+                         :format => "news",
+                         :entries => 44323,
+                         :successes => 27929
                        )
 
     response[2].should have_payload_value(
-                         "format" => "policy",
-                         "entries" => 14358,
-                         "successes" => 8495
+                         :format => "policy",
+                         :entries => 14358,
+                         :successes => 8495
                        )
   end
 
@@ -60,17 +60,17 @@ describe "Inside gov weekly content engagement collector" do
       configs = GoogleAnalytics::Config::InsideGovWeeklyContentEngagement.all_within(Date.today - 1, Date.today)
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(3).item
 
       response[0].should be_for_time_period(
                            DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30)
                          )
       response[0].should have_payload_value(
-                           "site" => "insidegov",
-                           "format" => "detailed_guidance",
-                           "entries" => 45302,
-                           "successes" => 30605
+                           :site => "insidegov",
+                           :format => "detailed_guidance",
+                           :entries => 45302,
+                           :successes => 30605
                          )
     end
   end
@@ -95,23 +95,23 @@ describe "Inside gov weekly content engagement collector" do
       )
       collector = GoogleAnalytics::Collector.new(nil, configs)
 
-      response = collector.collect_as_json
+      response = collector.messages
       response.should have(9).items
 
       response[0].should be_for_time_period(
                            Date.new(2012, 12, 9), Date.new(2012, 12, 16)
                          )
       response[0].should have_payload_value(
-                           "site" => "insidegov",
-                           "format" => "detailed_guidance",
-                           "entries" => 69484,
-                           "successes" => 45555
+                           :site => "insidegov",
+                           :format => "detailed_guidance",
+                           :entries => 69484,
+                           :successes => 45555
                          )
 
       response[1].should have_payload_value(
-                           "format" => "news",
-                           "entries" => 59862,
-                           "successes" => 36906
+                           :format => "news",
+                           :entries => 59862,
+                           :successes => 36906
                          )
 
       response[2].should be_for_time_period(
