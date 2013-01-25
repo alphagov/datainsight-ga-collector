@@ -1,5 +1,9 @@
 require "airbrake"
 require_relative "../lib/collector"
+require_relative "../lib/collectors/config/base"
+require_relative "../lib/collectors/config/daily_collector"
+require_relative "../lib/collectors/config/hourly_collector"
+require_relative "../lib/collectors/config/weekly_collector"
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__), "../lib/**/*.rb"))].each { |f| require f }
 
