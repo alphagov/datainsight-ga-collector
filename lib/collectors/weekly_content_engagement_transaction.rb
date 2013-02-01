@@ -11,7 +11,7 @@ module GoogleAnalytics
       AMQP_TOPIC = "google_analytics.entry_and_success.weekly"
       SITE_KEY = "govuk"
 
-      DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventLabel"
+      DIMENSION = "ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = 'MS_'
       FILTERS = "ga:eventCategory==MS_transaction"

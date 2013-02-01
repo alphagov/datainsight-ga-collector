@@ -1,13 +1,13 @@
-{"kind":"analytics#gaData", "id":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53699180&dimensions=ga:week,ga:eventAction&metrics=ga:totalEvents&filters=ga:customVarValue2%3D%3Dpolicy&start-date=2012-05-20&end-date=2012-05-26", "query":{
+{"kind":"analytics#gaData", "id":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53699180&dimensions=ga:eventAction&metrics=ga:totalEvents&filters=ga:customVarValue2%3D%3Dpolicy&start-date=2012-05-20&end-date=2012-05-26", "query":{
     "start-date":"2012-05-20",
     "end-date":"2012-05-26",
     "ids":"ga:53699180",
-    "dimensions":"ga:week,ga:eventAction",
+    "dimensions":"ga:eventAction",
     "metrics":["ga:totalEvents"],
     "filters":"ga:customVarValue2==policy",
     "start-index":1,
     "max-results":1000
-}, "itemsPerPage":1000, "totalResults":0, "selfLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53699180&dimensions=ga:week,ga:eventAction&metrics=ga:totalEvents&filters=ga:customVarValue2%3D%3Dpolicy&start-date=2012-05-20&end-date=2012-05-26", "profileInfo":{
+}, "itemsPerPage":1000, "totalResults":0, "selfLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53699180&dimensions=ga:eventAction&metrics=ga:totalEvents&filters=ga:customVarValue2%3D%3Dpolicy&start-date=2012-05-20&end-date=2012-05-26", "profileInfo":{
     "profileId":"53699180",
     "accountId":"26179049",
     "webPropertyId":"UA-26179049-1",
@@ -15,11 +15,6 @@
     "profileName":"2. Inside Government - ALL",
     "tableId":"ga:53699180"
 }, "containsSampledData":false, "columnHeaders":[
-    {
-        "name":"ga:week",
-        "columnType":"DIMENSION",
-        "dataType":"STRING"
-    },
     {
         "name":"ga:eventAction",
         "columnType":"DIMENSION",

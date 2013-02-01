@@ -1,11 +1,11 @@
 {
     "kind": "analytics#gaData",
-    "id": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,+ga:year&metrics=ga:visits&start-date=2012-07-29&end-date=2012-08-04&start-index=1&max-results=1000",
+    "id": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:year&metrics=ga:visits&start-date=2012-07-29&end-date=2012-08-04&start-index=1&max-results=1000",
     "query": {
         "start-date": "2010-12-26",
         "end-date": "2011-01-01",
         "ids": "ga:53872948",
-        "dimensions": "ga:week, ga:year",
+        "dimensions": "ga:year",
         "metrics": [
             "ga:visits"
         ],
@@ -14,7 +14,7 @@
     },
     "itemsPerPage": 1000,
     "totalResults": 1,
-    "selfLink": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,+ga:year&metrics=ga:visits&start-date=2012-07-29&end-date=2012-08-04&start-index=1&max-results=1000",
+    "selfLink": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:year&metrics=ga:visits&start-date=2012-07-29&end-date=2012-08-04&start-index=1&max-results=1000",
     "profileInfo": {
         "profileId": "53872948",
         "accountId": "26179049",
@@ -25,11 +25,6 @@
     },
     "containsSampledData": false,
     "columnHeaders": [
-        {
-            "name": "ga:week",
-            "columnType": "DIMENSION",
-            "dataType": "STRING"
-        },
         {
             "name": "ga:year",
             "columnType": "DIMENSION",
@@ -46,12 +41,10 @@
     },
     "rows": [
         [
-            "53",
             "2010",
             "2000"
         ],
         [
-            "1",
             "2011",
             "3000"
         ]

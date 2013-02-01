@@ -8,7 +8,7 @@ module GoogleAnalytics
         base.extend(ClassMethods)
       end
 
-      DIMENSION = "ga:week"
+      DIMENSION = ""
       RESPONSE_TYPE = GoogleAnalytics::WeeklyResponse
 
       module ClassMethods

@@ -68,7 +68,6 @@ describe "Weekly Content Engagement Response" do
   def build_raw_ga_engagement_response(*row_data)
     full_row_data = row_data.each.with_index(1).map do |d, index|
       [
-          d[:week] || "02",
           d[:format] || "default_format",
           d[:slug] || "default_slug_#{index}",
           d[:event] || "default_event",

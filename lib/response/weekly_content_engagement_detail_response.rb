@@ -24,7 +24,7 @@ module GoogleAnalytics
 
     def create_messages(rows, start_date, end_date)
       collect_engagement_by_key(
-        rows.map { |_, format, slug, action, value|
+        rows.map { |format, slug, action, value|
           [[slug, format], action, value]
         }
       ).map do |(slug, format, entries, successes)|

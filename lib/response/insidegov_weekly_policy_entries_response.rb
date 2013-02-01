@@ -38,7 +38,7 @@ module GoogleAnalytics
     end
 
     def discard_week(rows)
-      rows.map { |_, slug, entries| [slug, entries.to_i] }
+      rows.map { |slug, entries| [slug, entries.to_i] }
     end
   end
 end

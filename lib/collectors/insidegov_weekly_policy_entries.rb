@@ -11,7 +11,7 @@ module GoogleAnalytics
       AMQP_TOPIC = "google_analytics.insidegov.policy_entries.weekly"
       SITE_KEY = "insidegov"
       METRIC = "ga:totalEvents"
-      DIMENSION = "ga:week,ga:eventAction"
+      DIMENSION = "ga:eventAction"
       FILTERS = "ga:eventCategory==IG_policy;ga:eventLabel==Entry"
       RESPONSE_TYPE = GoogleAnalytics::InsideGovWeeklyPolicyEntriesResponse
     end

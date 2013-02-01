@@ -9,7 +9,7 @@ describe "Weekly visits collector" do
     @ga_request = setup_ga_request(
       :ids => "ga:53872948",
       :metrics => "ga:visits",
-      :dimensions => "ga:week"
+      :dimensions => ""
     )
   end
 

@@ -1,11 +1,11 @@
 {
     "kind":"analytics#gaData",
-    "id":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventAction,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EMS_.*&start-date=2013-01-13&end-date=2013-01-19&start-index=6&max-results=5",
+    "id":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:eventCategory,ga:eventAction,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EMS_.*&start-date=2013-01-13&end-date=2013-01-19&start-index=6&max-results=5",
     "query":{
         "start-date":"2013-01-13",
         "end-date":"2013-01-19",
         "ids":"ga:53872948",
-        "dimensions":"ga:week,ga:eventCategory,ga:eventAction,ga:eventLabel",
+        "dimensions":"ga:eventCategory,ga:eventAction,ga:eventLabel",
         "metrics":["ga:totalEvents"],
         "filters":"ga:eventCategory=~^MS_.*",
         "start-index":6,
@@ -13,8 +13,8 @@
     },
     "itemsPerPage":5,
     "totalResults":9,
-    "selfLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventAction,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EMS_.*&start-date=2013-01-13&end-date=2013-01-19&start-index=6&max-results=5",
-    "previousLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventAction,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EMS_.*&start-date=2013-01-13&end-date=2013-01-19&start-index=1&max-results=5",
+    "selfLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:eventCategory,ga:eventAction,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EMS_.*&start-date=2013-01-13&end-date=2013-01-19&start-index=6&max-results=5",
+    "previousLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:eventCategory,ga:eventAction,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EMS_.*&start-date=2013-01-13&end-date=2013-01-19&start-index=1&max-results=5",
     "profileInfo":{
         "profileId":"53872948",
         "accountId":"26179049",
@@ -25,11 +25,6 @@
     },
     "containsSampledData":false,
     "columnHeaders":[
-        {
-            "name":"ga:week",
-            "columnType":"DIMENSION",
-            "dataType":"STRING"
-        },
         {
             "name":"ga:eventCategory",
             "columnType":"DIMENSION",
@@ -55,9 +50,9 @@
         "ga:totalEvents":"5210"
     },
     "rows":[
-        ["03", "MS_answer", "1884", "Success", "2"],
-        ["03", "MS_answer", "1993", "Entry", "1"],
-        ["03", "MS_answer", "1993", "Success", "1"],
-        ["03", "MS_answer", "2183", "Success", "20"]
+        ["MS_answer", "1884", "Success", "2"],
+        ["MS_answer", "1993", "Entry", "1"],
+        ["MS_answer", "1993", "Success", "1"],
+        ["MS_answer", "2183", "Success", "20"]
     ]
 }

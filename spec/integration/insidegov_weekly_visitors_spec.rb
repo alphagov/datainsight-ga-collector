@@ -9,7 +9,7 @@ describe "Inside gov weekly visitors collector" do
     @ga_request = setup_ga_request(
       :ids => "ga:53699180",
       :metrics => "ga:visitors",
-      :dimensions => "ga:week"
+      :dimensions => ""
     )
   end
 
