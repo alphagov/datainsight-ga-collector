@@ -1,1 +1,47 @@
-{"kind":"analytics#gaData","id":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EIG_.*&start-date=2012-12-09&end-date=2012-12-15","query":{"start-date":"2012-12-09","end-date":"2012-12-15","ids":"ga:53872948","dimensions":"ga:week,ga:eventCategory,ga:eventLabel","metrics":["ga:totalEvents"],"filters":"ga:eventCategory=~^IG_.*","start-index":1,"max-results":1000},"itemsPerPage":1000,"totalResults":6,"selfLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EIG_.*&start-date=2012-12-09&end-date=2012-12-15","profileInfo":{"profileId":"53872948","accountId":"26179049","webPropertyId":"UA-26179049-1","internalWebPropertyId":"50705554","profileName":"1. GOV.UK (Entire site - Filtered)","tableId":"ga:53872948"},"containsSampledData":false,"columnHeaders":[{"name":"ga:week","columnType":"DIMENSION","dataType":"STRING"},{"name":"ga:eventCategory","columnType":"DIMENSION","dataType":"STRING"},{"name":"ga:eventLabel","columnType":"DIMENSION","dataType":"STRING"},{"name":"ga:totalEvents","columnType":"METRIC","dataType":"INTEGER"}],"totalsForAllResults":{"ga:totalEvents":"272787"},"rows":[["50","IG_detailed_guidance","Entry","69484"],["50","IG_detailed_guidance","Success","45555"],["50","IG_news","Entry","59862"],["50","IG_news","Success","36906"],["50","IG_policy","Entry","38219"],["50","IG_policy","Success","22761"]]}
+{"kind":"analytics#gaData", "id":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EIG_.*&start-date=2012-12-09&end-date=2012-12-15", "query":{
+  "start-date":"2012-12-09",
+  "end-date":"2012-12-15",
+  "ids":"ga:53872948",
+  "dimensions":"ga:week,ga:eventCategory,ga:eventLabel",
+  "metrics":["ga:totalEvents"],
+  "filters":"ga:eventCategory=~^IG_.*",
+  "start-index":1,
+  "max-results":1000
+}, "itemsPerPage":1000, "totalResults":6, "selfLink":"https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:week,ga:eventCategory,ga:eventLabel&metrics=ga:totalEvents&filters=ga:eventCategory%3D~%5EIG_.*&start-date=2012-12-09&end-date=2012-12-15", "profileInfo":{
+  "profileId":"53872948",
+  "accountId":"26179049",
+  "webPropertyId":"UA-26179049-1",
+  "internalWebPropertyId":"50705554",
+  "profileName":"1. GOV.UK (Entire site - Filtered)",
+  "tableId":"ga:53872948"
+}, "containsSampledData":false, "columnHeaders":[
+  {
+    "name":"ga:week",
+    "columnType":"DIMENSION",
+    "dataType":"STRING"
+  },
+  {
+    "name":"ga:eventCategory",
+    "columnType":"DIMENSION",
+    "dataType":"STRING"
+  },
+  {
+    "name":"ga:eventLabel",
+    "columnType":"DIMENSION",
+    "dataType":"STRING"
+  },
+  {
+    "name":"ga:totalEvents",
+    "columnType":"METRIC",
+    "dataType":"INTEGER"
+  }
+], "totalsForAllResults":{
+  "ga:totalEvents":"272787"
+}, "rows":[
+  ["IG_detailed_guidance", "Entry", "69484"],
+  ["IG_detailed_guidance", "Success", "45555"],
+  ["IG_news", "Entry", "59862"],
+  ["IG_news", "Success", "36906"],
+  ["IG_policy", "Entry", "38219"],
+  ["IG_policy", "Success", "22761"]
+]}

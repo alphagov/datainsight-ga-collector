@@ -40,6 +40,6 @@
 ], "totalsForAllResults":{
     "ga:totalEvents":"1431421"
 }, "rows":[
-    ["01", "MS_transaction", "Success", "1061180"],
-    ["53", "MS_transaction", "Success", "370241"]
+    ["MS_transaction", "Success", "1061180"],
+    ["MS_transaction", "Success", "370241"]
 ]}

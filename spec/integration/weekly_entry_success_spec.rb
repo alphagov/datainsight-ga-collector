@@ -9,7 +9,7 @@ describe "Weekly content engagement collector" do
     @ga_request = setup_ga_request(
       :ids => "ga:53872948",
       :metrics => "ga:totalEvents",
-      :dimensions => "ga:week,ga:eventCategory,ga:eventLabel",
+      :dimensions => "ga:eventCategory,ga:eventLabel",
       :filters => "ga:eventCategory=~^MS_.*"
     )
   end

@@ -21,7 +21,7 @@ module GoogleAnalytics
       rows = response.flat_map { |r| r["rows"] || [] }
 
       collect_engagement_by_key(
-        rows.map { |_, format, action, value|
+        rows.map { |format, action, value|
           [[format], action, value]
         }).map do |(format, entries, successes)|
         create_message ({

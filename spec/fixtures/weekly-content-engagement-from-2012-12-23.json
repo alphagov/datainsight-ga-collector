@@ -38,14 +38,14 @@
 ], "totalsForAllResults":{
     "ga:totalEvents":"6477549"
 }, "rows":[
-    ["52", "MS_answer", "Entry", "956935"],
-    ["52", "MS_answer", "Success", "749668"],
-    ["52", "MS_guide", "Entry", "744263"],
-    ["52", "MS_guide", "Success", "604024"],
-    ["52", "MS_programme", "Entry", "530724"],
-    ["52", "MS_programme", "Success", "422019"],
-    ["52", "MS_smart_answer", "Entry", "151671"],
-    ["52", "MS_smart_answer", "Success", "87434"],
-    ["52", "MS_transaction", "Entry", "2142435"],
-    ["52", "MS_transaction", "Success", "88376"]
+    ["MS_answer", "Entry", "956935"],
+    ["MS_answer", "Success", "749668"],
+    ["MS_guide", "Entry", "744263"],
+    ["MS_guide", "Success", "604024"],
+    ["MS_programme", "Entry", "530724"],
+    ["MS_programme", "Success", "422019"],
+    ["MS_smart_answer", "Entry", "151671"],
+    ["MS_smart_answer", "Success", "87434"],
+    ["MS_transaction", "Entry", "2142435"],
+    ["MS_transaction", "Success", "88376"]
 ]}

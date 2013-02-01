@@ -11,7 +11,7 @@ module GoogleAnalytics
       AMQP_TOPIC = "google_analytics.insidegov.entry_and_success.weekly"
       SITE_KEY = "insidegov"
 
-      DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventLabel"
+      DIMENSION = "ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = 'IG_'
       FILTERS= "ga:eventCategory=~^#{CATEGORY_PREFIX}.*"
