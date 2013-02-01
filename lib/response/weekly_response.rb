@@ -19,7 +19,7 @@ module GoogleAnalytics
           :start_at => extract_start_at(response["query"]["start-date"]),
           :end_at => extract_end_at(response["query"]["end-date"]),
           :value => {
-            @metric => get_total_metric(rows),
+            @metric => rows.empty? ? 0 : rows.first.last.to_i,
             :site => @site
           }
       }
@@ -27,6 +27,7 @@ module GoogleAnalytics
 
 
     def get_total_metric(rows)
+
       rows.inject(0) { |total, row| total + row.last.to_i }
     end
   end

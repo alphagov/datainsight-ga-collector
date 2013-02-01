@@ -47,18 +47,6 @@ describe "insidegov weekly policy entries response" do
     end
   end
 
-  describe "when crossing year boundary" do
-    before(:each) do
-      response_as_hash = load_json("insidegov_weekly_policy_entries_response_year_boundary.json")
-      @response = InsideGovWeeklyPolicyEntriesResponse.new([response_as_hash], GoogleAnalytics::Config::InsideGovWeeklyPolicyEntries)
-    end
-
-    it "should have an array of messages" do
-      @response.messages.should be_an(Array)
-      @response.messages.should have(5).items
-    end
-  end
-
   describe "response with no results" do
     before(:each) do
       response_as_hash = load_json("insidegov_weekly_policy_entries_response_no_results.json")

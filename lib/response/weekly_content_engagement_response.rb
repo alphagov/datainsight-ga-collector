@@ -20,10 +20,7 @@ module GoogleAnalytics
       end_date = response.first["query"]["end-date"]
       rows = response.flat_map { |r| r["rows"] || [] }
 
-      collect_engagement_by_key(
-        rows.map { |format, action, value|
-          [[format], action, value]
-        }).map do |(format, entries, successes)|
+      collect_engagement_by_key(rows).map do |(format, entries, successes)|
         create_message ({
           :start_at => extract_start_at(start_date),
           :end_at => extract_end_at(end_date),

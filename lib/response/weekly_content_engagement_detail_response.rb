@@ -23,11 +23,11 @@ module GoogleAnalytics
     end
 
     def create_messages(rows, start_date, end_date)
-      collect_engagement_by_key(
-        rows.map { |format, slug, action, value|
-          [[slug, format], action, value]
-        }
-      ).map do |(slug, format, entries, successes)|
+      values = rows.map { |format, slug, action, value|
+        [[slug, format], action, value]
+      }
+
+      collect_engagement_by_key(values).map do |(slug, format, entries, successes)|
         create_message({
                            start_at: extract_start_at(start_date),
                            end_at: extract_end_at(end_date),
