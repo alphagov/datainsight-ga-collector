@@ -90,7 +90,6 @@ end
 
 RSpec::Matchers.define :be_for_collector do |expected|
   match do |actual|
-    p actual
     actual[:envelope][:collector] == expected
   end
 end

@@ -5,6 +5,8 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__), "../lib/**/*.rb"))].each 
 
 require "json"
 
+Datainsight::Logging.configure(env: :test)
+
 def load_json(filename)
   JSON.parse(load_data(filename))
 end

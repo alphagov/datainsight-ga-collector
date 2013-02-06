@@ -37,14 +37,14 @@ describe "Weekly Content Engagement Response" do
   it "should collect multiple events for a slug in a single message" do
     ga_responses = [
         build_raw_ga_engagement_response(
-            {slug: "slug_01", event: "entry"},
-            {slug: "slug_01", event: "success"},
-            {slug: "slug_02", event: "entry"},
+            {slug: "slug_01", event: "Entry"},
+            {slug: "slug_01", event: "Success"},
+            {slug: "slug_02", event: "Entry"},
         ),
         build_raw_ga_engagement_response(
-            {slug: "slug_02", event: "success"},
-            {slug: "slug_03", event: "entry"},
-            {slug: "slug_03", event: "success"},
+            {slug: "slug_02", event: "Success"},
+            {slug: "slug_03", event: "Entry"},
+            {slug: "slug_03", event: "Success"},
         )
     ]
 
@@ -70,7 +70,7 @@ describe "Weekly Content Engagement Response" do
       [
           d[:format] || "default_format",
           d[:slug] || "default_slug_#{index}",
-          d[:event] || "default_event",
+          d[:event] || "Entry",
           d[:count] || rand(10000).to_s
       ]
     end
