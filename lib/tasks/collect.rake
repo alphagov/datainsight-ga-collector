@@ -11,7 +11,8 @@ collector_spec = [
     {:config => 'WeeklyContentEngagementTransaction', :days_ago => 100},
     {:config => 'InsideGovWeeklyVisitors', :days_ago => 200},
     {:config => 'InsideGovWeeklyPolicyEntries', :days_ago => 200},
-    {:config => 'InsideGovWeeklyContentEngagement', :days_ago => 200}
+    {:config => 'InsideGovWeeklyContentEngagement', :days_ago => 200},
+    {:config => 'InsideGovWeeklyContentEngagementDetail', :days_ago => 200}
 ]
 
 namespace :collect do

@@ -15,6 +15,7 @@ every :sunday, :at => '5am' do
   collector "broadcast", :config => "InsideGovWeeklyVisitors", :days_ago => 0
   collector "broadcast", :config => "InsideGovWeeklyPolicyEntries", :days_ago => 0
   collector "broadcast", :config => "InsideGovWeeklyContentEngagement", :days_ago => 0
+  collector "broadcast", :config => "InsideGovWeeklyContentEngagementDetail", :days_ago => 0
 end
 
 # Ten minutes after every full hour
