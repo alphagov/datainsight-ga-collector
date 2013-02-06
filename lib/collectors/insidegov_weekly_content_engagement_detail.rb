@@ -6,7 +6,7 @@ module GoogleAnalytics
       include WeeklyCollector
 
       GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
-      AMQP_TOPIC = "google_analytics.content_engagement.weekly"
+      AMQP_TOPIC = "google_analytics.insidegov.content_engagement.weekly"
       SITE_KEY = "govuk"
 
       DIMENSION = "ga:eventCategory,ga:eventAction,ga:eventLabel"
