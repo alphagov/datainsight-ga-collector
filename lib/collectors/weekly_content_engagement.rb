@@ -14,7 +14,7 @@ module GoogleAnalytics
       DIMENSION = "ga:eventCategory,ga:eventLabel"
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = 'MS_'
-      FILTERS= "ga:eventCategory=~^#{CATEGORY_PREFIX}.*"
+      FILTERS= "ga:eventCategory=~^#{CATEGORY_PREFIX}.*;ga:eventCategory!=MS_transaction"
       RESPONSE_TYPE = GoogleAnalytics::WeeklyContentEngagementResponse
     end
   end

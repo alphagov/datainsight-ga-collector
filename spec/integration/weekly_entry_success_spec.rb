@@ -10,7 +10,7 @@ describe "Weekly content engagement collector" do
       :ids => "ga:53872948",
       :metrics => "ga:totalEvents",
       :dimensions => "ga:eventCategory,ga:eventLabel",
-      :filters => "ga:eventCategory=~^MS_.*"
+      :filters => "ga:eventCategory=~^MS_.*;ga:eventCategory!=MS_transaction"
     )
   end
 
