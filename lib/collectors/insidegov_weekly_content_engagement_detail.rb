@@ -9,7 +9,7 @@ module GoogleAnalytics
       AMQP_TOPIC = "google_analytics.content_engagement.weekly"
       SITE_KEY = "govuk"
 
-      DIMENSION = DIMENSION + ",ga:eventCategory,ga:eventAction,ga:eventLabel"
+      DIMENSION = "ga:eventCategory,ga:eventAction,ga:eventLabel"
       METRIC = "ga:totalEvents"
       CATEGORY_PREFIX = "IG_"
       FILTERS= "ga:eventCategory=~^#{CATEGORY_PREFIX}.*"
