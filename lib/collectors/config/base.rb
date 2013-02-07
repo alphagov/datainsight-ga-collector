@@ -11,7 +11,9 @@ module GoogleAnalytics
       end
 
       def analytics_parameters()
-        [build_parameters_for]
+        google_analytics_id_list.map do |id|
+          build_parameters_for(id: id)
+        end
       end
 
       def build_parameters_for(config = {})
@@ -44,6 +46,13 @@ module GoogleAnalytics
          parameters = analytics_parameters
         "#{parameters["metrics"]}, #{parameters["dimensions"]} starting at: #{parameters["start-date"]}"
       end
+
+      private
+
+      def google_analytics_id_list
+        [*self.class::GOOGLE_ANALYTICS_URL_ID]
+      end
+
     end
   end
 end

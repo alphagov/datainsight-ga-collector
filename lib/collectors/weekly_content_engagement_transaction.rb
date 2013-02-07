@@ -17,11 +17,6 @@ module GoogleAnalytics
       FILTERS = "ga:eventCategory==MS_transaction"
       RESPONSE_TYPE = GoogleAnalytics::WeeklyContentEngagementResponse
 
-      def analytics_parameters()
-        self.class::GOOGLE_ANALYTICS_URL_ID.map do |id|
-          build_parameters_for(id: id)
-        end
-      end
     end
   end
 end
