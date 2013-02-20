@@ -42,12 +42,12 @@ namespace :collect do
   namespace :last_week do
     desc "collect data for last week and print"
     task :print do
-      Rake::Task["last_week"].invoke("print")
+      Rake::Task["collect:last_week"].invoke("print")
     end
 
     desc "collect data for last week and send to queue"
     task :broadcast do
-      Rake::Task["last_week"].invoke("broadcast")
+      Rake::Task["collect:last_week"].invoke("broadcast")
     end
   end
 end
