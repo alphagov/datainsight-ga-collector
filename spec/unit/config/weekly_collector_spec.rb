@@ -46,14 +46,14 @@ describe "Weekly Collector Module" do
   end
 
   it "should include the whole week if the start date is a saturday" do
-    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 4), Date.new(2012, 8, 12)).first
+    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 4), Date.new(2012, 8, 12)).last
 
     one_week.start_at.should == Date.new(2012, 7, 29)
     one_week.end_at.should == Date.new(2012, 8, 4)
   end
 
   it "should include the whole week if the start date is a wednesday" do
-    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12)).first
+    one_week = WeeklyDummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12)).last
 
     one_week.start_at.should == Date.new(2012, 7, 29)
     one_week.end_at.should == Date.new(2012, 8, 4)
@@ -63,11 +63,11 @@ describe "Weekly Collector Module" do
   it "should have multiple weeks for longer periods" do
     week_one, week_two = *WeeklyDummy.all_within(Date.new(2012, 8, 1), Date.new(2012, 8, 12))
 
-    week_one.start_at.should == Date.new(2012, 7, 29)
-    week_one.end_at.should == Date.new(2012, 8, 4)
+    week_one.start_at.should == Date.new(2012, 8, 5)
+    week_one.end_at.should == Date.new(2012, 8, 11)
 
-    week_two.start_at.should == Date.new(2012, 8, 5)
-    week_two.end_at.should == Date.new(2012, 8, 11)
+    week_two.start_at.should == Date.new(2012, 7, 29)
+    week_two.end_at.should == Date.new(2012, 8, 4)
   end
 
   it "should have a 6 week period on 2012-01-25 to 2012-03-04" do
@@ -75,12 +75,12 @@ describe "Weekly Collector Module" do
 
     weeks.should have(6).items
 
-    weeks[0].start_at.should == Date.new(2012, 1, 22)
-    weeks[1].start_at.should == Date.new(2012, 1, 29)
-    weeks[2].start_at.should == Date.new(2012, 2, 5)
-    weeks[3].start_at.should == Date.new(2012, 2, 12)
-    weeks[4].start_at.should == Date.new(2012, 2, 19)
-    weeks[5].start_at.should == Date.new(2012, 2, 26)
+    weeks[0].start_at.should == Date.new(2012, 2, 26)
+    weeks[1].start_at.should == Date.new(2012, 2, 19)
+    weeks[2].start_at.should == Date.new(2012, 2, 12)
+    weeks[3].start_at.should == Date.new(2012, 2, 5)
+    weeks[4].start_at.should == Date.new(2012, 1, 29)
+    weeks[5].start_at.should == Date.new(2012, 1, 22)
   end
 
   [7, 8, 13].each { |day_of_month|

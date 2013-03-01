@@ -73,9 +73,9 @@ describe "Weekly visits collector" do
       response.should have(3).items
 
       response[0].should be_for_time_period(
-                           Date.new(2012, 12, 9), Date.new(2012, 12, 16))
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30))
       response[0].should have_payload_value(
-                           :visits => 5760192, :site => "govuk")
+                           :visits => 3291103, :site => "govuk")
 
       response[1].should be_for_time_period(
                            Date.new(2012, 12, 16), Date.new(2012, 12, 23))
@@ -83,9 +83,9 @@ describe "Weekly visits collector" do
                            :visits => 5341780, :site => "govuk")
 
       response[2].should be_for_time_period(
-                           Date.new(2012, 12, 23), Date.new(2012, 12, 30))
+                           Date.new(2012, 12, 9), Date.new(2012, 12, 16))
       response[2].should have_payload_value(
-                           :visits => 3291103, :site => "govuk")
+                           :visits => 5760192, :site => "govuk")
     end
   end
 end

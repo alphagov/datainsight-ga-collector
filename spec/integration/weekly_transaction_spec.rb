@@ -66,9 +66,9 @@ describe "Weekly transaction success collector" do
       response = collector.messages
       response.should have(3).items
 
-      response.first.should be_for_time_period(Date.new(2012,12,9), Date.new(2012,12,16))
+      response.first.should be_for_time_period(Date.new(2012,12,23), Date.new(2012,12,30))
       response[1].should be_for_time_period(Date.new(2012,12,16), Date.new(2012,12,23))
-      response[2].should be_for_time_period(Date.new(2012,12,23), Date.new(2012,12,30))
+      response[2].should be_for_time_period(Date.new(2012,12,9), Date.new(2012,12,16))
     end
   end
 end

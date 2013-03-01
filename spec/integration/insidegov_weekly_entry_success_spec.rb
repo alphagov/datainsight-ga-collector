@@ -99,23 +99,23 @@ describe "Inside gov weekly content engagement collector" do
       response.should have(9).items
 
       response[0].should be_for_time_period(
-                           Date.new(2012, 12, 9), Date.new(2012, 12, 16)
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30)
                          )
       response[0].should have_payload_value(
                            :site => "insidegov",
                            :format => "detailed_guidance",
-                           :entries => 69484,
-                           :successes => 45555
+                           :entries => 45302,
+                           :successes => 30605
                          )
 
       response[1].should have_payload_value(
                            :format => "news",
-                           :entries => 59862,
-                           :successes => 36906
+                           :entries => 44323,
+                           :successes => 27929
                          )
 
       response[2].should be_for_time_period(
-                           Date.new(2012, 12, 9), Date.new(2012, 12, 16)
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30)
                          )
       response[3].should be_for_time_period(
                            Date.new(2012, 12, 16), Date.new(2012, 12, 23)
@@ -124,7 +124,7 @@ describe "Inside gov weekly content engagement collector" do
                            Date.new(2012, 12, 16), Date.new(2012, 12, 23)
                          )
       response[6].should be_for_time_period(
-                           Date.new(2012, 12, 23), Date.new(2012, 12, 30)
+                           Date.new(2012, 12, 9), Date.new(2012, 12, 16)
                          )
     end
   end
