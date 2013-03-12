@@ -89,7 +89,7 @@ describe "Inside gov weekly policy entries collector" do
 
       (0...72).each do |i|
         response[i].should be_for_collector("Google Analytics")
-        response[i].should be_for_time_period(DateTime.new(2012, 12, 9), DateTime.new(2012, 12, 16))
+        response[i].should be_for_time_period(DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30))
       end
       (72...146).each do |i|
         response[i].should be_for_collector("Google Analytics")
@@ -97,12 +97,12 @@ describe "Inside gov weekly policy entries collector" do
       end
       (146...218).each do |i|
         response[i].should be_for_collector("Google Analytics")
-        response[i].should be_for_time_period(DateTime.new(2012, 12, 23), DateTime.new(2012, 12, 30))
+        response[i].should be_for_time_period(DateTime.new(2012, 12, 9), DateTime.new(2012, 12, 16))
       end
 
       response[0].should have_payload_value(
                            :site => "insidegov",
-                           :entries => 206,
+                           :entries => 194,
                            :slug => "boosting-private-sector-employment-in-england"
                          )
     end

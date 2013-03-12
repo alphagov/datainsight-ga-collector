@@ -58,9 +58,9 @@ describe "Hourly visitors spec" do
     response = collector.messages
     response.should have(72).items
 
-    response[0].should be_for_time_period(
+    response[48].should be_for_time_period(
       DateTime.new(2012, 12, 27), DateTime.new(2012, 12, 27, 1))
-    response[0].should have_payload_value(
+    response[48].should have_payload_value(
       :visitors => 11419, :site => "govuk")
 
     response[24].should be_for_time_period(
@@ -68,9 +68,9 @@ describe "Hourly visitors spec" do
     response[24].should have_payload_value(
       :visitors => 14577, :site => "govuk")
 
-    response[48].should be_for_time_period(
+    response[0].should be_for_time_period(
       DateTime.new(2012, 12, 29), DateTime.new(2012, 12, 29, 1))
-    response[48].should have_payload_value(
+    response[0].should have_payload_value(
        :visitors => 14874, :site => "govuk")
   end
 end
