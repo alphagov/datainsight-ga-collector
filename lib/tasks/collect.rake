@@ -7,14 +7,14 @@ collector_spec = [
     {:config => 'DailyVisitors', :days_ago => 2},
     {:config => 'WeeklyVisits', :days_ago => 200},
     {:config => 'WeeklyVisitors', :days_ago => 200},
-    {:config => 'WeeklyContentEngagement', :days_ago => 100},
-    {:config => 'WeeklyContentEngagementDetail', :days_ago => 100},
-    {:config => 'WeeklyContentEngagementTransaction', :days_ago => 100},
-    {:config => 'WeeklyContentEngagementTransactionDetail', :days_ago => 100},
+    {:config => 'WeeklyContentEngagement', :days_ago => 10},
+    {:config => 'WeeklyContentEngagementDetail', :days_ago => 10},
+    {:config => 'WeeklyContentEngagementTransaction', :days_ago => 10},
+    {:config => 'WeeklyContentEngagementTransactionDetail', :days_ago => 10},
     {:config => 'InsideGovWeeklyVisitors', :days_ago => 200},
-    {:config => 'InsideGovWeeklyPolicyEntries', :days_ago => 200},
-    {:config => 'InsideGovWeeklyContentEngagement', :days_ago => 200},
-    {:config => 'InsideGovWeeklyContentEngagementDetail', :days_ago => 200}
+    {:config => 'InsideGovWeeklyPolicyEntries', :days_ago => 20},
+    {:config => 'InsideGovWeeklyContentEngagement', :days_ago => 20},
+    {:config => 'InsideGovWeeklyContentEngagementDetail', :days_ago => 20}
 ]
 
 namespace :collect do
