@@ -32,7 +32,7 @@ module GoogleAnalytics
             start_at += 7
           end until (start_at > stop_at)
 
-          week_configs
+          week_configs.reverse
         end
 
 

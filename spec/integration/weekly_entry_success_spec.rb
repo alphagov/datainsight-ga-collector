@@ -97,23 +97,23 @@ describe "Weekly content engagement collector" do
       response.should have(15).items
 
       response[0].should be_for_time_period(
-                           Date.new(2012, 12, 9), Date.new(2012, 12, 16)
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30)
                          )
       response[0].should have_payload_value(
                            :site => "govuk",
                            :format => "answer",
-                           :entries => 1458580,
-                           :successes => 1115508
+                           :entries => 956935,
+                           :successes => 749668
                          )
 
       response[1].should have_payload_value(
                            :format => "guide",
-                           :entries => 1253538,
-                           :successes => 1018108
+                           :entries => 744263,
+                           :successes => 604024
                          )
 
       response[4].should be_for_time_period(
-                           Date.new(2012, 12, 9), Date.new(2012, 12, 16)
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30)
                          )
       response[5].should be_for_time_period(
                            Date.new(2012, 12, 16), Date.new(2012, 12, 23)
@@ -122,7 +122,7 @@ describe "Weekly content engagement collector" do
                            Date.new(2012, 12, 16), Date.new(2012, 12, 23)
                          )
       response[10].should be_for_time_period(
-                            Date.new(2012, 12, 23), Date.new(2012, 12, 30)
+                            Date.new(2012, 12, 9), Date.new(2012, 12, 16)
                          )
     end
   end

@@ -21,7 +21,7 @@ module GoogleAnalytics
             hourly_configs << self.new(start_date, start_date)
             start_date += 1
           end
-          hourly_configs
+          hourly_configs.reverse
         end
       end
     end

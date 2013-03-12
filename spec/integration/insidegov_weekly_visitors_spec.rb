@@ -76,9 +76,9 @@ describe "Inside gov weekly visitors collector" do
       response.should have(3).items
 
       response[0].should be_for_time_period(
-                           Date.new(2012, 12, 9), Date.new(2012, 12, 16))
+                           Date.new(2012, 12, 23), Date.new(2012, 12, 30))
       response[0].should have_payload_value(
-                           :visitors => 181739, :site => "insidegov")
+                           :visitors => 112822, :site => "insidegov")
 
       response[1].should be_for_time_period(
                            Date.new(2012, 12, 16), Date.new(2012, 12, 23))
@@ -86,9 +86,9 @@ describe "Inside gov weekly visitors collector" do
                            :visitors => 246417, :site => "insidegov")
 
       response[2].should be_for_time_period(
-                           Date.new(2012, 12, 23), Date.new(2012, 12, 30))
+                           Date.new(2012, 12, 9), Date.new(2012, 12, 16))
       response[2].should have_payload_value(
-                           :visitors => 112822, :site => "insidegov")
+                           :visitors => 181739, :site => "insidegov")
     end
   end
 end

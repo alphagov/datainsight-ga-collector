@@ -21,7 +21,7 @@ module GoogleAnalytics
             daily_configs << self.for(start_date)
             start_date += 1
           end
-          daily_configs
+          daily_configs.reverse
         end
       end
     end

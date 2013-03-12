@@ -43,9 +43,9 @@ describe "Hourly Collector Module" do
     four_days.should be_a(Array)
     four_days.should have(4).items
 
-    four_days[0].start_at.should eql(a_wednesday)
-    four_days[1].start_at.should eql(a_thursday)
-    four_days[2].start_at.should eql(a_friday)
-    four_days[3].start_at.should eql(a_saturday)
+    four_days[0].start_at.should eql(a_saturday)
+    four_days[1].start_at.should eql(a_friday)
+    four_days[2].start_at.should eql(a_thursday)
+    four_days[3].start_at.should eql(a_wednesday)
   end
 end
