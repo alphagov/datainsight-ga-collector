@@ -10,6 +10,7 @@ gem "gli", "1.6.0"
 gem "whenever"
 gem "datainsight_logging", '0.0.3'
 gem "datainsight_collector", "0.0.9"
+gem "tzinfo", "~> 0.3.37"
 
 
 group :test do

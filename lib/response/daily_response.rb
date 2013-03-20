@@ -1,4 +1,5 @@
 require_relative 'base_response'
+require_relative 'timezone_helper'
 module GoogleAnalytics
   class DailyResponse < BaseResponse
 
@@ -16,8 +17,8 @@ module GoogleAnalytics
       end_at = (start_at+1)
 
       {
-          :start_at => start_at.strftime,
-          :end_at => end_at.strftime,
+          :start_at => start_at.to_local_timezone.strftime,
+          :end_at => end_at.to_local_timezone.strftime,
           :value => {
               @metric => value,
               :site => @site

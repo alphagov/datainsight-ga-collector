@@ -1,4 +1,5 @@
 require_relative 'base_response'
+require_relative 'timezone_helper'
 module GoogleAnalytics
   class HourlyResponse < BaseResponse
 
@@ -33,7 +34,7 @@ module GoogleAnalytics
     end
 
     def format_datetime(date, hour)
-      DateTime.new(date.year, date.month, date.day, hour).strftime
+      DateTime.new(date.year, date.month, date.day, hour).to_local_timezone.strftime
     end
 
   end
