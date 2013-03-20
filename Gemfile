@@ -9,7 +9,7 @@ gem "bunny"
 gem "gli", "1.6.0"
 gem "whenever"
 gem "datainsight_logging", '0.0.3'
-gem "datainsight_collector", "0.0.9"
+gem "datainsight_collector", "0.0.10", :require => 'timezone_helper'
 gem "tzinfo", "~> 0.3.37"
 
 

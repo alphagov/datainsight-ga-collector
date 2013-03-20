@@ -1,5 +1,4 @@
 require_relative 'base_response'
-require_relative 'timezone_helper'
 module GoogleAnalytics
   class HourlyResponse < BaseResponse
 
