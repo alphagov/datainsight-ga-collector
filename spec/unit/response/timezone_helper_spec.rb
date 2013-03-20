@@ -1,73 +1,26 @@
 require_relative "../../spec_helper"
+require_relative "../../../lib/response/timezone_helper"
 
-include GoogleAnalytics
+describe "timezone helper" do
+  describe "to local timezone conversion" do
+    it "should not convert if a date is not within summer time" do
+      utc_date = DateTime.parse("2012-03-10T00:00:00+00:00")
 
-describe "Daily Response" do
-
-  class StubConfig
-    METRIC='ga:dummy'
-    SITE_KEY="govuk"
-  end
-
-  describe "example from 2012-10-17 13:48:00+01:00" do
-
-    before(:all) do
-      response_hash = load_json("daily_unique_visitors_response.json")
-      @response = DailyResponse.new([response_hash], StubConfig)
+      utc_date.to_local_timezone.should == DateTime.parse("2012-03-10T00:00:00+00:00")
     end
 
-    it "should use visitors count" do
-      @response.messages.should be_an(Array)
-      @response.messages.should have(1).item
+    it "should convert to BST if a date is within during summer time" do
+      utc_date = DateTime.parse("2012-04-01T00:00:00+00:00")
+
+      utc_date.to_local_timezone.should == DateTime.parse("2012-04-01T01:00:00+01:00")
     end
 
-    it "should have the daily visitors" do
-      message = @response.messages[0]
+    it "should convert edge cases when the timezone change happens" do
+      before_bst_change = DateTime.parse("2012-03-25T00:59:00+00:00")
+      after_bst_change  = DateTime.parse("2012-03-25T01:01:00+00:00")
 
-      message[:payload].should == {
-        start_at: "2012-01-17T00:00:00+00:00",
-        end_at: "2012-01-18T00:00:00+00:00",
-        value: {
-          dummy: 909706,
-          site: 'govuk'
-        }
-      }
+      before_bst_change.to_local_timezone.should == DateTime.parse("2012-03-25T00:59:00+00:00")
+      after_bst_change.to_local_timezone.should == DateTime.parse("2012-03-25T02:01:00+01:00")
     end
-  end
-
-  describe "example from 2012-10-17 13:48:00+01:00" do
-
-    before(:all) do
-      response_hash = load_json("daily_unique_visitors_response.json")
-      @response = DailyResponse.new([response_hash], StubConfig)
-    end
-
-    it "should use visitors count" do
-      @response.messages.should be_an(Array)
-      @response.messages.should have(1).item
-    end
-
-    it "should have the daily visitors" do
-      message = @response.messages[0]
-
-      message[:payload].should == {
-          start_at: "2012-01-17T00:00:00+00:00",
-          end_at: "2012-01-18T00:00:00+00:00",
-          value: {
-              dummy: 909706,
-              site: 'govuk'
-          }
-      }
-    end
-  end
-
-  it "should convert date to local (London) timezone if required" do
-    response_hash = load_json("daily_unique_visitors_response.json")
-    response_hash["query"]["start-date"] = "2012-10-17T00:00:00+00:00"
-
-    @response = DailyResponse.new([response_hash], StubConfig)
-    message = @response.messages[0]
-
-    message[:payload][:start_at].should == "2012-10-17T01:00:00+01:00"
   end
 end
