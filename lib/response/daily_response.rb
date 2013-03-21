@@ -16,8 +16,8 @@ module GoogleAnalytics
       end_at = (start_at+1)
 
       {
-          :start_at => start_at.to_local_timezone.strftime,
-          :end_at => end_at.to_local_timezone.strftime,
+          :start_at => start_at.with_tz_offset("Europe/London").strftime,
+          :end_at => end_at.with_tz_offset("Europe/London").strftime,
           :value => {
               @metric => value,
               :site => @site

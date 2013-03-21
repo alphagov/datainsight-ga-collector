@@ -10,7 +10,7 @@ describe "Weekly Response" do
     @response = WeeklyResponse.new([response_hash], StubConfig)
     message = @response.messages[0]
 
-    message[:payload][:start_at].should == "2012-10-17T01:00:00+01:00"
+    message[:payload][:start_at].should == "2012-10-17T00:00:00+01:00"
   end
 
   describe "example when the DST timezone change happens" do
@@ -23,7 +23,7 @@ describe "Weekly Response" do
       message = response.messages.first
 
       message[:payload][:start_at].should eql("2012-03-25T00:00:00+00:00")
-      message[:payload][:end_at].should eql("2012-04-01T01:00:00+01:00")
+      message[:payload][:end_at].should eql("2012-04-01T00:00:00+01:00")
     end
   end
 

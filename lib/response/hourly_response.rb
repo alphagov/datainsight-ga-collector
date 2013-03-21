@@ -33,7 +33,7 @@ module GoogleAnalytics
     end
 
     def format_datetime(date, hour)
-      DateTime.new(date.year, date.month, date.day, hour).to_local_timezone.strftime
+      DateTime.new(date.year, date.month, date.day, hour).with_tz_offset("Europe/London").strftime
     end
 
   end
