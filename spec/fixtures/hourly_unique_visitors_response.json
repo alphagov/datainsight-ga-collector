@@ -2,8 +2,8 @@
   "kind": "analytics#gaData",
   "id": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:hour&metrics=ga:visitors&start-date=2012-08-14&end-date=2012-08-14&start-index=1&max-results=1000",
   "query": {
-    "start-date": "2012-08-14",
-    "end-date": "2012-08-14",
+    "start-date": "2012-02-14",
+    "end-date": "2012-02-14",
     "ids": "ga:53872948",
     "dimensions": "ga:hour",
     "metrics": [
