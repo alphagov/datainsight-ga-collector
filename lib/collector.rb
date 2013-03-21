@@ -2,6 +2,7 @@ require 'yaml'
 require 'open-uri'
 require 'json'
 require 'faraday'
+require 'timezone_helper'
 
 module Faraday
   module Utils

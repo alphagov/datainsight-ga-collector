@@ -30,8 +30,8 @@ describe "weekly content/engagement response" do
 
     it "should have start_at, end_at and site data" do
       message_payload = @response.messages.first[:payload]
-      message_payload[:start_at].should eql("2012-09-09T00:00:00+00:00")
-      message_payload[:end_at].should eql("2012-09-16T00:00:00+00:00")
+      message_payload[:start_at].should eql("2012-01-09T00:00:00+00:00")
+      message_payload[:end_at].should eql("2012-01-16T00:00:00+00:00")
       message_payload[:value][:site].should eql("govuk")
     end
 

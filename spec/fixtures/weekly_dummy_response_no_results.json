@@ -2,8 +2,8 @@
     "kind": "analytics#gaData",
     "id": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:53872948&dimensions=ga:year&metrics=ga:visits&start-date=2012-07-29&end-date=2012-08-04&start-index=1&max-results=1000",
     "query": {
-        "start-date": "2012-07-29",
-        "end-date": "2012-08-04",
+        "start-date": "2012-01-29",
+        "end-date": "2012-02-04",
         "ids": "ga:53872948",
         "dimensions": "ga:year",
         "metrics": [
