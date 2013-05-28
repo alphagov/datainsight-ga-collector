@@ -6,7 +6,7 @@ module GoogleAnalytics
     class WeeklyVisits < Base
       include WeeklyCollector
 
-      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
+      GOOGLE_ANALYTICS_URL_ID = GOVUK_PROFILE_ID
       METRIC = "ga:visits"
       AMQP_TOPIC = 'google_analytics.visits.weekly'
       SITE_KEY = "govuk"

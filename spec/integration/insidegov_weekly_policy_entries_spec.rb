@@ -7,7 +7,7 @@ describe "Inside gov weekly policy entries collector" do
     register_api_discovery
 
     @ga_request = setup_ga_request(
-      :ids => "ga:53872948",
+      :ids => "ga:56580952",
       :metrics => "ga:totalEvents",
       :dimensions => "ga:eventAction",
       :filters => "ga:eventCategory==IG_policy;ga:eventLabel==Entry"
