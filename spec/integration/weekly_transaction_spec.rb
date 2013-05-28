@@ -14,7 +14,7 @@ describe "Weekly transaction success collector" do
     )
 
     @ga_request_2 = setup_ga_request(
-      ids: "ga:53872948",
+      ids: "ga:56580952",
       metrics: "ga:totalEvents",
       dimensions: "ga:eventCategory,ga:eventLabel",
       filters: "ga:eventCategory==MS_transaction"

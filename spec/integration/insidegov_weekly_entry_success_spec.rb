@@ -7,7 +7,7 @@ describe "Inside gov weekly content engagement collector" do
     register_api_discovery
 
     @ga_request = setup_ga_request(
-      :ids => "ga:53872948",
+      :ids => "ga:56580952",
       :metrics => "ga:totalEvents",
       :dimensions => "ga:eventCategory,ga:eventLabel",
       :filters => "ga:eventCategory=~^IG_.*"

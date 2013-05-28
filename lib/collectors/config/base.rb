@@ -2,7 +2,7 @@ module GoogleAnalytics
   module Config
     class Base
 
-      GOVUK_PROFILE_ID = "ga:53872948"
+      GOVUK_PROFILE_ID = "ga:56580952"
       EXIT_TRACKING_PROFILE_ID = "ga:61976178"
       INSIDEGOV_PROFILE_ID = "ga:53699180"
 
