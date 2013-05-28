@@ -6,7 +6,7 @@ module GoogleAnalytics
     class HourlyVisitors < Base
       include HourlyCollector
 
-      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
+      GOOGLE_ANALYTICS_URL_ID = GOVUK_PROFILE_ID
       METRIC = "ga:visitors"
       AMQP_TOPIC = "google_analytics.visitors.hourly"
       SITE_KEY = "govuk"
