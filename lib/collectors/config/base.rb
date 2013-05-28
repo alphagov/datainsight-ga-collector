@@ -2,6 +2,11 @@ module GoogleAnalytics
   module Config
     class Base
 
+      GOVUK_PROFILE_ID = "ga:53872948"
+      EXIT_TRACKING_PROFILE_ID = "ga:61976178"
+      INSIDEGOV_PROFILE_ID = "ga:53699180"
+
+
       def self.descendants
         ObjectSpace.each_object(Class).select{|klass| klass < self }.map{|klass| klass.name.split("::").last}
       end

@@ -7,7 +7,7 @@ module GoogleAnalytics
     class WeeklyContentEngagement < Base
       include WeeklyCollector
 
-      GOOGLE_ANALYTICS_URL_ID = "ga:53872948"
+      GOOGLE_ANALYTICS_URL_ID = GOVUK_PROFILE_ID
       AMQP_TOPIC = "google_analytics.entry_and_success.weekly"
       SITE_KEY = "govuk"
 
